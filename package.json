@@ -1,0 +1,24 @@
+{
+  "name": "ciaociaopizza",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maybe9999/CiaoCiaoPizza.git"
+  },
+  "author": "Matias, Marcia, Alexis, Lucas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maybe9999/CiaoCiaoPizza/issues"
+  },
+  "homepage": "https://github.com/maybe9999/CiaoCiaoPizza#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.10.1",
+    "nodemon": "^3.1.4"
+  }
+}
