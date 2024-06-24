@@ -1,12 +1,12 @@
 const express = require('express');  // Importamos el modulo express
 const path = require('path');
-
+const morgan = require('morgan');
 const app = express();
 
 
 //configuración
 app.set("port", 5001)
-
+app.use(morgan('dev'));
 const muestraSeccion = require('./routes/redirect');
 
 
