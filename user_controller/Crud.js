@@ -1,0 +1,3 @@
+const baseDeDatos = require("../data_base/db");
+
+//Aca se enviarian las consultas a la DB....
