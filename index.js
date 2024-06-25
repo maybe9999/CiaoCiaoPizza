@@ -24,6 +24,20 @@ app.get('/contacto', muestraSeccion);
 app.get('/login', muestraSeccion);
 app.get('/dashboard', muestraSeccion); //Esta ruta no se si debería manejarse desde aca, creo que no!!
 
+
+// Ruta para manejar el login
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'admin' && password === 'admin') {
+        // Si las credenciales son válidas, redirigir al dashboard
+        res.redirect('/dashboard');
+    } else {
+        // Si las credenciales son inválidas, redirigir al login
+        res.redirect('/login');
+    }
+});
+
+
 //Si ninguna de las rutas coincide usara esta carpeta y por defecto devolverá el archivo index que encuentre
 app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para servir archivos estáticos desde esta carpeta...
 
@@ -32,3 +46,5 @@ app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para ser
 app.listen(app.get("port") , () => { 
     console.log(`Servidor ejecutándose en el puerto ${app.get("port")}`)
 });
+
+
