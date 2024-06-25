@@ -1,7 +1,7 @@
 const mySqlDB = require("mysql2"); //Se importa el modulo para conectarse a la Base de Datos
 
 //Se hace la conexión a la Base de Datos... (se logea)
-const session = mySql.createConnection({
+const session = mySqlDB.createConnection({
     host : 'bsbg7biimj0ezhjbgpyv-mysql.services.clever-cloud.com',
     user : 'uxq982fe07ponu3i',
     password : '51iA8kk4HNj6LiescIRz',
