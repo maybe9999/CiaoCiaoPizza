@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" href="../img/ico_pestaña.ico">
     <title>Contacto</title>
+
+    
+    <!-- Añadido para que funcione login -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Añadido para que funcione login -->
+
 </head>
 <body class="contacto">
     <header>
@@ -19,6 +25,15 @@
         <!-- Inicio Menu dispositivos con pantalla media-grande -->
         <nav class="menu-horizontal">
             <ul>
+                <!-- Añadido para que funcione login -->
+                <li class="login-icon-list">
+                    <div class="icon-group">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="icon-text" id="loginBtn">Iniciar Sesión</span>
+                    </div>
+                </li>
+                 <!-- Añadido para que funcione login -->
+
                 <li>
                     <a href="/nosotros">NOSOTROS</a><!-- Lucas-->
                 </li>
@@ -39,6 +54,15 @@
         <img src="/img/bars-solid.svg" alt="Menú" class="menu-icon">
         <nav class="menu-desplegable" >
             <ul>
+                <!-- Añadido para que funcione login -->
+                <li class="login-icon-list">
+                    <div class="icon-group">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="icon-text" id="loginBtnMobile">Iniciar Sesión</span>
+                    </div>
+                </li>
+                 <!-- Añadido para que funcione login -->
+
                 <li>
                     <a href="/nosotros">NOSOTROS</a><!-- Lucas-->
                 </li>
@@ -91,6 +115,21 @@
        
  <!-- Fin de la sección formulario -->
 
+ <!-- Añadido para que funcione login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="loginForm" action="/login" method="post">
+                <h2>Iniciar Sesión</h2>
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+    <!-- Añadido para que funcione login -->
 
  <!--Ahora creamos la sección ubicación-->
 

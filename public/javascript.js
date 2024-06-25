@@ -97,3 +97,54 @@ document.addEventListener("DOMContentLoaded", function()
 
 });
 //FIN Responsive HEADEER--------------------------------------------- //
+
+
+// Inicio código Modal Login //
+
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById("loginModal");
+    const btn = document.getElementById("loginBtn");
+    const btnMobile = document.getElementById("loginBtnMobile");
+    const span = document.getElementsByClassName("close")[0];
+
+    let showModal = false; // Variable para controlar la visibilidad del modal
+
+    // Función para mostrar u ocultar el modal
+    function toggleModal() {
+        if (showModal) {
+            modal.style.display = "flex";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+
+    btn.onclick = function () {
+        showModal = true; // Al hacer clic en el botón, se muestra el modal
+        toggleModal();
+    };
+
+    btnMobile.onclick = function () {
+        showModal = true; // Al hacer clic en el botón móvil, se muestra el modal
+        toggleModal();
+    };
+
+    span.onclick = function () {
+        showModal = false; // Al hacer clic en el botón de cerrar, se oculta el modal
+        toggleModal();
+    };
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            showModal = false; // Al hacer clic fuera del modal, se oculta
+            toggleModal();
+        }
+    };
+
+    // Ocultar el modal al cargar la página
+    toggleModal();
+});
+
+
+
+
+// Fin código Modal Login //

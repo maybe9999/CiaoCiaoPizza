@@ -1,6 +1,156 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
+
+/*---- 25/06/24 ------ botón inicio*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap');
+:root{
+    --bg-color: rgb(0, 0, 0);
+    --user-color:#f00; /* Cambia esto al color que prefieras */
+    --container-shadow:2.3px 2.3px 1.9px rgba(0, 0, 0, 0.035),5.4px 5.4px 4.3px ;
+}
+
+
+/* Estilos para el botón de inicio de sesión */
+.icon-group {
+    height: 30px;
+    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease; /* Reducción del tiempo de transición */
+}
+
+.icon-group:hover {
+    width: 155px; /* Ajuste del ancho al hacer hover */
+    justify-content: space-around;
+    background-color: var(--user-color); /* Color de fondo al hacer hover */
+}
+
+.icon-group i,
+.icon-group .icon-text {
+    z-index: 2;
+    font-size: 16px; /* Reducción del tamaño de fuente */
+    color: white;
+}
+
+.icon-group .icon-text {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap; /* Ajuste para texto sin saltos */
+}
+
+.icon-group:hover .icon-text {
+    width: auto; /* Ajuste para mostrar el texto completo */
+    transition: width 0.3s ease; /* Reducción del tiempo de transición */
+}
+
+.icon-group .icon-bg {
+    position: absolute;
+    height: 110%;
+    width: 110%;
+    border-radius: 10px;
+    clip-path: circle(50% at -100% 50%);
+    z-index: 1;
+    background-color: var(--user-color); /* Color de fondo inicial */
+    transition: clip-path 0.3s ease, background-color 0.3s ease; /* Transiciones */
+}
+
+.icon-group:hover .icon-bg {
+    clip-path: circle(160% at 10% 60%); /* Clip-path al hacer hover */
+}
+
+
+
+
+/*----- LOGIN -------------------*/
+/* Estilos específicos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin: 0 0 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-content label {
+    display: block;
+    margin: 0.5rem 0;
+    color: #555;
+    font-weight: 500;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+}
+
+/*----- FIN LOGIN ---------------*/
+
+/*---- 25/06/24 ------ botón inicio*/
+
+
+
+
 /* ------------------------------------ General ---------------------------------------------*/
 
 body{ /* Propiedades de todos los body*/
