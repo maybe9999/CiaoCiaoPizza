@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById("loginBtn");
     const btnMobile = document.getElementById("loginBtnMobile");
     const span = document.getElementsByClassName("close")[0];
+    const form = document.getElementById("loginForm");
 
     let showModal = false; // Variable para controlar la visibilidad del modal
 
@@ -138,6 +139,34 @@ document.addEventListener('DOMContentLoaded', function () {
             showModal = false; // Al hacer clic fuera del modal, se oculta
             toggleModal();
         }
+    };
+
+    form.onsubmit = function (event) {
+        event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+        const formData = new FormData(form);
+        const data = {
+            username: formData.get('username'),
+            password: formData.get('password')
+        };
+
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = '/dashboard';
+            } else {
+                alert(result.message || 'Credenciales incorrectas');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     // Ocultar el modal al cargar la página
