@@ -9,8 +9,8 @@ const routesPublic = {
     productos : path.resolve(__dirname, '../public/productos/productos.html'),
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
-    login : path.resolve(__dirname, '../public/login/index.html'),
-    dashboard : path.resolve(__dirname, '../public/dashboard/index.html')
+    //login : path.resolve(__dirname, '../public/login/index.html'),
+    //dashboard : path.resolve(__dirname, '../public/dashboard/index.html')
 };
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.

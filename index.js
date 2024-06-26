@@ -1,6 +1,7 @@
 const express = require('express');  // Importamos el modulo express
 const path = require('path'); //
 const morgan = require('morgan'); //Info por consola sobre las peticiones entrantes
+require("dotenv").config(); //Sirve para usar variables de entorno... No es necesario almacenarlo
 
 //--- creado para obtener el acceso mediante el login
 const session = require('./data_base/db'); // Importamos la conexión a la base de datos
