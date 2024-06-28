@@ -1495,6 +1495,7 @@ footer{
     padding: 20px;
     margin-top: 10%;
     backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
 }
 
 .dashboard {
