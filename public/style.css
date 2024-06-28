@@ -1494,6 +1494,7 @@ footer{
     width: 100%;
     padding: 20px;
     margin-top: 10%;
+    backdrop-filter: blur(10px);
 }
 
 /* Ajustes adicionales para que los elementos dentro del containerDash se alineen correctamente */
@@ -1580,4 +1581,5 @@ button.carga-button:hover {
 
 .input-group-inline .input-group {
     margin-right: 20px; /* Espacio entre los input groups */
+    justify-content: space-evenly;
 }

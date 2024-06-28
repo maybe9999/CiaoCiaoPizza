@@ -30,7 +30,7 @@
                 </li>
                  <!-- Añadido para que funcione login -->
                 <li>
-                    <a href="/nosotros/">NOSOTROS</a><!-- Lucas-->
+                    <a href="/nosotros">NOSOTROS</a><!-- Lucas-->
                 </li>
                 <li>
                     <a href="/productos">PRODUCTOS</a><!-- Matias-->
@@ -93,86 +93,86 @@
      <div class="containerDash">
         <div class="dashboard">
 
-            <!-- Botón Pizzas -->
+                <!-- Botón Pizzas -->
 
-            <button class="menu-button" onclick="toggleCampos('pizzas')">Cargar Pizzas</button>
+                <button class="menu-button" onclick="toggleCampos('pizzas')">Cargar Pizzas</button>
 
-        <!-- Contenedor de campos para Pizzas -->
+            <!-- Contenedor de campos para Pizzas -->
 
-        <div class="menu-content" id="pizzas">
-            <div class="input-group-inline">
-                <div class="input-group">
-                    <label for="pizza-name">Nombre</label>
-                    <input type="text" id="pizza-name" placeholder="Nombre del Menú">
-                </div>
-                <div class="input-group detalles">
-                    <label for="pizza-price">Precio</label>
-                    <input type="text" id="pizza-price" placeholder="Precio">
-                </div>
-                <div class="input-group detalles">
-                    <label for="pizza-stock">Stock</label>
-                    <input type="text" id="pizza-stock" placeholder="Disponibilidad">
-                </div>
-            <button class="carga-button">Cargar Producto</button>
-            </div>
-        </div>
-
-            <!-- Botón Menu -->
-
-            <button class="menu-button" onclick="toggleCampos('menu')">Cargar Menú</button>
-        <!-- Contenedor de campos para Menú -->
-
-        <div class="menu-content" id="menu">
-            <div class="input-group-inline">
-                <div class="input-group">
-                    <label for="menu-name">Nombre</label>
-                    <input type="text" id="menu-name" placeholder="Nombre del Menú">
-                </div>
-                <div class="input-group detalles">
-                    <label for="menu-price">Precio</label>
-                    <input type="text" id="menu-price" placeholder="Precio">
-                </div>
-                <div class="input-group detalles">
-                    <label for="menu-stock">Stock</label>
-                    <input type="text" id="menu-stock" placeholder="Disponibilidad">
-                </div>
+            <div class="menu-content" id="pizzas">
+                <div class="input-group-inline">
+                    <div class="input-group">
+                        <label for="pizza-name">Nombre</label>
+                        <input type="text" id="pizza-name" placeholder="Nombre del Menú">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="pizza-price">Precio</label>
+                        <input type="text" id="pizza-price" placeholder="Precio">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="pizza-stock">Stock</label>
+                        <input type="text" id="pizza-stock" placeholder="Disponibilidad">
+                    </div>
                 <button class="carga-button">Cargar Producto</button>
-            </div>
-        </div>
-        
-
-            <!-- Botón Bebidas -->
-
-            <button class="menu-button" onclick="toggleCampos('bebidas')">Cargar Bebidas</button>
-        
-         <!-- Contenedor de campos para Bebidas -->
-
-         <div class="menu-content" id="bebidas">
-            <div class="input-group-inline">
-                <div class="input-group">
-                    <label for="bebida-name">Nombre</label>
-                    <input type="text" id="bebida-name" placeholder="Nombre del Menú">
                 </div>
-                <div class="input-group detalles">
-                    <label for="bebida-price">Precio</label>
-                    <input type="text" id="bebida-price" placeholder="Precio">
-                </div>
-                <div class="input-group detalles">
-                    <label for="bebida-stock">Stock</label>
-                    <input type="text" id="bebida-stock" placeholder="Disponibilidad">
-                </div>
-                <button class="carga-button">Cargar Producto</button>
             </div>
-        </div>
 
-            <!-- Botón Listado -->
+                <!-- Botón Menu -->
 
-            <button class="menu-button" onclick="mostrarListadoCompleto()">Mostrar Listado Completo</button>
-        
-             <!-- Contenedor de listado completo -->
-             <div class="menu-content" id="listado">
-                <!-- Aquí puedes agregar el contenido del listado completo -->
+                <button class="menu-button" onclick="toggleCampos('menu')">Cargar Menú</button>
+            <!-- Contenedor de campos para Menú -->
+
+            <div class="menu-content" id="menu">
+                <div class="input-group-inline">
+                    <div class="input-group">
+                        <label for="menu-name">Nombre</label>
+                        <input type="text" id="menu-name" placeholder="Nombre del Menú">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="menu-price">Precio</label>
+                        <input type="text" id="menu-price" placeholder="Precio">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="menu-stock">Stock</label>
+                        <input type="text" id="menu-stock" placeholder="Disponibilidad">
+                    </div>
+                    <button class="carga-button">Cargar Producto</button>
+                </div>
             </div>
+            
+
+                <!-- Botón Bebidas -->
+
+                <button class="menu-button" onclick="toggleCampos('bebidas')">Cargar Bebidas</button>
+            
+            <!-- Contenedor de campos para Bebidas -->
+
+            <div class="menu-content" id="bebidas">
+                <div class="input-group-inline">
+                    <div class="input-group">
+                        <label for="bebida-name">Nombre</label>
+                        <input type="text" id="bebida-name" placeholder="Nombre del Menú">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="bebida-price">Precio</label>
+                        <input type="text" id="bebida-price" placeholder="Precio">
+                    </div>
+                    <div class="input-group detalles">
+                        <label for="bebida-stock">Stock</label>
+                        <input type="text" id="bebida-stock" placeholder="Disponibilidad">
+                    </div>
+                    <button class="carga-button">Cargar Producto</button>
+                </div>
+            </div>
+
+                <!-- Botón Listado -->
+
+                <button class="menu-button" onclick="mostrarListadoCompleto()">Mostrar Listado Completo</button>
+            
+                <!-- Contenedor de listado completo -->
+                <div class="menu-content" id="listado">
+                    <!-- Aquí puedes agregar el contenido del listado completo -->
+                </div>
         
         </div>
     </div>
