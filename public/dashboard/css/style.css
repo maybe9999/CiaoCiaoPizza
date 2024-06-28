@@ -1,0 +1,1515 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+/*---- 25/06/24 ------ botón inicio*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap');
+:root{
+    
+    --user-color:#f00; /* Cambia esto al color que prefieras */
+    --container-shadow:2.3px 2.3px 1.9px rgba(0, 0, 0, 0.035),5.4px 5.4px 4.3px ;
+}
+.social-icon-list{
+    height: 100px;
+    width: 500px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+    align-items: center;
+    column-gap: 20px;
+    padding: 0 20px;
+    background-color: var(--container-bg-color);
+}
+
+.icon-group{
+    height: 30px;
+    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 1s ease;
+}
+.icon-group:hover{
+    width: 155px;
+    justify-content: space-around;
+}
+.icon-group:nth-child(1) {
+    border: 2px solid var(--user-color); /* Cambiado a user color */
+}
+
+.icon-group .icon-text{
+    width: 0;
+    overflow: hidden;
+    color: white;
+}
+
+.icon-group:hover .icon-text{
+    width: fit-content;
+    transition: width 1s ease;
+}
+
+.icon-group i,
+.icon-group .icon-text{
+    z-index: 2;
+    font-size: 16px; /* Reducir tamaño de fuente */
+    color: white;
+}
+
+.icon-group .icon-bg{
+    position: absolute;
+    height: 110%;
+    width: 110%;
+    border-radius: 10px;
+    clip-path: circle(50% at -100% 50%);
+    z-index: 1;
+}
+
+.icon-group:hover .icon-bg{
+    clip-path: circle(160% at 10% 60%);
+    transition: all 1s ease;
+}
+
+.icon-group:nth-child(1) .icon-bg{
+    background-color: var(--user-color); /* Cambiado a user color */
+}
+
+/*---- 25/06/24 ------ botón inicio*/
+
+/* ------------------------------------ General ---------------------------------------------*/
+
+body{ /* Propiedades de todos los body*/
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+/* body cambia UNICAMENTE la foto del INDEX*/
+body.index_{ 
+    background-image: url('./img/img_index_11.webp');
+    min-height: 100vh;
+}
+body.nosotros{
+    background-image: url('./img/img_index_11.webp');
+    display: flex;
+    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
+/* body.nuestra-carta para sólo utilizar la imágen de fondo en otro navegador*/
+body.nuestra-carta {
+    background-image: url('./img/portada_productos_11zon.webp');
+    min-height: 100vh;
+}
+/*body.contacto para su fondo de pantalla*/
+body.contacto{
+    background-image: url('./img/img_index_11.webp');
+}
+/*body.productos para su fondo de pantalla*/
+body.productos .main_prod .img_y_text{
+    background-image: url('./img/portada_productos_11zon.webp');
+}
+/* ------------------------------------ Fin General ---------------------------------------------*/
+
+
+/* ------------------------------------------------- Inicio Header (Cabecera) - (Compartido) ----------------------------------------------*/
+
+header img{ /* Ajusta las dimensiones del ICONO de la pagina para el header/cabecera */
+    margin-left: 2%;
+    width: 8%;
+    height: 80%;
+}
+
+header {
+    display: flex;
+    align-items: center; /* Centrar verticalmente el header */
+    align-content: center;
+
+    background-color: rgba(250, 39, 39, 0.553); /* Color de fondo semi-transparente */
+    position: fixed; /* Fijar la posición del encabezado */
+
+    top: 0; /* Fijar en la parte superior */
+    left: 0; /* Fijar en la parte izquierda */
+
+    width: 100%; /* Ocupar el ancho completo */
+    height: 7vw;
+
+    z-index: 999;
+    flex-wrap: wrap;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6vw;
+    margin-left: 20px;
+    margin-right: auto; /* Empuja todo a la izquierda */
+    color: white; /* Color del texto */
+}
+
+h1 a{
+    color: white; /* Color del texto */
+    text-decoration: none;
+}
+
+nav {
+    font-family: 'Josefin Sans', sans-serif;
+    margin-right: 1vw; /* Ajuste del margen derecho */
+}
+/* ---------------------------------------------- Fin Header (Cabecera) - (COMPARTIDO)--------------------------------------------------*/
+
+
+/* ------------------------------------------ Inicio main, seccion: INICIO -------------------------------------------------*/
+main{
+    padding: 0%;
+}
+
+.text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-right: 10px;
+    padding-top: 350px;   
+}
+h2{
+    text-align: center;
+}
+/* ------------------------------------------ Fin main, seccion: INICIO -------------------------------------------------*/
+
+
+/* ------------------------------------------ Inicio main, seccion: NOSOTROS -------------------------------------------------*/
+.main_nosotros{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.conteiner {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 300%;
+    
+   
+    margin-top: 6vh;
+    display: flex;
+    justify-content: center;
+    grid-template-areas: "image" "text";
+}
+
+.imagen {
+    border: 1px;
+    /*width: 110vh;*/
+    vertical-align: center;
+}
+
+.texto {
+    position: sticky;
+    border: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2vh;
+    color: white;
+    text-align: justify;
+    width: 100vh;
+    justify-self: center;
+    align-self: center;
+    padding: 4vh;
+}
+/* ------------------------------------------ Fin main seccion: NOSOTROS -------------------------------------------------*/
+
+
+/* ---------------------------------------------------------- Inicio main seccion: PRODUCTOS  -------------------------------------------------------*/
+/*  ----------    PORTADA  PRODUCTOS  ---------- */
+.img_y_text{  /* FOTO DE INICIO */
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-end;
+    justify-items: flex-end;
+
+    flex-wrap: wrap;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+
+}
+.text_prin {
+    color: rgb(255, 224, 224);
+
+    font-size: 4vw;
+    margin-bottom: 30vh;
+    padding: 2vw;
+
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00, 19px 23px 13px rgba(206,89,55,0.5);
+  }
+/*  ----------   FIN PORTADA    ---------- */
+
+/*  ----------    PIZZAS Y OTROS PRODUCTOS    ---------- */
+.pizzas, .papas{ /* SECCIÓN PIZZAS (ES LO MISMO QUE .PAPAS*/
+    display: flex;
+
+    justify-content: space-evenly;
+    justify-items: flex-start;
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+    background-color: white !important;
+}
+
+.Cabecera_de_presentacion{ /* TEXTO DONDE SE PRESENTA EL PRODUCTO (PIZZAS O OTROS)*/ 
+    text-align: center;
+    font-size: 6vw;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: bold;
+    font-variant: small-caps;
+    
+    width: 100%;
+    padding: 3px;
+    margin: 0%;
+    color: #000000;
+    
+    text-shadow: 4px 3px 0 #7a7a7a63;   
+}
+
+.tamaño { /* CONTENEDOR PRODUCTOS (FOTO Y TEXTO DE FOTO) (.R_IMG Y .PARR)*/
+    position: relative;
+
+    margin: 2%;
+    width: 15vw; /*20%*/
+    height: 20vw; /*30%*/
+
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    
+}
+
+.R_img { /* IMAGEN DE PRODUCTO (PIZZA PAPA ETC)*/
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    filter: brightness(115%);
+    transition: transform 0.5s, filter 0.5s;
+}
+
+.parr{ /* DESCRIPCIÓN/TEXTO DE PRODUCTO (PIZZA PAPA ETC)*/
+    position: absolute;
+    padding: 10px;
+    border-radius: 0px;
+    top: 40%;
+    left: 50%;
+    
+    color: #ffffff; /* texto negro */
+    background-color: rgba(0, 0, 0, 0.096); /* fondo blanco semi-transparente */
+    backdrop-filter: blur(2px);
+    opacity: 0;
+
+    justify-self: center;
+    align-self: center;
+
+    
+
+    font-size: 1.5vw;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+
+.tamaño:hover .parr { /* HACE VISIBLE EL TEXTO DE LAS FOTOS AL PASAR POR ENCIMA*/
+    opacity: 1;
+}
+
+.tamaño:hover .R_img{ /* AGRANDA LAS FOTOS Y LE QUITA BRILLO AL PASAR POR ENCIMA*/
+    transform: scale(1.15); /* agrandar la imagen un 10% */
+    filter:brightness(75%); /* REDUCE EL BRILLO*/
+}
+/*  ----------   FIN PIZZAS Y OTROS PRODUCTOS    ---------- */
+
+/* ------------------------------------------------------------------ FIN MAIN seccion: PRODUCTOS  -------------------------------------------------------*/
+
+
+
+/* ------------------------------------------ Inicio main seccion: CONTACTOS-------------------------------------------------*/
+.main-form{
+    display: flex;
+    align-items: center; /* Centrar verticalmente el footer */
+    justify-content: center; /* Centrar horizontalmente el footer */
+    position: relative;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+.contenedor-parrafos{
+    margin-top: 11%;
+    text-align: center;
+    justify-content: center;
+    color: rgb(100, 94, 94);
+    font-size: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.parrafo{
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+}
+
+.formulario-contacto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px, 1px, 11px white;
+    border-radius: 20px;
+    padding: 0px;
+    width: 20%;
+    padding-right: 2%;
+
+    /*justify-content: center;
+    text-align: center;*/
+}
+
+#myForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.cont-info{
+    width: 100%;
+}
+
+.info-cliente{
+    border: 1px solid gold;
+    border-radius: 10px;
+    height: 40px;
+    width:100%;
+    padding:15px;
+    margin:0px;
+}
+
+.mensaje{
+    resize: vertical;
+    border: 1px solid gold;
+    border-radius: 10px;
+    height: 200px;
+    width:100%;
+    padding:15px;
+    margin-top:4%;
+}
+
+.contenedor-enviar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.botón{
+    border: 3px solid gold;
+    border-radius:10px;
+    min-height:20px 20px 20px 20px;
+    padding:10px 15px;
+    position: relative;
+    margin-left: 10%;
+}
+.iframe_contactos{
+    width:600%;
+    height:400px; 
+    border:0;
+}
+/* ------------------------------------------ FIN main seccion: CONTACTO -------------------------------------------------*/
+
+/* ------------------------------------------ Inicio Style seccion: CARTAS -------------------------------------------------*/
+/*Estilo del contenido*/
+.container {
+    display: grid;
+    grid-template: 1fr 360px 1fr;
+    grid-template-areas:
+        "header header"
+        "left contenido";
+    grid-gap: 5px;
+    padding: 10px;
+    margin: auto; /* Centrar el contenedor horizontal y verticalmente */
+    width: 650px; /* Ancho máximo del contenedor */
+    max-width: 90%; /* Establecer un ancho máximo del contenedor */
+    margin-top: 175px; /* Ajustar el margen superior para dejar espacio para el encabezado */
+    background-color: rgba(0, 0, 0, 0.6); /* Negro con 60% de opacidad */
+    border-radius: 10px;
+    color: white;
+    overflow: scroll;
+}
+.item{
+    background-color: rgba(0, 0, 0, 0.6); /* Negro con 60% de opacidad */
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+}
+.header-container{
+    grid-area: header;
+    display: flex; /* Hacer que los elementos se alineen en una fila */
+    flex-direction: row; /* Alinear los elementos en una columna */
+    width: 650px;
+    height: 40px;
+}
+.left{
+    grid-area: left;
+    display: flex; /* Hacer que los elementos se alineen en una fila */
+    flex-direction: column; /* Alinear los elementos en una columna */
+    justify-content: center; /* Centrar verticalmente los elementos */
+    align-content: center; /* Tocando cod ajeno :)*/
+    width: 345;
+    height: 300px;
+}
+.contenido {
+    grid-area: contenido;
+    width: 285px;
+    height: 300px;
+    background-image: url(./img/Para_sacar_ico_final1.png);
+    background-size: contain; /* Ajusta la imagen al tamaño del contenedor manteniendo la relación de aspecto */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en el contenedor */
+  }
+/*Fin estilo del contenido*/
+
+/*Estilo de cartas "left"*/
+.cartas {
+    background-color:  rgba(0, 0, 0, 0.8); /* Negro con 80% de opacidad */;
+    border: 2px solid transparent;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 5px 128px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 2px; /* Separación entre elementos */
+    width: 80px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+}
+.cartas:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Cambia el color de fondo al pasar el mouse */
+    color: black; /* Cambia el color del texto al pasar el mouse */
+}
+.header-cartas{
+    background-color: rgba(0, 0, 0, 0.8); /* Cambia el color de fondo al pasar el mouse */
+    border: 2px solid transparent;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 5px 67px;
+    border-radius: 5px; /* Bordes redondeados */
+    font-family: 'Josefin Sans', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+.header-cartas:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Cambia el color de fondo al pasar el mouse */
+    color: black; /* Cambia el color del texto al pasar el mouse */
+}
+.activa {
+    background-color: rgb(255, 255, 255); /* Cambiar el fondo cuando está activo */
+    color: black; /* Cambiar el color del texto */
+}
+/*Fin estilo de cartas "left"*/
+
+/*Estilo de cartas "contenido"*/
+
+.carta-imagen {
+    margin: 0%;
+    display: flex;
+    margin-bottom: 5px; /* Margen inferior para separar del texto */
+    
+}
+.carta-imagen img {
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    height: 300px;
+    width: 280px;
+    margin-bottom: 0px; /* Margen inferior para separar del texto */
+    justify-content: left;
+    
+}
+.carta-texto {
+    font-family: 'Josefin Sans', sans-serif; /* Tipo de fuente */
+    font-size: 16px; /* Tamaño de fuente */
+    margin-left: 10px; /* Margen izquierdo para separar del texto */
+    color: white; /* Color del texto */
+    text-align-last: right;
+}
+/*Fin estilo de cartas "contenido"*/
+/* ----------------------------------------------------------- Fin Style CARTAS -----------------------------------------------------------*/
+
+
+/* ------------------------------------------------------------------- INICIO FOOTER (COMPARTIDO) ---------------------------------------------------------*/
+footer{
+    background-color: rgba(250, 39, 39, 0.553);
+    color: whitesmoke;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.info-ubicación{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgba(250, 39, 39, 0.553); /* Color de fondo semi-transparente */
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+
+}
+.ubicación{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+.contenedor{
+    padding: 80px 0;
+}
+.contenedor-texto{
+    width: 40%;
+}
+.izquierda{
+    text-align: center;
+}
+.título{
+    color: whitesmoke;
+    font-weight: 300;
+    font-size: 35px;
+    margin-bottom: 30px ;
+}
+.ubicación .contenedor-texto{
+    width: 40%;
+}
+.redes-sociales{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+}
+.footer_social{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    
+}
+.derechos-reservados{
+    margin-top: 20px;
+}
+.whatsapp-btn{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 50px;
+    height:50px;
+    border-radius: 60%;
+    background-color: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: opx 2px 0px rgba(0, 0, 0, 0.3);
+    animation: breathe 2s ease-in-out infinite;
+
+
+}
+/* -------------------------------------------------------- FIN FOOTER (COMPARTIDO)----------------------------------------------------------------*/
+
+
+
+/* ----------------------------------------- INICIO RESPONSIVE PARA ESCRITORIO -------------------------------------------*/
+@media (width >= 1024px) {
+    /* INICIO RESPONSIVE HEADER */
+    h1 {
+        font-size: 5vw;
+    }
+    .menu-icon { /* Oculta el icono de hamburguesa que es para pantallas medias*/
+        display: none;
+    }
+    .menu-horizontal { /* Acomoda el menu horizontal a la derecha */
+        display: flex;
+        justify-content: flex-end;
+    }
+    .menu-horizontal ul{
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+    .menu-horizontal li{
+        margin-right: 20px;
+    }
+    .menu-horizontal a{
+        color: white;
+        text-decoration: none;
+        font-size: 1.1vw;
+        padding: 25px 10px;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .menu-horizontal a:hover, .menu-horizontal a.activa{
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+
+    .menu-desplegable{ /* Oculta el menu desplegable que es para pantallas medias*/
+        display: none;
+    }
+    /* FIN RESPONSIVE HEADER */
+
+    /* INICIO RESPONSIVE INDEX*/
+    .main_index{
+        display: flex;
+        justify-content: flex-start;
+        justify-items: flex-start;
+        
+        align-content: center;
+        align-items: center;
+
+    }
+    .text {
+        display: flex;
+
+        justify-content: flex-start;
+        justify-items: flex-start;
+
+        align-content: center;
+        align-items: center;
+
+        margin-left: 4%;
+ 
+        color: rgba(0, 0, 0, 0.6);
+    }
+    .text h2{
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 6vw;
+    }
+    /* FIN RESPONSIVE INDEX*/
+
+    /* INICIO RESPONSIVE NOSOTROS*/
+    .main_nosotros{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .conteiner {
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+
+        margin-top: 8vh;
+
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: space-around;
+    }
+
+    .imagen {
+        border: 1px;
+        justify-self: center;
+        vertical-align: center;
+        /* width: 100vh; */
+    }
+
+    .texto{
+        border: 1px;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 2vh;
+        text-align: justify;
+
+        color: white;
+
+        /*width: 100vh;*/
+        padding: 4vh;
+
+        justify-self: center;
+        align-self: center;
+    }
+    /* FIN RESPONSIVE NOSOTROS*/
+}
+/* ----------------------------------------- FIN RESPONSIVE PARA ESCRITORIO -------------------------------------------*/
+
+
+
+/* ----------------------------------------- INICIO RESPONSIVE PARA TABLETS -------------------------------------------*/
+@media (width >= 750px) and (width <= 1024px) {
+    /* INICIO RESPONSIVE HEADER */
+    .menu-icon { /* Oculta el icono de hamburguesa que es para pantallas medias*/
+        display: none;
+    }
+    .menu-horizontal { /* Acomoda el menu horizontal a la derecha */
+        display: flex;
+        justify-content: flex-end;
+    }
+    .menu-horizontal ul{
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+    .menu-horizontal li{
+        margin-right: 20px;
+    }
+    .menu-horizontal a{
+        color: white;
+        text-decoration: none;
+        font-size: 1.3vw;
+        padding: 25px 10px;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .menu-horizontal a:hover, .menu-horizontal a.activa{
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+
+    .menu-desplegable{ /* Oculta el menu desplegable que es para pantallas medias*/
+        display: none;
+    }
+    /* FIN RESPONSIVE HEADER */
+
+/* Boton de inicio */
+    .social-icon-list{
+        height: 250px;
+        width: 350px;
+        grid-template-columns: repeat(2,1fr);
+        }
+    .icon-group:hover{
+        width: 100px;   
+        }
+/* Fin boton de inicio*/
+
+
+    /* INICIO RESPONSIVE INDEX*/
+    .main_index{
+        display: flex;
+        justify-content: flex-start;
+        justify-items: flex-start;
+        
+        align-content: center;
+        align-items: center;
+
+    }
+    .text {
+        display: flex;
+
+        justify-content: flex-start;
+        justify-items: flex-start;
+
+        align-content: center;
+        align-items: center;
+
+        margin-left: 4%;
+ 
+        color: rgba(0, 0, 0, 0.6);
+    }
+    .text h2{
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 8vw;
+    }
+    /* FIN RESPONSIVE INDEX*/
+
+    /* INICIO RESPONSIVE NOSOTROS */
+    .conteiner {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        flex-wrap: wrap;
+        max-height: 100vh;
+    }
+    .imagen{
+        position: relative;
+    }
+    .imagen img{
+        width: 35vh;
+        height: 55vh;
+    }
+    
+    /* FIN RESPONSIVE NOSOTROS */
+
+    /*INICIO RESPONSIVE DE NUESTRA CARTA*/
+    
+    .container {
+        width: 90%; /* Cambia el ancho máximo del contenedor */
+        margin-top: 100px; /* Ajusta el margen superior */
+    }
+        
+    .left {
+        width: 300px; /* Ajusta el ancho del elemento "left" */
+    }
+        
+    .contenido {
+        width: 250px; /* Ajusta el ancho del elemento "contenido" */
+    }
+        
+    .cartas {
+         padding: 5px 100px; /* Ajusta el padding de las cartas */
+         width: 60px; /* Ajusta el ancho de las cartas */
+    }
+        
+    .cartas:hover {
+        padding: 5px 100px; /* Ajusta el padding de las cartas al hacer hover */
+    }
+        
+    .carta-imagen img {
+        height: 250px; /* Ajusta la altura de las imágenes en las cartas */
+        width: 230px; /* Ajusta el ancho de las imágenes en las cartas */
+    }
+        
+    .carta-texto {
+        font-size: 14px; /* Ajusta el tamaño de fuente del texto en las cartas */
+    }
+        
+    .footer_social {
+        flex-direction: column; /* Cambia la dirección de los elementos en el footer */
+    }
+
+    /*INICIO RESPONSIVE CONTACTO*/
+    .contenedor-parrafos{
+        margin-top: 5%;
+        font-size: 30px;
+    }
+    .parrafo{
+        font-size: 15px;
+    }
+    
+    .formulario-contacto{
+    width: 300px;
+   
+    
+}
+    
+    #myForm{
+        width: 300px;
+       
+    }
+    /* INICIO RESPONSIVE FOOTER DE CONTACTO*/
+    .izquierda{
+        text-align: end;
+    }
+    .parrafo{
+        text-align: end;
+    }
+}
+/* ----------------------------------------- FIN RESPONSIVE PARA TABLETS -------------------------------------------*/
+
+
+
+/* ----------------------------------------- INICIO RESPONSIVE SMARTPHONE ----------------------------------------- */
+@media (width >= 450px) and (width <= 749px) {
+    /*INICIO RESPONSIVE HEADER*/
+    header {
+        height: 11%; /* TAMAÑO DEL ALTO DE LA CABECERA*/
+    }
+
+    h1{
+        font-size: 9vw;
+    }
+
+    .menu-desplegable{
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width:100%;
+
+        background-color: #ff323288;
+        padding: 10px;
+        box-sizing: border-box;
+
+        justify-content: center;
+        justify-items: center;
+        flex-wrap: wrap;
+    }
+
+    .menu-desplegable.open{
+        display: flex !important;
+    }
+
+    .menu-desplegable ul{
+        display: flex;
+
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+
+        list-style: none;
+        padding: 0;
+    }
+    .menu-desplegable li{
+        padding: 0.7em;
+    }
+    .menu-desplegable a{
+        color: white;
+        font-size: 2.8vw;
+        text-decoration: none;
+    }
+
+    .menu-icon { /* ICONO DE MENU HAMBURGUESA*/
+        display: block;
+        cursor: pointer;
+        margin-right: 2%;
+    }
+    .menu-horizontal{
+        display: none;
+    }
+    /*FIN RESPONSIVE HEADER*/
+
+    /*INICIO RESPONSIVE NOSOTROS*/
+    body.nosotros{
+        height: 100%;
+        background-repeat: repeat;
+    }
+    .conteiner {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        flex-wrap: wrap;
+        max-height: 100vh;
+    }
+    .imagen{
+        display: flex;
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+    }
+    .imagen img{
+        width: 20%;
+        height: 100%;
+    }
+    .texto{
+        width: 90%;
+    }
+    /*FIN RESPONSIVE NOSOTROS*/
+
+    /* INICIO RESPONSIVE PRODUCTOS */
+    .text_prin { /* TEXTO DE FOTO DE INICIO*/
+        font-size: 7vh;
+        margin-bottom: 55vh;
+        padding: 2vw;
+    }
+    .pizzas, .papas{ /* SECCIÓN PIZZAS (ES LO MISMO QUE .PAPAS*/
+        margin-top: 2%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 3%;
+    }
+    .Cabecera_de_presentacion{ /* TEXTO DONDE SE PRESENTA EL PRODUCTO (PIZZAS O OTROS)*/ 
+        font-size: 12vw;
+        
+        width: 100%;
+        padding: 3px;
+        margin: 0%;  
+    }
+    .tamaño{ /* CONTENEDOR PRODUCTOS (FOTO Y TEXTO DE FOTO) (.R_IMG Y .PARR)*/
+        margin: 2%;
+        margin-top: 6%;
+        margin-bottom: 6%;
+        width: 30vw; /*20%*/
+        height: 40vw; /*30%*/
+    }
+    .R_img { /* IMAGEN DE PRODUCTO (PIZZA PAPA ETC)*/
+        width: 100%;
+        height: 100%;
+    }
+    .parr{ /* DESCRIPCIÓN/TEXTO DE PRODUCTO (PIZZA PAPA ETC)*/
+        padding: 10px;
+        top: 40%;
+        left: 50%;      
+    
+        font-size: 3vw;
+    }
+    /* FIN RESPONSIVE PRODUCTOS */
+
+    /* INICIO NUETSRA CARTA*/
+
+    .container {
+        width: 90vh; /* Cambia el ancho máximo del contenedor */
+        margin-top: 20vh; /* Ajusta el margen superior */
+    }
+    .header-container {
+        width: 628px;
+        height: 40px;
+      }
+    .left {
+            width: 328px; /* Ajusta el ancho del elemento "left" */
+    }
+    
+    .contenido {
+        width: 250px; /* Ajusta el ancho del elemento "contenido" */
+    }
+    
+    .cartas {
+        width: 70px; /* Ajusta el ancho de las cartas */
+    }
+    
+    
+    .carta-imagen img {
+        height: 300px; /* Ajusta la altura de las imágenes en las cartas */
+        width: 280px; /* Ajusta el ancho de las imágenes en las cartas */
+    }
+    
+    .carta-texto {
+        font-size: 14px; /* Ajusta el tamaño de fuente del texto en las cartas */
+    }
+    
+    .footer_social {
+        flex-direction: column; /* Cambia la dirección de los elementos en el footer */
+        font-family: 'Josefin Sans', sans-serif;
+    }
+          
+        
+    
+    /*INICIO RESPONSIVE DE CONTACTO Y FOOTER*/
+    
+    .contenedor-parrafos{
+        margin-top: 5%;
+        font-size: 25px;
+        /*padding-bottom: 0px;
+        margin-bottom: 0px;*/
+    }
+    .parrafo{
+        font-size: 25px;
+    }
+    
+    .formulario-contacto{
+    width: 80%;
+   
+    
+}
+    
+    #myForm{
+        width: 80%;
+       
+    }
+    /* INICIO RESPONSIVE FOOTER DE CONTACTO*/
+   
+    .contenedor-parrafos {
+        margin-top: 3%; /* Reducir el margen en dispositivos móviles */
+        font-size: 20px; /* Reducir el tamaño de fuente en dispositivos móviles */
+    }
+
+    .parrafo {
+        font-size: 20px; /* Reducir el tamaño de fuente en dispositivos móviles */
+    }
+
+    .formulario-contacto, #myForm {
+        width: 300px; /* Ajustar el ancho para que sea más estrecho en dispositivos móviles */
+        margin: 0 auto; /* Centrar el formulario en dispositivos móviles */
+    }
+
+    .izquierda, .parrafo {
+        text-align: center; /* Centrar el texto en dispositivos móviles */
+    }
+
+    .redes-sociales{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        
+    }
+    .redes-sociale li{
+        margin: 0 10px; /*AJUSTA EL MARGEN ENTRE LOS ÍCONOS*/
+    }
+    .redes-sociales img{
+        max-width: 100%; /* ASEGURA QUE LAS IMAGENES SE AJUSTEN AL CONTENEDORR*/
+    }
+}
+
+/* ----------------------------------------- FIN RESPONSIVE SMARTPHONE ----------------------------------------- */
+
+
+/* ----------------------------------------- INICIO RESPONSIVE SMARTPHONE CHICO ----------------------------------------- */
+@media (width <= 450px) {
+    /* INICIO RESPONSIVE HEADER*/
+    header {
+        height: 14%; /* TAMAÑO DEL ALTO DE LA CABECERA*/
+    }
+    header img{ /* Ajusta las dimensiones del ICONO de la pagina para el header/cabecera */
+        margin-left: 1%;
+        width: 13%;
+        height: 80%;
+    }
+    h1{
+        margin-left: 2%;
+        font-size: 14vw; /* TEXTO CIAO CIAO DE LA CABECERA*/
+    }
+    .menu-desplegable{ /* CONTENEDOR ELEMENTOS MENU DESPLEGABLE*/
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width:100%;
+
+        background-color: #ff323288;
+        padding: 10px;
+        box-sizing: border-box;
+
+        justify-content: center;
+        justify-items: center;
+        flex-wrap: wrap;
+    }
+
+    .menu-desplegable.open{ /* HACE VISIBLE EL CONTENEDOR */
+        display: flex !important;
+    }
+
+    .menu-desplegable ul{ /* LISTA DEL CONTENEDOR DE ELEMENTOS*/
+        display: flex;
+
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+
+        list-style: none;
+        padding: 0;
+    }
+    .menu-desplegable li{ 
+        padding: 0.7em;
+    }
+    .menu-desplegable a{
+        color: white;
+        font-size: 4.6vw;
+        text-decoration: none;
+    }
+
+    .menu-icon { /* ICONO DE MENU HAMBURGUESA*/
+        display: block;
+        cursor: pointer;
+        margin-right: 2%;
+        height: 60%;
+        width: 10%;
+    }
+    .menu-horizontal{ /* OCULTA EL MENU HORIZONTAL*/
+        display: none;
+    }
+    /* FIN RESPONSIVE HEADER*/
+/* Boton de inicio */
+    .social-icon-list{
+        height: 250px;
+        width: 350px;
+        grid-template-columns: repeat(2,1fr);
+        }
+    .icon-group:hover{
+        width: 100px;   
+        }
+/* Fin boton de inicio*/
+    /*INICIO RESPONSIVE NOSOTROS*/
+    body.nosotros{
+        height: 100%;
+        background-repeat: repeat;
+    }
+    .conteiner {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        flex-wrap: wrap;
+        max-height: 100vh;
+    }
+    .imagen{
+        display: none;
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+    }
+    .imagen img{
+        width: 20%;
+        height: 100%;
+    }
+    .texto{
+        width: 90%;
+    }
+    /*FIN RESPONSIVE NOSOTROS*/
+
+    /* INICIO RESPONSIVE PRODUCTOS */
+    .text_prin { /* TEXTO DE FOTO DE INICIO*/
+        font-size: 11vw;
+        margin-bottom: 55vh;
+        padding: 2vw;
+    }
+    .pizzas, .papas{ /* SECCIÓN PIZZAS (ES LO MISMO QUE .PAPAS*/
+        margin-top: 2%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 3%;
+    }
+    .Cabecera_de_presentacion{ /* TEXTO DONDE SE PRESENTA EL PRODUCTO (PIZZAS O OTROS)*/ 
+        font-size: 16vw;
+        
+        width: 100%;
+        padding: 3px;
+        margin: 0%;  
+    }
+    .tamaño{ /* CONTENEDOR PRODUCTOS (FOTO Y TEXTO DE FOTO) (.R_IMG Y .PARR)*/
+        margin: 2%;
+        margin-top: 6%;
+        margin-bottom: 6%;
+        width: 38vw; /*20%*/
+        height: 52vw; /*30%*/
+    }
+    .R_img { /* IMAGEN DE PRODUCTO (PIZZA PAPA ETC)*/
+        width: 100%;
+        height: 100%;
+    }
+    .parr{ /* DESCRIPCIÓN/TEXTO DE PRODUCTO (PIZZA PAPA ETC)*/
+        padding: 10px;
+        top: 40%;
+        left: 50%;      
+    
+        font-size: 4vw;
+    }
+    /* FIN RESPONSIVE PRODUCTOS */
+
+    /* ----------------------------------------- INICIO RESPONSIVE SMARTPHONE CHICO CARTA*/
+    .header-container {
+        display: grid; /* Usar grid para organizar los elementos */
+        grid-template-columns: 1fr; /* Definir una sola columna */
+        grid-gap: 1px; /* Espacio entre elementos */
+        position: relative; /* Asegurar que la posición sea relativa */
+        z-index: 1; /* Asegurar que los elementos de header estén por encima de los elementos de left */
+        width: 45vh;
+        height: 140px;
+    }
+    .header-cartas{
+        width: 30vh;
+        margin-bottom: 0px;
+    }
+    .container {
+            display: table; /* Cambiar de grid a bloque para que los elementos se muestren uno debajo del otro */
+            width: 62vh; /* Ancho automático para adaptarse al contenido */
+            max-width: 90%; /* Establecer un ancho máximo del contenedor */
+            margin-top: 20vh; /* Reducir el margen superior */
+            padding: 5px; /* Reducir el relleno */
+            height: 110vh;
+    }
+    .left {
+        width: 45vh;
+        height: 280px;
+    }
+    .cartas{
+        width: 30vh;
+        padding: 5px 60px;
+    }
+    .carta-imagen img {
+        height: 320px;
+        width: 370px;
+      }
+    .contenido{
+        width: 360px;
+        height: 320px;
+    }
+/* ----------------------------------------- FIN RESPONSIVE SMARTPHONE CHICO CARTA*/
+    
+
+        
+
+
+/*------------------INICIO RESPONSIVE PARA ANTALLAS MAS PEQUEÑAS DE CONTACTO Y FOOTER*/
+    /* Estilos para dispositivos móviles */
+    .contenedor-parrafos {
+        margin-top: 30%; /* Reducir aún más el margen en pantallas muy pequeñas */
+        font-size: 18px; /* Reducir el tamaño de fuente en pantallas muy pequeñas */
+    }
+
+    .parrafo {
+        font-size: 18px; /* Reducir el tamaño de fuente en pantallas muy pequeñas */
+    }
+
+    .formulario-contacto, #myForm {
+        width: 80%; /* Ajustar el ancho para que sea más estrecho en pantallas muy pequeñas */
+    }
+
+    .izquierda, .parrafo {
+        text-align: center; /* Centrar el texto en pantallas muy pequeñas */
+    }
+    .redes-sociales{
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        text-align: center;
+        
+    }
+    .redes-sociale li{
+        margin: 0 10px; /*AJUSTA EL MARGEN ENTRE LOS ÍCONOS*/
+    }
+    .redes-sociales img{
+        max-width: 100%; /* ASEGURA QUE LAS IMAGENES SE AJUSTEN AL CONTENEDORR*/
+    }
+/*------------------------FIN RESPONSIVE CONTACTO Y FOOTER*/
+/*------------------------INICIO RESPONSIVE BOTÓN*/
+    .whatsapp-btn {
+        margin-top: 20px; /* Ajusta este valor para subir el botón más arriba */
+        margin-right: 15px ; /* Mantén el margen derecho */
+        margin-bottom: 40px; /* Mantén el margen inferior */
+        margin-left: 10px; /* Mantén el margen izquierdo */
+        padding: 10px; /* Mantén el padding */
+    }
+/*-------------------------FIN BOTÓN */
+    
+}
+/* ----------------------------------------- FIN RESPONSIVE SMARTPHONE CHICO ----------------------------------------- */
+
+
+
+
+/*FONTS GOOGLE*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+/* VARIABLES*/
+:root{
+    --blanco:#E0E0E0;
+    --azul-opacidad:hsl(357, 89%, 52%);
+    --bg-menu:hsla(0, 92%, 38%, 0.925);
+    --bg-body:#C7E1FF;
+}
+
+/*MENÚ GENERAL*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Quicksand", sans-serif;
+    color:var(--blanco);
+}
+
+/* VARIABLES*/
+:root{
+    
+    --blanco:#E0E0E0;
+    --azul-opacidad:hwb(357 9% 5%);
+    --bg-menu:hsla(0, 94%, 51%, 0.925);
+    --bg-body:#C7E1FF;
+}
+
+/*MENÚ GENERAL*/
+*{
+   
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Quicksand", sans-serif;
+    color:var(--blanco);
+    
+}
+.conteiner{
+    display: flex;
+    float: left;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-content: center;
+   
+    
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 9vh;
+    padding:12vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+}
+    
+
+.dashboar{
+   
+    padding: 20px;
+    max-width: 25px;
+    height: 20vh;
+    display: flex;
+    flex-direction: row-reverse;
+    transition: max-width 0.3s ease;
+}
+
+button{
+    display: block; /* Mostrar los botones en bloques verticales */
+    margin-bottom: 20px; /* Espacio entre los botones */
+    background-color: #131414; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+}
+button:hover {
+    display: block; /* Mostrar los botones en bloques verticales */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    background-color: rgba(250, 23, 23, 0.553);; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+}
+
+
+.menu-button {
+    display: block; /* Mostrar los botones en bloques verticales */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    background-color: #0a0a0a; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+}
+
+
+
+
+
