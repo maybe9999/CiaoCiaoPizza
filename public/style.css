@@ -746,6 +746,8 @@ footer{
     .menu-horizontal ul{
         display: flex;
         list-style: none;
+        align-items: center;
+        justify-content: center;
         padding: 0;
     }
     .menu-horizontal li{
