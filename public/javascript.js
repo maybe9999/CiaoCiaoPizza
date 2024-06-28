@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(result => {
             if (result.success) {
-                window.location.href = '/dashboard';
+                window.location.href = '/dashboard/dashboard.html';
             } else {
                 alert(result.message || 'Credenciales incorrectas');
             }
@@ -177,3 +177,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Fin código Modal Login //
+
+
+// Codigo Botones Dashboard
+function toggleCampos(id) {
+    const seccionSeleccionada = document.getElementById(id);
+    if (seccionSeleccionada.style.display === 'block') {
+        seccionSeleccionada.style.display = 'none';
+    } else {
+        seccionSeleccionada.style.display = 'block';
+    }
+}
+
+function mostrarListadoCompleto() {
+    const listadoCompleto = document.getElementById('listado');
+    listadoCompleto.style.display = listadoCompleto.style.display === 'block' ? 'none' : 'block';
+    // Aquí puedes añadir lógica para mostrar el contenido del listado completo
+}
+
