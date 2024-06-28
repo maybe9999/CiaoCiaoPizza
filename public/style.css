@@ -1497,7 +1497,6 @@ footer{
     backdrop-filter: blur(10px);
 }
 
-/* Ajustes adicionales para que los elementos dentro del containerDash se alineen correctamente */
 .dashboard {
     max-width: 1200px; /* Ancho máximo para la sección del dashboard */
     margin: 0 auto;
