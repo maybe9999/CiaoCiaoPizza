@@ -646,6 +646,56 @@ h2{
 /*Fin estilo de cartas "contenido"*/
 /* ----------------------------------------------------------- Fin Style CARTAS -----------------------------------------------------------*/
 
+/* ----------------------------------------------------------- Inicio seccion NOT_FOUND -----------------------------------------------------------*/
+
+
+main.not_found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.not_found_conteiner{
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 90px rgba(255, 255, 255, 0.6);  /* Configuracion del box shadow para que la transicion entre el alpha en el borde (de background-color) se mezcle perfectamente con la imagen del fondo de pantalla */
+    vertical-align: middle;
+    height: 30vw;
+    width: 50vw;
+    align-self: center;
+    justify-self: center;
+}
+.not_found_conteiner h1{
+    color: rgb(255, 0, 0);
+    font-size: clamp(40px, 13vw, 70px);
+    justify-self: center;
+    align-self: center;
+}
+
+@media (min-width: 768px) {
+    main.not_found {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    main.not_found {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ----------------------------------------------------------- Fin seccion NOT_FOUND -----------------------------------------------------------*/
 
 /* ------------------------------------------------------------------- INICIO FOOTER (COMPARTIDO) ---------------------------------------------------------*/
 footer{

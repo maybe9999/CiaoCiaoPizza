@@ -9,8 +9,9 @@ const routesPublic = {
     productos : path.resolve(__dirname, '../public/productos/productos.html'),
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
-    //login : path.resolve(__dirname, '../public/login/index.html'),
-    dashboard : path.resolve(__dirname, '../public/dashboard/dashboard.html')
+    dashboard : path.resolve(__dirname, '../public/dashboard/dashboard.html'),
+    notFound : path.resolve(__dirname, '../public/not_found/index.html')
+
 };
 
 
@@ -23,8 +24,7 @@ function mostrarSeccion(req, res) {
     console.log(`1 impresión en ${endPointActual}`);
 
     // Envía el archivo index.html como respuesta
-    res.sendFile(routesPublic[endPointActual] || routesPublic[""]); //Modificado para el Login
-
+    res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
 }
 
 module.exports = mostrarSeccion;

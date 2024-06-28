@@ -24,6 +24,8 @@ app.use(express.json()); //
 app.use(express.urlencoded({ extended: false })); // Middleware para manejar URL-encoded
 //----
 
+//Si ninguna de las rutas coincide usara esta carpeta y por defecto devolverá el archivo index que encuentre
+app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para servir archivos estáticos desde esta carpeta...
 
 
 //Routes
@@ -32,7 +34,7 @@ app.get('/nosotros', muestraSeccion);
 app.get('/productos', muestraSeccion);
 app.get('/nuestraCarta',  muestraSeccion);
 app.get('/contacto', muestraSeccion);
-
+app.get('/*', (req, res) => muestraSeccion(req,res));
 
 // Ruta para manejar el login
 app.post('/login', (req, res) => {
@@ -53,8 +55,7 @@ app.post('/login', (req, res) => {
 });
 
 
-//Si ninguna de las rutas coincide usara esta carpeta y por defecto devolverá el archivo index que encuentre
-app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para servir archivos estáticos desde esta carpeta...
+
 
 
 //Se le indica mediante .listen() que use el puerto X para escuchar o recibir peticiones, get post etc...
