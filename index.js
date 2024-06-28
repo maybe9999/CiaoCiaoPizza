@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para ser
 
 
 //Routes
-app.get('/', muestraSeccion);
+app.get('/', muestraSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
 app.get('/nosotros', muestraSeccion);
 app.get('/productos', muestraSeccion);
 app.get('/nuestraCarta',  muestraSeccion);
