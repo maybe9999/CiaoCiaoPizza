@@ -866,6 +866,8 @@ footer{
         display: flex;
         list-style: none;
         padding: 0;
+        align-items: center;
+        justify-content: center;
     }
     .menu-horizontal li{
         margin-right: 20px;
@@ -996,8 +998,6 @@ footer{
     
     .formulario-contacto{
     width: 300px;
-   
-    
 }
     
     #myForm{
