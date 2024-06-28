@@ -187,6 +187,14 @@ body.contacto{
 body.productos .main_prod .img_y_text{
     background-image: url('./img/portada_productos_11zon.webp');
 }
+
+body.dashboard{
+    background-image: url('./img/img_index_11.webp');
+    display: flex;
+    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
 /* ------------------------------------ Fin General ---------------------------------------------*/
 
 
