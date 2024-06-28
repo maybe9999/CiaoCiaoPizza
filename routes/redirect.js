@@ -10,8 +10,9 @@ const routesPublic = {
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
     //login : path.resolve(__dirname, '../public/login/index.html'),
-    //dashboard : path.resolve(__dirname, '../public/dashboard/index.html')
+    dashboard : path.resolve(__dirname, '../public/dashboard/dashboard.html')
 };
+
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
 function mostrarSeccion(req, res) {
@@ -19,10 +20,22 @@ function mostrarSeccion(req, res) {
     //mediante .replace() se remplazan todos los / de la string usando una "expresión regular" como primer argumento y en el segundo definimos que debe estar vacio "".
     let endPointActual = req.path.replace(/(\/)/gm,""); 
 
+
     console.log(`1 impresión en ${endPointActual}`);
     
+
+    //Lógica de si no estas logeado como admin te mandamos al login.
+    // if (endPointActual == "dashboard"){ 
+    //     //El que se de maña que lo que haga :) !!!!!!!
+    //     crud(req, res)
+    // }
+
+    // Envía el archivo index.html como respuesta
     res.sendFile(routesPublic[endPointActual] || routesPublic[""]); //Modificado para el Login
 
+    
 }
 
 module.exports = mostrarSeccion;
+
+
