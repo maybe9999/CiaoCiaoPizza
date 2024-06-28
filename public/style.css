@@ -1500,10 +1500,11 @@ footer{
 /* Ajustes adicionales para que los elementos dentro del containerDash se alineen correctamente */
 .dashboard {
     max-width: 1200px; /* Ancho máximo para la sección del dashboard */
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 /* Botones de menú */
@@ -1551,6 +1552,7 @@ button.carga-button:hover {
 .menu-content {
     margin-top: 20px;
     width: 100%;
+    justify-content: space-evenly;
 }
 
 .input-group {
@@ -1565,6 +1567,7 @@ button.carga-button:hover {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    font-size: clamp(17px, 2vw, 19px);
 }
 
 .input-group input {
@@ -1577,6 +1580,7 @@ button.carga-button:hover {
 .input-group-inline {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .input-group-inline .input-group {
