@@ -880,6 +880,17 @@ footer{
     }
     /* FIN RESPONSIVE HEADER */
 
+/* Boton de inicio */
+.social-icon-list{
+    height: 250px;
+    width: 350px;
+    grid-template-columns: repeat(2,1fr);
+    }
+.icon-group:hover{
+    width: 100px;   
+    }
+/* Fin boton de inicio*/
+
     /* INICIO RESPONSIVE INDEX*/
     .main_index{
         display: flex;
@@ -1056,6 +1067,17 @@ footer{
         display: none;
     }
     /*FIN RESPONSIVE HEADER*/
+
+/* Boton de inicio */
+.social-icon-list{
+    height: 250px;
+    width: 350px;
+    grid-template-columns: repeat(2,1fr);
+    }
+.icon-group:hover{
+    width: 100px;   
+    }
+/* Fin boton de inicio*/
 
     /*INICIO RESPONSIVE NOSOTROS*/
     body.nosotros{
@@ -1290,6 +1312,17 @@ footer{
     }
     /* FIN RESPONSIVE HEADER*/
 
+/* Boton de inicio */
+.social-icon-list{
+    height: 250px;
+    width: 350px;
+    grid-template-columns: repeat(2,1fr);
+    }
+.icon-group:hover{
+    width: 100px;   
+    }
+/* Fin boton de inicio*/
+
     /*INICIO RESPONSIVE NOSOTROS*/
     body.nosotros{
         height: 100%;
@@ -1446,6 +1479,97 @@ footer{
 /* ----------------------------------------- FIN RESPONSIVE SMARTPHONE CHICO ----------------------------------------- */
 
 
+  
+/*----------------------- Dashboard ---------------------------*/
+
+.containerDash {
+    width: 100%;
+    padding: 20px;
+    margin-top: 10%;
+}
+
+/* Ajustes adicionales para que los elementos dentro del containerDash se alineen correctamente */
+.dashboard {
+    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Botones de menú */
+button.menu-button {
+    width: 100%; /* Ancho completo */
+    margin-bottom: 20px;
+    background-color: #131414;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
 
 
 
+button.carga-button {
+    width: 200px; /* Ancho fijo para centrarlo y separarlo de los otros botones */
+    margin: 0 auto; /* Centrar el botón horizontalmente */
+    margin-bottom: 20px; /* Espacio inferior */
+    background-color: #004d40; /* Verde oscuro */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button.menu-button:hover {
+    background-color: rgba(250, 23, 23, 0.7);
+}
+
+button.carga-button:hover {
+    background-color: #17ae9d; /* Verde claro al hacer hover */
+}
+
+
+
+/* Contenido del menú */
+
+.menu-content {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: auto; /* Ajustamos el ancho según el contenido */
+}
+.input-group.detalles {
+    margin-left: 20%;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 200px; /* Mantenemos el ancho de 200px como solicitaste */
+    padding: 8px; /* Ajustamos el padding según necesites */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-group-inline {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-group-inline .input-group {
+    margin-right: 20px; /* Espacio entre los input groups */
+}
