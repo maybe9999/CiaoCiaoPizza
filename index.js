@@ -36,10 +36,11 @@ app.get('/nuestraCarta',  muestraSeccion);
 app.get('/contacto', muestraSeccion);
 app.get('/*', (req, res) => muestraSeccion(req,res));
 
+
 // Ruta para manejar el login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM Usuario WHERE username = ? AND password = ?';
+    const query = 'SELECT * FROM Usuario WHERE username = ? AND passwor = ?';
     session.query(query, [username, password], (err, results) => {
         if (err) {
             console.error('Error ejecutando la consulta:', err);
