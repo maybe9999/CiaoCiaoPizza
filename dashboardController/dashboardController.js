@@ -18,8 +18,9 @@ router.get("/", (req, res) => {
 });
 
 //Crear un producto
-router.post("/", (req, res) => {
-    let {productoCrearTabla, productoCrearProducto} = req.body; //productoCrearProducto debería ser un objeto con (nombrePizza, precioPizza, stock) y sus respectivos valores
+router.post("/:tabla", (req, res) => {
+    let productoCrearTabla = req.body.tabla; //productoCrearProducto debería ser un objeto con (nombrePizza, precioPizza, stock) y sus respectivos valores
+    let {productoCrearProducto} = req.body;
 
     crud.crearProducto(productoCrearTabla, productoCrearProducto).then(productosRecibidos => { // Si todo sale Bien
         res.json(productosRecibidos);
