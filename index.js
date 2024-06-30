@@ -3,11 +3,7 @@ const path = require('path'); //
 const morgan = require('morgan'); //Info por consola sobre las peticiones entrantes
 require("dotenv").config(); //Sirve para usar variables de entorno... No es necesario almacenarlo
 
-//--- creado para obtener el acceso mediante el login
-const session = require('./data_base/db'); // Importamos la conexión a la base de datos
-//---
-
-const muestraSeccion = require('./routes/redirect'); //Contiene ubicación de los index y devuelve archivos
+const redirect = require('./routes/redirect'); //Contiene ubicación de los index y devuelve archivos
 
 const app = express();
 
@@ -29,31 +25,17 @@ app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para ser
 
 
 //Routes
-app.get('/', muestraSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
-app.get('/nosotros', muestraSeccion);
-app.get('/productos', muestraSeccion);
-app.get('/nuestraCarta',  muestraSeccion);
-app.get('/contacto', muestraSeccion);
-app.get('/*', (req, res) => muestraSeccion(req,res));
+app.get('/', redirect.mostrarSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
+app.get('/nosotros', redirect.mostrarSeccion);
+app.get('/productos', redirect.mostrarSeccion);
+app.get('/nuestraCarta', redirect.mostrarSeccion);
+app.get('/contacto', redirect.mostrarSeccion);
+app.get('/*', redirect.mostrarSeccion);
+
 
 
 // Ruta para manejar el login
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    const query = 'SELECT * FROM Usuario WHERE username = ? AND passwor = ?';
-    session.query(query, [username, password], (err, results) => {
-        if (err) {
-            console.error('Error ejecutando la consulta:', err);
-            res.status(500).json({ success: false, message: 'Error en el servidor' });
-            return;
-        }
-        if (results.length > 0) {
-            res.json({ success: true });
-        } else {
-            res.json({ success: false, message: 'Credenciales incorrectas' });
-        }
-    });
-});
+app.post('/login', redirect.validaLogueoUsuario);
 
 
 

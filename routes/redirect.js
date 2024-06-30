@@ -14,6 +14,9 @@ const routesPublic = {
 
 };
 
+var adminLogeado = false; 
+
+
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
 function mostrarSeccion(req, res) {
@@ -27,6 +30,43 @@ function mostrarSeccion(req, res) {
     res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
 }
 
-module.exports = mostrarSeccion;
+
+//Login
+function validaLogueoUsuario(req, res){
+    let { username, password } = req.body;
+
+    console.log("daatos de user",username, password);
+
+    if (adminLogeado) console.log("El usuario ya estaba logeado.")
+    let validacion = adminLogeado ? new Promise(resolve => resolve({ tipo: 'exito' })) : crud.validaLogueoUsuario(username, password);
+
+    validacion.then(resultado => { //Si se ejecuta el resolve entonces .then captara la respuesta...
+        console.log(".then atrapaddo")
+        if (resultado.tipo === 'exito'){
+            adminLogeado = true; // Sesion abierta
+            res.json({ success: true });
+        }
+    }).catch(manejoError => { //Si se ejecuta el reject entonces .catch captara la respuesta y no .then...
+        console.log(".catch atrapado....",manejoError,"\n", manejoError.tipo);
+        if (manejoError.tipo === 'error'){
+            console.error('Error ejecutando la consulta:', manejoError.error);
+            res.status(500).json({ success: false, message: 'Error en el servidor' });
+        } else if (manejoError.tipo === 'credencialesIncorrectas'){
+            console.error('Error logueandose:', manejoError.error);
+            resultado = false; //sesion cerrada
+            res.status(200).json({ success: false, message: 'Credenciales incorrectas' });
+        } else {
+            console.error('Error X:');
+            res.json({ success: false, message: 'Error en el servidor!' });
+        }  
+    });
+}
+
+
+
+module.exports = {
+    mostrarSeccion,
+    validaLogueoUsuario
+};
 
 
