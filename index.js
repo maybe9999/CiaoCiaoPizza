@@ -24,18 +24,27 @@ app.use(express.urlencoded({ extended: false })); // Middleware para manejar URL
 app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para servir archivos estáticos desde esta carpeta...
 
 
-//Routes
+//Routes (GET)
 app.get('/', redirect.mostrarSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
 app.get('/nosotros', redirect.mostrarSeccion);
 app.get('/productos', redirect.mostrarSeccion);
 app.get('/nuestraCarta', redirect.mostrarSeccion);
 app.get('/contacto', redirect.mostrarSeccion);
-app.get('/*', redirect.mostrarSeccion);
+app.get('/dashboard', redirect.mostrarSeccion);
+app.get('/*', (req, res) => {  //Captura todas las consultas no especificadas
+    console.log("Atrapado en general")
+    res.sendFile(path.resolve(__dirname, './public/not_found/index.html'))
+});
 
 
+// Ruta para manejar el login (POST)
+app.post('/login', redirect.validaLogueoUsuario); //Ruta para manejar el login
 
-// Ruta para manejar el login
-app.post('/login', redirect.validaLogueoUsuario);
+
+//Update
+
+
+//(Delete)
 
 
 

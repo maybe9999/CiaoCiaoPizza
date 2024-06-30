@@ -1,5 +1,8 @@
 const path = require('path');
 const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
+const express = require('express');
+
+//const router = express.Router();
 
 
 // Resuelve la ruta absoluta hacia los archivos index de las diferentes secciones
@@ -9,7 +12,6 @@ const routesPublic = {
     productos : path.resolve(__dirname, '../public/productos/productos.html'),
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
-    dashboard : path.resolve(__dirname, '../public/dashboard/dashboard.html'),
     notFound : path.resolve(__dirname, '../public/not_found/index.html')
 
 };
@@ -25,9 +27,23 @@ function mostrarSeccion(req, res) {
     let endPointActual = req.path.replace(/(\/)/gm,""); 
 
     console.log(`1 impresión en ${endPointActual}`);
+    console.log(endPointActual === "dashboard")
 
-    // Envía el archivo index.html como respuesta
-    res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
+    if (endPointActual === 'dashboard'){
+        console.log("por 1",adminLogeado);
+        if(adminLogeado){
+            res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
+        }else{
+            console.error("Debe estar logeado para acceder!!")
+            res.redirect('/');
+        }
+    } else{
+        adminLogeado = false;
+        console.log("por 2",adminLogeado);
+        // Envía el archivo index.html como respuesta
+        res.sendFile(routesPublic[endPointActual] || routesPublic[""]); //Modificado para el Login
+    }
+    
 }
 
 

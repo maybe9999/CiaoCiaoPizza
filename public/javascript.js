@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(result => {
             if (result.success) {
-                window.location.href = '/dashboard/dashboard.html';
+                window.location.href = '/dashboard';
             } else {
                 alert(result.message || 'Credenciales incorrectas');
             }
