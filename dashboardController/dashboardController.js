@@ -42,3 +42,18 @@ router.delete("/:tabla/:id", (req, res)=>{
         res.json({ success: false, message: error });
     })
 })
+
+//Editar un producto
+router.put("/:tabla/:id/:producto", (req, res)=>{
+    let editarProductoTabla = req.params.tabla;
+    let editarProductoId = req.params.id;
+    
+    let productoEdit = req.params.producto; //esto deberia ser un objeto el key del objeto debe ser igual que en la bd creo
+
+    crud.editarProducto(editarProductoTabla, editarProductoId, productoEdit).then(exito =>{
+        res.json({ success: true, message: 'Editado con exito' });
+    }).catch(error => {
+        res.json({ success: false, message: error });
+    })
+
+})
