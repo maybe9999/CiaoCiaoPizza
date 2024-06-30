@@ -35,13 +35,13 @@ function mostrarSeccion(req, res) {
             res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
         }else{
             console.error("Debe estar logeado para acceder!!")
-            res.redirect('/');
+            res.redirect(routesPublic["notFound"]);
         }
     } else{
         adminLogeado = false;
         console.log("por 2",adminLogeado);
         // Envía el archivo index.html como respuesta
-        res.sendFile(routesPublic[endPointActual] || routesPublic[""]); //Modificado para el Login
+        res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
     }
     
 }
