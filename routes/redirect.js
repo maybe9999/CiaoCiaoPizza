@@ -35,7 +35,7 @@ function mostrarSeccion(req, res) {
             res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
         }else{
             console.error("Debe estar logeado para acceder!!")
-            res.redirect(routesPublic["notFound"]);
+            res.redirect("/notFound");
         }
     } else{
         adminLogeado = false;

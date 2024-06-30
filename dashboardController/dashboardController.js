@@ -10,8 +10,10 @@ const router = express.Router();
 router.get("/", (req, res) => {
     
     crud.obtenerTodosLosProductos().then(productosRecibidos => {
+        console.log("exito al obtener todos los productos", productosRecibidos);
         res.json(productosRecibidos); // Son 3 tablas diferentes
     }).catch(errorEnLaConsulta => {
+        console.log("error al obtener todos los productos", errorEnLaConsulta);
         res.json(errorEnLaConsulta);
     }
     )
@@ -22,9 +24,11 @@ router.post("/:tabla", (req, res) => {
     let productoCrearTabla = req.body.tabla; //productoCrearProducto debería ser un objeto con (nombrePizza, precioPizza, stock) y sus respectivos valores
     let {productoCrearProducto} = req.body;
 
-    crud.crearProducto(productoCrearTabla, productoCrearProducto).then(productosRecibidos => { // Si todo sale Bien
-        res.json(productosRecibidos);
+    crud.crearProducto(productoCrearTabla, productoCrearProducto).then(productosCreado => { // Si todo sale Bien
+        console.log("exito al crear el producto", productosCreado);
+        res.json(productosCreado);
     }).catch(errorEnLaConsulta => { // Si todo sale Mal
+        console.log("error al crear el producto", errorEnLaConsulta);
         res.json(errorEnLaConsulta);
     }
 
@@ -37,9 +41,11 @@ router.delete("/:tabla/:id", (req, res)=>{
     let eliminarProductoId = req.params.id;
 
     crud.eliminarProducto(eliminarProductoTabla, eliminarProductoId).then(exito => {
+        console.log("exito al eliminar el producto", exito);
         res.json({ success: true, message: 'Eliminado con exito' });
     }).catch(error => {
         //Ver esto dsps...
+        console.log("error al eliminar el producto", error);
         res.json({ success: false, message: error });
     })
 })
@@ -58,3 +64,7 @@ router.put("/:tabla/:id/:producto", (req, res)=>{
     })
 
 })
+
+
+
+module.exports = router;
