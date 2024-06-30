@@ -1,6 +1,6 @@
 const path = require('path');
 const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
-const express = require('express');
+
 
 //const router = express.Router();
 

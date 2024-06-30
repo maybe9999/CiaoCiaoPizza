@@ -48,7 +48,7 @@ function validaLogueoUsuario(user, pass) {
  */
 function crearProducto(tabla, producto){
     return new Promise((resolve, reject) => {
-        let sql = `INSERT INTO ${tabla} SET ?`;
+        let sql = `INSERT INTO ${tabla} SET ?`; //set recibe un objeto con el nombre de el valor a insertar y el valor en si 
         baseDeDatos.query(sql, producto, (err, result) =>{
             if(err){
                 reject(err);
