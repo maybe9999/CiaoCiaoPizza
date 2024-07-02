@@ -22,12 +22,12 @@
         <nav class="menu-horizontal">
             <ul>
                   <!-- Añadido para que funcione login -->
-                  <li class="login-icon-list">
+                  <!-- <li class="login-icon-list">
                     <div class="icon-group">
                         <i class="fas fa-sign-in-alt"></i>
                         <span class="icon-text" id="loginBtn">Iniciar Sesión</span>
                     </div>
-                </li>
+                </li> -->
                  <!-- Añadido para que funcione login -->
                 <li>
                     <a href="/nosotros">NOSOTROS</a><!-- Lucas-->
@@ -50,12 +50,12 @@
         <nav class="menu-desplegable" >
             <ul>
                  <!-- Añadido para que funcione login -->
-                 <li class="login-icon-list">
+                 <!-- <li class="login-icon-list">
                     <div class="icon-group">
                         <i class="fas fa-sign-in-alt"></i>
                         <span class="icon-text" id="loginBtnMobile">Iniciar Sesión</span>
                     </div>
-                </li>
+                </li> -->
                  <!-- Añadido para que funcione login -->
                 <li>
                     <a href="/nosotros">NOSOTROS</a><!-- Lucas-->
@@ -76,7 +76,7 @@
     </header>
 
  <!-- Añadido para que funcione login -->
- <div id="loginModal" class="modal">
+ <!-- <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <form id="loginForm" action="/login" method="post">
@@ -88,94 +88,91 @@
             <button type="submit">Iniciar Sesión</button>
         </form>
     </div>
-</div>
+</div> -->
      <!-- Container principal ajustado -->
      <div class="containerDash">
         <div class="dashboard">
-
             <!-- Botón Pizzas -->
-
             <button class="menu-button" onclick="toggleCampos('pizzas')">Cargar Pizzas</button>
-
+            
             <!-- Contenedor de campos para Pizzas -->
-
-            <div class="menu-content" id="pizzas" style="display: none;">
+            <form id="pizzas" class="menu-content" style="display: none;" onsubmit="cargarProducto(event, 'pizzas')">
                 <div class="input-group-inline">
                     <div class="input-group">
                         <label for="pizza-name">Nombre</label>
-                        <input type="text" id="pizza-name" placeholder="Nombre del Menú">
+                        <input type="text" id="pizza-name" name="pizza-name" placeholder="Nombre la Pizza" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="pizza-price">Precio</label>
-                        <input type="text" id="pizza-price" placeholder="Precio">
+                        <input type="text" id="pizza-price" name="pizza-price" placeholder="Precio" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="pizza-stock">Stock</label>
-                        <input type="text" id="pizza-stock" placeholder="Disponibilidad">
+                        <input type="text" id="pizza-stock" name="pizza-stock" placeholder="Cantidad" required>
                     </div>
-                <button class="carga-button">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonPizz">Cargar Producto</button>
                 </div>
-            </div>
-
+            </form>
+    
             <!-- Botón Menu -->
-
             <button class="menu-button" onclick="toggleCampos('menu')">Cargar Menú</button>
+            
             <!-- Contenedor de campos para Menú -->
-
-            <div class="menu-content" id="menu" style="display: none;">
+            <form id="menu" class="menu-content" style="display: none;" onsubmit="cargarProducto(event, 'menu')">
                 <div class="input-group-inline">
                     <div class="input-group">
                         <label for="menu-name">Nombre</label>
-                        <input type="text" id="menu-name" placeholder="Nombre del Menú">
+                        <input type="text" id="menu-name" name="menu-name" placeholder="Nombre del Menú" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="menu-price">Precio</label>
-                        <input type="text" id="menu-price" placeholder="Precio">
+                        <input type="text" id="menu-price" name="menu-price" placeholder="Precio" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="menu-stock">Stock</label>
-                        <input type="text" id="menu-stock" placeholder="Disponibilidad">
+                        <input type="text" id="menu-stock" name="menu-stock" placeholder="Cantidad" required>
                     </div>
-                    <button class="carga-button">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonMen">Cargar Producto</button>
                 </div>
-            </div>
-            
-
+            </form>
+    
             <!-- Botón Bebidas -->
-
             <button class="menu-button" onclick="toggleCampos('bebidas')">Cargar Bebidas</button>
             
             <!-- Contenedor de campos para Bebidas -->
-
-            <div class="menu-content" id="bebidas" style="display: none;">
+            <form id="bebidas" class="menu-content" style="display: none;" onsubmit="cargarProducto(event, 'bebidas')">
                 <div class="input-group-inline">
                     <div class="input-group">
                         <label for="bebida-name">Nombre</label>
-                        <input type="text" id="bebida-name" placeholder="Nombre del Menú">
+                        <input type="text" id="bebida-name" name="bebida-name" placeholder="Nombre de la Bebida" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="bebida-price">Precio</label>
-                        <input type="text" id="bebida-price" placeholder="Precio">
+                        <input type="text" id="bebida-price" name="bebida-price" placeholder="Precio" required>
                     </div>
                     <div class="input-group detalles">
                         <label for="bebida-stock">Stock</label>
-                        <input type="text" id="bebida-stock" placeholder="Disponibilidad">
+                        <input type="text" id="bebida-stock" name="bebida-stock" placeholder="Cantidad" required>
                     </div>
-                    <button class="carga-button">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonBeb">Cargar Producto</button>
                 </div>
+            </form>
+    
+            <!-- Botones de Listado -->
+            <div class="listadosbtn">
+                <button class="menu-button-list" onclick="mostrarListadoCompleto('pizzas')">Listar Pizzas</button>
+                <button class="menu-button-list" onclick="mostrarListadoCompleto('menus')">Listar Menús</button>
+                <button class="menu-button-list" onclick="mostrarListadoCompleto('bebidas')">Listar Bebidas</button>
             </div>
-
-                <!-- Botón Listado -->
-
-                <button class="menu-button" onclick="mostrarListadoCompleto()">Mostrar Listado Completo</button>
             
-                <!-- Contenedor de listado completo -->
-                <div class="menu-content" id="listado">
-                    <!-- Aquí puedes agregar el contenido del listado completo -->
-                </div>
-        
+            <!-- Contenedor de listado completo -->
+            <div class="menu-content" id="listado">
+                <!-- Aquí se mostrará el contenido del listado -->
+            </div>
+            
         </div>
     </div>
+    
     <!--INICIO DEL FOOTER-->
     <footer>
         <div class="footer_social">
