@@ -1574,11 +1574,11 @@ button.menu-button {
 }
 
 
-
-button.carga-button {
+button.carga-buttonPizz, 
+button.carga-buttonMen, 
+button.carga-buttonBeb {
     width: 200px; /* Ancho fijo para centrarlo y separarlo de los otros botones */
-    margin: 0 auto; /* Centrar el botón horizontalmente */
-    margin-bottom: 20px; /* Espacio inferior */
+    margin: 0 auto 20px; /* Centrar el botón horizontalmente y añadir espacio inferior */
     background-color: #004d40; /* Verde oscuro */
     color: white;
     padding: 10px 20px;
@@ -1589,12 +1589,18 @@ button.carga-button {
     transition: background-color 0.3s ease;
 }
 
-button.menu-button:hover {
-    background-color: rgba(250, 23, 23, 0.7);
+/* Cambio de color al hacer hover */
+button.carga-buttonPizz:hover, 
+button.carga-buttonMen:hover, 
+button.carga-buttonBeb:hover {
+    background-color: #17ae9d; /* Verde claro al hacer hover */
 }
 
-button.carga-button:hover {
-    background-color: #17ae9d; /* Verde claro al hacer hover */
+/* Cambio de color adicional al hacer hover */
+button.menu-button:hover,
+button.carga-buttonMen:hover,
+button.carga-buttonBeb:hover {
+    background-color: rgba(250, 23, 23, 0.7); /* Rojo semi-transparente al hacer hover */
 }
 
 
@@ -1605,6 +1611,7 @@ button.carga-button:hover {
     margin-top: 20px;
     width: 100%;
     justify-content: space-evenly;
+    display: none;
 }
 
 .input-group {
@@ -1639,3 +1646,26 @@ button.carga-button:hover {
     margin-right: 20px; /* Espacio entre los input groups */
     justify-content: space-evenly;
 }
+
+.listadosbtn {
+    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* Alinea los elementos en una fila */
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Espacio entre los botones */
+}
+
+button.menu-button-list {
+    width: 450px; /* Ancho automático para ajustar el contenido */
+    background-color: #131414;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
