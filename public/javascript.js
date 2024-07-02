@@ -189,9 +189,106 @@ function toggleCampos(id) {
     }
 }
 
+// ---------------------------- Listado
+
 function mostrarListadoCompleto() {
     const listadoCompleto = document.getElementById('listado');
     listadoCompleto.style.display = listadoCompleto.style.display === 'block' ? 'none' : 'block';
-    // Aquí puedes añadir lógica para mostrar el contenido del listado completo
+    listarPizzas();
+   
 }
+
+
+// ------------------------------- Listar
+listarPizzasBtn.addEventListener('click', listarPizzas);
+
+async function listarPizzas()
+{
+    const response = await fetch('/productos');
+    const pizzas = await response.json();
+    listaPizzas.innerHTML='';//limpio la lista de pizzas
+
+    pizzas.forEach(pizzas => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span> ID: ${pizzas.id}, Nombre: ${pizzas.nombreProducto}, Precio: ${pizzas.precioProducto}, Stock: ${pizzas.stockProducto} </span>
+            <div class="actions"> 
+                <button class="update" data-id="${pizzas.id}" data-nombre="${pizzas.nombreProducto}" data-precio="${pizzas.precioProducto}" data-stock="${pizzas.stockProducto}" > Actualizar  </button> 
+
+                <button class="delete" data-id="${pizzas.id}"> Eliminar </button>
+
+            </div>
+        `;
+
+        listaPizzas.appendChild(li);
+    });
+
+
+    document.querySelectorAll('.update').forEach(button => 
+        {
+            button.addEventListener('click',(e) => 
+            {
+                const id = e.target.getAttribute('data-id');                    
+                const nombreProducto = e.target.getAttribute('data-nombre');                    
+                const precioProducto = e.target.getAttribute('data-precio');                    
+                const stockProducto = e.target.getAttribute('data-stock');
+
+                document.getElementById('editID').value = id;
+                document.getElementById('editNombre').value = nombreProducto;
+                document.getElementById('editPrecio').value = precioProducto;
+                document.getElementById('editStock').value = stockProducto;
+
+                editarPizzasForm.classList.remove('hidden');
+            });
+        });
+
+        document.querySelectorAll('.delete').forEach(button => 
+            {
+                button.addEventListener('click', async(e)=>
+                {
+                    const id = e.target.getAttribute('data-id');
+                    const response = await fetch(`/productos/${id}`,{
+                        method: 'DELETE'
+                    });
+
+                    const result = await response.json();
+                    alert(result.message);
+                    listarPizzas();
+                });
+
+            });
+
+
+}
+
+// -------------------------------- Cargar Prod
+
+crearProdForm.addEventListener('submit', async (e) =>
+{  
+    e.preventDefault();
+    const formData = new FormData(crearProdForm);
+    const data = 
+    {
+        nombreProducto: formData.get('nombre'),
+        precioProducto : formData.get('precio'),
+        stockProducto: formData.get('stock')
+    }
+
+    const response = await fetch ('/productos',
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    alert("Producto cargado");
+
+    crearProdForm.reset();
+    crearProdForm.classList.add('hidden');
+    listarProductos();
+
+});
 
