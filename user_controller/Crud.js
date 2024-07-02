@@ -5,13 +5,28 @@ const baseDeDatos = require("../data_base/db");
  * Obtiene todos los productos de la tabla especificada
  * "Promise" - Una promesa que se resuelve con los productos obtenidos
  */
-function obtenerTodosLosProductos(){
+// function obtenerTodosLosProductos(){
+//     return new Promise((resolve, reject) => {
+//         let sql = `SELECT * FROM Pizza, OtroMenu, Bebida`;
+//         baseDeDatos.query(sql, (err, result) =>{
+//             if(err){
+//                 reject(err);
+//             }else{
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
+
+
+// Obtener los productos dependiendo el botón que se haya seleccionado. -alexis-
+function obtenerTodosLosProductos(tabla) {
     return new Promise((resolve, reject) => {
-        let sql = `SELECT * FROM Pizza, OtroMenu, Bebida`;
-        baseDeDatos.query(sql, (err, result) =>{
-            if(err){
+        const sql = `SELECT * FROM ${tabla}`;
+        baseDeDatos.query(sql, (err, result) => {
+            if (err) {
                 reject(err);
-            }else{
+            } else {
                 resolve(result);
             }
         });
@@ -65,13 +80,31 @@ function crearProducto(tabla, producto){
  * "id" - ID del producto a eliminar
  * "Promise"  - Una promesa que se resuelve con el resultado de la operación
  */
-function eliminarProducto(tabla, id){
+
+// function eliminarProducto(tabla, id){
+//     return new Promise((resolve, reject) => {
+//         let sql = `DELETE FROM ${tabla} WHERE pizzaID = ${id}`;
+//         baseDeDatos.query(sql, (err, result) =>{
+//             if(err){
+//                 reject(err);
+//             }else{
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
+
+
+// Eliminar V2 -alexis-
+// se modificó el query
+
+function eliminarProducto(tabla, id) {
     return new Promise((resolve, reject) => {
-        let sql = `DELETE FROM ${tabla} WHERE pizzaID = ${id}`;
-        baseDeDatos.query(sql, (err, result) =>{
-            if(err){
+        const sql = `DELETE FROM ${tabla} WHERE id = ?`;
+        baseDeDatos.query(sql, id, (err, result) => {
+            if (err) {
                 reject(err);
-            }else{
+            } else {
                 resolve(result);
             }
         });
@@ -85,18 +118,38 @@ function eliminarProducto(tabla, id){
  * "nuevoProducto" - Objeto que contiene los nuevos datos del producto
  * "Promise"  - Una promesa que se resuelve con el resultado de la operación
  */
-function editarProducto(tabla, id, nuevoProducto){
+
+
+// function editarProducto(tabla, id, nuevoProducto){
+//     return new Promise((resolve, reject) => {
+//         let sql = `UPDATE ${tabla} SET ? WHERE pizzaID = ${id}`;
+//         baseDeDatos.query(sql, nuevoProducto, (err, result) =>{
+//             if(err){
+//                 reject(err);
+//             }else{
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
+
+
+
+// Editar V2 testeo -alexis-
+// se modificó la query y el const
+function editarProducto(tabla, id, nuevoProducto) {
     return new Promise((resolve, reject) => {
-        let sql = `UPDATE ${tabla} SET ? WHERE pizzaID = ${id}`;
-        baseDeDatos.query(sql, nuevoProducto, (err, result) =>{
-            if(err){
+        const sql = `UPDATE ${tabla} SET ? WHERE id = ?`;
+        baseDeDatos.query(sql, [nuevoProducto, id], (err, result) => {
+            if (err) {
                 reject(err);
-            }else{
+            } else {
                 resolve(result);
             }
         });
     });
 }
+
 
 /**
  * Obtiene un producto específico de la tabla especificada
