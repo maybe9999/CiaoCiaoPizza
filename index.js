@@ -1,7 +1,15 @@
+require("dotenv").config(); //Sirve para usar variables de entorno... No es necesario almacenarlo
+
+
+
 const express = require('express');  // Importamos el modulo express
 const path = require('path'); //
 const morgan = require('morgan'); //Info por consola sobre las peticiones entrantes
-require("dotenv").config(); //Sirve para usar variables de entorno... No es necesario almacenarlo
+
+const dashboardController = require('./dashboardController/dashboardController');
+ // creado para obtener los http 
+
+
 
 const redirect = require('./routes/redirect'); //Contiene ubicación de los index y devuelve archivos
 
@@ -15,6 +23,10 @@ app.set("port", 5001)//Se setae o guarda en una "variable", denominada por conve
 app.use(morgan('dev')); 
 
 app.use(express.json()); //
+
+// Rutas para el dashboard y productos
+app.use('/dashboard', dashboardController);
+
 
 //----
 app.use(express.urlencoded({ extended: false })); // Middleware para manejar URL-encoded
