@@ -21,8 +21,17 @@ session.connect((err) => {
 
 
 /*
+use bsbg7biimj0ezhjbgpyv;
+
+create table Usuario(
+	id int auto_increment primary key,
+    username varchar(20) not null,
+    passwor varchar(16) not null,
+    rol varchar(20) not null
+);
+
 CREATE TABLE Pizza (    
-	pizzaID int AUTO_INCREMENT PRIMARY KEY,
+	id int AUTO_INCREMENT PRIMARY KEY,
     nombrePizza varchar(100) NOT NULL,
     precioPizza decimal(10,2) NOT NULL,
     stock int,
@@ -30,7 +39,7 @@ CREATE TABLE Pizza (
 );
 
 CREATE TABLE OtroMenu (
-	menuID int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nombreMenu varchar(100) NOT NULL,
     precioMenu decimal(10,2) NOT NULL,
     stock int,
@@ -38,16 +47,12 @@ CREATE TABLE OtroMenu (
 );
 
 CREATE TABLE Bebida (
-    bebidaID int AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT PRIMARY KEY,
     nombreBebida varchar(100),
     precioBebida decimal(10,2),
     stock int,
     estado int
 );
-
-SELECT * FROM Bebida, Pizza;
-
-show tables;
 
 CREATE TABLE Cliente (
 	clienteID int AUTO_INCREMENT PRIMARY KEY,
@@ -72,16 +77,10 @@ CREATE TABLE DetallePedido (
     bebidaID int,
     cantidad int,
     FOREIGN KEY (pedidoID) REFERENCES Pedido(pedidoID),
-    FOREIGN KEY (pizzaID) REFERENCES Pizza(pizzaID),
-    FOREIGN KEY (menuID) REFERENCES OtroMenu(menuID),
-    FOREIGN KEY (bebidaID) REFERENCES Bebida(bebidaID)
+    FOREIGN KEY (pizzaID) REFERENCES Pizza(id),
+    FOREIGN KEY (menuID) REFERENCES OtroMenu(id),
+    FOREIGN KEY (bebidaID) REFERENCES Bebida(id)
 );
-
-SHOW TABLE STATUS;
-
-select * from Pizza;
-
-
 
 
 INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES
@@ -103,8 +102,6 @@ INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES
 ('Donatella', 5300.00, 1, 1);
 
 
-
-
 INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES
 ('PAPAS CON CHEDDAR', 3000.00, 10, 1),
 ('PAPAS CIAO CIAO', 2500.00, 10, 1),
@@ -115,26 +112,26 @@ INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES
 ('TIRAMISÚ', 3200.00, 10, 1);
 
 
-INSERT INTO Bebida (nombreBebida, envase, precioBebida, stock, estado) VALUES
-('Agua Mineral', 'Botella 500 mL', 1500.00, 20, 1),
-('Jugo de Naranja Natural', 'Botella 500 mL', 1800.00, 10, 1),
-('Mojito Clásico', 'Vaso', 2800.00, 12, 1),
-('Café Americano', 'Taza', 1700.00, 15, 1),
-('Agua Villavicencio', 'Botella 500 mL', 1200.00, 25, 1),
-('Fanta', 'Lata 355 mL', 1800.00, 18, 1),
-('Coca-Cola', 'Lata 355 mL', 2000.00, 15, 1),
-('Manaos Cola', 'Lata 355 mL', 1600.00, 20, 1),
-('Manaos Naranja', 'Lata 355 mL', 1600.00, 20, 1),
-('Manaos Lima-limón', 'Lata 355 mL', 1600.00, 20, 1),
-('Cerveza Artesanal IPA', 'Botella 500 mL', 3500.00, 8, 1),
-('Cerveza Brahma', 'Lata 355 mL', 2500.00, 10, 1),
-('Cerveza Quilmes', 'Lata 355 mL', 2400.00, 12, 1),
-('Cerveza Corona', 'Botella 355 mL', 2800.00, 8, 1),
-('Cerveza Heineken', 'Lata 355 mL', 2700.00, 10, 1),
-('Cerveza Schneider', 'Lata 355 mL', 2300.00, 15, 1),
-('Cerveza Stella Artois', 'Lata 355 mL', 2600.00, 12, 1),
-('Vino Tinto Malbec', 'Botella 750 mL', 55000.00, 6, 1),
-('Vino Tinto Cabernet Sauvignon', 'Botella 750 mL', 6000.00, 5, 1);
+INSERT INTO Bebida (nombreBebida, precioBebida, stock, estado) VALUES
+('Agua MineralBotella 500 mL', 1500.00, 20, 1),
+('Jugo de Naranja Natural Botella 500 mL', 1800.00, 10, 1),
+('Mojito Clásico Vaso', 2800.00, 12, 1),
+('Café Americano Taza', 1700.00, 15, 1),
+('Agua Villavicencio Botella 500 mL', 1200.00, 25, 1),
+('Fanta Lata 355 mL', 1800.00, 18, 1),
+('Coca-Cola Lata 355 mL', 2000.00, 15, 1),
+('Manaos Cola Lata 355 mL', 1600.00, 20, 1),
+('Manaos Naranja Lata 355 mL', 1600.00, 20, 1),
+('Manaos Lima-limón Lata 355 mL', 1600.00, 20, 1),
+('Cerveza Artesanal IPA Botella 500 mL', 3500.00, 8, 1),
+('Cerveza Brahma Lata 355 mL', 2500.00, 10, 1),
+('Cerveza Quilmes Lata 355 mL', 2400.00, 12, 1),
+('Cerveza Corona Botella 355 mL', 2800.00, 8, 1),
+('Cerveza Heineken Lata 355 mL', 2700.00, 10, 1),
+('Cerveza Schneider Lata 355 mL', 2300.00, 15, 1),
+('Cerveza Stella Artois Lata 355 mL', 2600.00, 12, 1),
+('Vino Tinto Malbec Botella 750 mL', 55000.00, 6, 1),
+('Vino Tinto Cabernet Sauvignon Botella 750 mL', 6000.00, 5, 1);
 
 INSERT INTO Cliente (nombreCliente, direccion, telefono) VALUES
 ('Juan Pérez', 'Calle 123, Ciudad Principal', '+1234567890'),
@@ -144,8 +141,6 @@ INSERT INTO Cliente (nombreCliente, direccion, telefono) VALUES
 ('Pedro Sánchez', 'Av. Bolívar 321, Casco Viejo', '+6677889900'),
 ('Ana López', 'Calle 456, Colonia Jardín', '+9900112233'),
 ('Luis Fernández', 'Av. Central 789, Centro Histórico', '+2244668800');
-
-
  */
 
 

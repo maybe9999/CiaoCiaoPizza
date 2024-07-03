@@ -1,6 +1,9 @@
 const path = require('path');
 const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
 
+// Rutas para el dashboard y productos
+//app.use('/dashboard', dashboardController);
+const dashboardController = require("../dashboardController/dashboardController")
 
 //const router = express.Router();
 
@@ -13,39 +16,36 @@ const routesPublic = {
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
     notFound : path.resolve(__dirname, '../public/not_found/index.html')
-
 };
 
-var adminLogeado = false; 
-
+var adminLogeado = true; //Esto se deberia manejar con JWT
 
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
 function mostrarSeccion(req, res) {
-    //Obtiene mediante "req.path" el nombre del path o sección solicitada en la consulta(nosotros, productos, etc.), 
-    //mediante .replace() se remplazan todos los / de la string usando una "expresión regular" como primer argumento y en el segundo definimos que debe estar vacio "".
-    let endPointActual = req.path.replace(/(\/)/gm,""); 
+    let endPointActual = req.path.replace(/(\/)/gm,""); //se obtiene solo la ruta sin /
 
     console.log(`1 impresión en ${endPointActual}`);
-    console.log(endPointActual === "dashboard")
 
-    if (endPointActual === 'dashboard'){
-        console.log("por 1",adminLogeado);
-        if(adminLogeado){
-            res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
-        }else{
-            console.error("Debe estar logeado para acceder!!")
-            res.redirect("/notFound");
-        }
-    } else{
-        adminLogeado = false;
-        console.log("por 2",adminLogeado);
-        // Envía el archivo index.html como respuesta
-        res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
-    }
-    
+    adminLogeado = false;
+    console.log("por 2",adminLogeado);
+    // Envía el archivo index.html como respuesta
+    res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
 }
 
+function dashboardRoutes(req,res){
+
+    //const endPointActual = req.path.replace(/(\/)/gm,""); //se obtiene solo la ruta sin /
+
+    console.log(`111 impresión en ${req.path.replace(/(\/)/gm,"")}`);
+    
+    if(adminLogeado){
+        res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
+    }else{
+        console.error("Debe estar logeado para acceder!!");
+        res.redirect("/notFound");
+    }
+}
 
 //Login
 function validaLogueoUsuario(req, res){
@@ -53,7 +53,8 @@ function validaLogueoUsuario(req, res){
 
     console.log("daatos de user",username, password);
 
-    if (adminLogeado) console.log("El usuario ya estaba logeado.")
+    if (adminLogeado) console.log("El usuario ya estaba logeado.");
+
     let validacion = adminLogeado ? new Promise(resolve => resolve({ tipo: 'exito' })) : crud.validaLogueoUsuario(username, password);
 
     validacion.then(resultado => { //Si se ejecuta el resolve entonces .then captara la respuesta...
@@ -82,7 +83,8 @@ function validaLogueoUsuario(req, res){
 
 module.exports = {
     mostrarSeccion,
-    validaLogueoUsuario
+    validaLogueoUsuario,
+    dashboardRoutes
 };
 
 

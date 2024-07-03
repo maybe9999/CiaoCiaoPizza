@@ -110,7 +110,7 @@
                         <label for="pizza-stock">Stock</label>
                         <input type="text" id="pizza-stock" name="pizza-stock" placeholder="Cantidad" required>
                     </div>
-                    <button type="submit" class="carga-buttonPizz">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonPizz" id="crearProdForm" onclick="cargarProductos('Pizza')">Cargar Producto</button>
                 </div>
             </form>
     
@@ -132,7 +132,7 @@
                         <label for="menu-stock">Stock</label>
                         <input type="text" id="menu-stock" name="menu-stock" placeholder="Cantidad" required>
                     </div>
-                    <button type="submit" class="carga-buttonMen">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonMen" onclick="cargarProductos('OtroMenu')">Cargar Producto</button>
                 </div>
             </form>
     
@@ -154,7 +154,7 @@
                         <label for="bebida-stock">Stock</label>
                         <input type="text" id="bebida-stock" name="bebida-stock" placeholder="Cantidad" required>
                     </div>
-                    <button type="submit" class="carga-buttonBeb">Cargar Producto</button>
+                    <button type="submit" class="carga-buttonBeb"  onclick="cargarProductos('Bebida')">Cargar Producto</button>
                 </div>
             </form>
     

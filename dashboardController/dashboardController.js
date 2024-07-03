@@ -1,11 +1,10 @@
 const express = require('express');
 const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
 
-
 const router = express.Router();
 
 
-
+console.log("dashboard controller");
 //Obtener todos los productos
 // router.get("/", (req, res) => {
 //     const tabla = req.params.tabla;
@@ -19,9 +18,10 @@ const router = express.Router();
 
 
 
-//Obtener los productos test -alexis-
-// se agregó ":tabla", y el const que le sigue para obtener los valores.
+//OBTENER los productos test -alexis-
+// Se agregó ":tabla", y el const que le sigue para obtener los valores.
 router.get("/:tabla", (req, res) => {
+    console.log("Obteniendo todos los productos");
     const tabla = req.params.tabla;
 
     crud.obtenerTodosLosProductos(tabla).then(productosRecibidos => {
@@ -47,12 +47,11 @@ router.get("/:tabla", (req, res) => {
 // });
 
 
-//Crear producto v:2 testeando para dashboard -alexis-
-router.post("/:tabla", (req, res) => {
-    const tabla = req.params.tabla;
-    const productoCrear = req.body;
-
-    crud.crearProducto(tabla, productoCrear).then(resultado => {
+//CREAR producto v:2 testeando para dashboard -alexis-
+router.post("/", (req, res) => {
+    console.log("Creando un producto...")
+    const {producto, nombreProducto, precioProducto, stockProducto} = req.body;
+    crud.crearProducto(producto, {nombreProducto, precioProducto, stockProducto}).then(resultado => {
         res.json({ success: true, message: 'Producto creado exitosamente', producto: resultado });
     }).catch(error => {
         res.json({ success: false, message: error });
@@ -76,8 +75,9 @@ router.post("/:tabla", (req, res) => {
 // })
 
 
-// Eliminar producto testeo dash -alexis-
+// ELIMINAR producto testeo dash -alexis-
 router.delete("/:tabla/:id", (req, res) => {
+    console.log("eliminando productos");
     const tabla = req.params.tabla;
     const id = req.params.id;
 
@@ -106,8 +106,9 @@ router.delete("/:tabla/:id", (req, res) => {
 
 // })
 
-// Actualizar un producto - test dashboard -alexis-
+// ACTUALIZAR un producto - test dashboard -alexis-
 router.put("/:tabla/:id", (req, res) => {
+    console.log("actualizar productos");
     const tabla = req.params.tabla;
     const id = req.params.id;
     const productoActualizar = req.body;

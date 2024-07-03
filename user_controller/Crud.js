@@ -1,28 +1,11 @@
 const baseDeDatos = require("../data_base/db");
 
 
-/**
- * Obtiene todos los productos de la tabla especificada
- * "Promise" - Una promesa que se resuelve con los productos obtenidos
- */
-// function obtenerTodosLosProductos(){
-//     return new Promise((resolve, reject) => {
-//         let sql = `SELECT * FROM Pizza, OtroMenu, Bebida`;
-//         baseDeDatos.query(sql, (err, result) =>{
-//             if(err){
-//                 reject(err);
-//             }else{
-//                 resolve(result);
-//             }
-//         });
-//     });
-// }
 
-
-// Obtener los productos dependiendo el botón que se haya seleccionado. -alexis-
+// Obtener los productos dependiendo el botón que se haya seleccionado. -edit: alexis-
 function obtenerTodosLosProductos(tabla) {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM ${tabla}`;
+        const sql = `SELECT * FROM '${tabla}'`;
         baseDeDatos.query(sql, (err, result) => {
             if (err) {
                 reject(err);
@@ -63,8 +46,8 @@ function validaLogueoUsuario(user, pass) {
  */
 function crearProducto(tabla, producto){
     return new Promise((resolve, reject) => {
-        let sql = `INSERT INTO ${tabla} SET ?`; //set recibe un objeto con el nombre de el valor a insertar y el valor en si 
-        baseDeDatos.query(sql, producto, (err, result) =>{
+        let sql = `INSERT INTO '${tabla}' set ${producto}`; //set recibe un objeto con el nombre de el valor a insertar y el valor en si 
+        baseDeDatos.query(sql, (err, result) =>{
             if(err){
                 reject(err);
             }else{
@@ -74,33 +57,10 @@ function crearProducto(tabla, producto){
     });
 }
 
-/**
- * Elimina un producto de la tabla especificada
- * "tabla" - Nombre de la tabla de la base de datos
- * "id" - ID del producto a eliminar
- * "Promise"  - Una promesa que se resuelve con el resultado de la operación
- */
-
-// function eliminarProducto(tabla, id){
-//     return new Promise((resolve, reject) => {
-//         let sql = `DELETE FROM ${tabla} WHERE pizzaID = ${id}`;
-//         baseDeDatos.query(sql, (err, result) =>{
-//             if(err){
-//                 reject(err);
-//             }else{
-//                 resolve(result);
-//             }
-//         });
-//     });
-// }
-
-
-// Eliminar V2 -alexis-
-// se modificó el query
 
 function eliminarProducto(tabla, id) {
     return new Promise((resolve, reject) => {
-        const sql = `DELETE FROM ${tabla} WHERE id = ?`;
+        const sql = `DELETE FROM '${tabla}' WHERE id = ?`;
         baseDeDatos.query(sql, id, (err, result) => {
             if (err) {
                 reject(err);
@@ -111,32 +71,7 @@ function eliminarProducto(tabla, id) {
     });
 }
 
-/**
- * Edita un producto en la tabla especificada
- * "tabla" - Nombre de la tabla de la base de datos
- * "id" - ID del producto a editar
- * "nuevoProducto" - Objeto que contiene los nuevos datos del producto
- * "Promise"  - Una promesa que se resuelve con el resultado de la operación
- */
 
-
-// function editarProducto(tabla, id, nuevoProducto){
-//     return new Promise((resolve, reject) => {
-//         let sql = `UPDATE ${tabla} SET ? WHERE pizzaID = ${id}`;
-//         baseDeDatos.query(sql, nuevoProducto, (err, result) =>{
-//             if(err){
-//                 reject(err);
-//             }else{
-//                 resolve(result);
-//             }
-//         });
-//     });
-// }
-
-
-
-// Editar V2 testeo -alexis-
-// se modificó la query y el const
 function editarProducto(tabla, id, nuevoProducto) {
     return new Promise((resolve, reject) => {
         const sql = `UPDATE ${tabla} SET ? WHERE id = ?`;
@@ -151,15 +86,10 @@ function editarProducto(tabla, id, nuevoProducto) {
 }
 
 
-/**
- * Obtiene un producto específico de la tabla especificada
- * "tabla" - Nombre de la tabla de la base de datos
- * "id" - ID del producto a obtener
- * "Promise"  - Una promesa que se resuelve con el resultado de la operación
- */
+
 function obtenerProductoPorID(tabla, id){
     return new Promise((resolve, reject) => {
-        let sql = `SELECT * FROM ${tabla} WHERE pizzaID = ${id}`;
+        let sql = `SELECT * FROM '${tabla}' WHERE id = '${id}'`;
         baseDeDatos.query(sql, (err, result) =>{
             if(err){
                 reject(err);

@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // FIN Evento para mostrar imágen al presionar un elemento del listado //
 
+
+
+
+
 // Evento para ocultar o mostrar los elementos del listado si se ha seleccionado el Header //
 function mostrarCartas(index) {
     // Ocultar todos los elementos de la sección left
@@ -35,6 +39,10 @@ function mostrarCartas(index) {
     }
 }
 // FIN Evento para ocultar o mostrar los elementos del listado si se ha seleccionado el Header //
+
+
+
+
 
 // JavaScript para CONTACTO ----------------//
 function validateForm(event)
@@ -85,6 +93,11 @@ document.addEventListener("DOMContentLoaded", init);
 // Fin JavaScriptContacto -----------------//
 
 
+
+
+
+
+
 //Responsive HEADEER---------------------------------------------//
 document.addEventListener("DOMContentLoaded", function()
 {
@@ -97,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function()
 
 });
 //FIN Responsive HEADEER--------------------------------------------- //
+
+
+
+
 
 
 // Inicio código Modal Login //
@@ -172,14 +189,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ocultar el modal al cargar la página
     toggleModal();
 });
-
-
-
-
 // Fin código Modal Login //
 
 
-// Codigo Botones Dashboard
+
+
+
+
+// Botones Dashboard, Muestra / Oculta secciones
 function toggleCampos(id) {
     const seccionSeleccionada = document.getElementById(id);
     if (seccionSeleccionada.style.display === 'block') {
@@ -189,106 +206,122 @@ function toggleCampos(id) {
     }
 }
 
-// ---------------------------- Listado
+// ---------------------------- Listado (GET), obtener productos.
 
-function mostrarListadoCompleto() {
+function mostrarListadoCompleto(productoParaListar) {
     const listadoCompleto = document.getElementById('listado');
     listadoCompleto.style.display = listadoCompleto.style.display === 'block' ? 'none' : 'block';
-    listarPizzas();
-   
+    listarPizzas(productoParaListar);
 }
 
 
-// ------------------------------- Listar
-listarPizzasBtn.addEventListener('click', listarPizzas);
 
-async function listarPizzas()
+// ------------------------------- Listar
+//listarPizzasBtn.addEventListener('click', listarPizzas);
+
+//OBTENER y MOSTRAR un producto en la pagina (hacia el back)
+async function listarPizzas(productoParaListar)
 {
-    const response = await fetch('/productos');
-    const pizzas = await response.json();
+    const response = await fetch('/dashboard/crud');
+    const producto = await response.json();
+    console.log("Listar producto: ",producto);
     listaPizzas.innerHTML='';//limpio la lista de pizzas
 
-    pizzas.forEach(pizzas => {
+    producto.forEach(producto => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <span> ID: ${pizzas.id}, Nombre: ${pizzas.nombreProducto}, Precio: ${pizzas.precioProducto}, Stock: ${pizzas.stockProducto} </span>
+            <span> ID: ${producto.id}, Nombre: ${producto.nombreProducto}, Precio: ${producto.precioProducto}, Stock: ${producto.stockProducto} </span>
             <div class="actions"> 
-                <button class="update" data-id="${pizzas.id}" data-nombre="${pizzas.nombreProducto}" data-precio="${pizzas.precioProducto}" data-stock="${pizzas.stockProducto}" > Actualizar  </button> 
+                <button class="update" data-id="${producto.id}" data-nombre="${producto.nombreProducto}" data-precio="${producto.precioProducto}" data-stock="${producto.stockProducto}" > Actualizar  </button> 
 
-                <button class="delete" data-id="${pizzas.id}"> Eliminar </button>
+                <button class="delete" data-id="${producto.id}"> Eliminar </button>
 
             </div>
         `;
 
         listaPizzas.appendChild(li);
     });
-
-
-    document.querySelectorAll('.update').forEach(button => 
-        {
-            button.addEventListener('click',(e) => 
-            {
-                const id = e.target.getAttribute('data-id');                    
-                const nombreProducto = e.target.getAttribute('data-nombre');                    
-                const precioProducto = e.target.getAttribute('data-precio');                    
-                const stockProducto = e.target.getAttribute('data-stock');
-
-                document.getElementById('editID').value = id;
-                document.getElementById('editNombre').value = nombreProducto;
-                document.getElementById('editPrecio').value = precioProducto;
-                document.getElementById('editStock').value = stockProducto;
-
-                editarPizzasForm.classList.remove('hidden');
-            });
-        });
-
-        document.querySelectorAll('.delete').forEach(button => 
-            {
-                button.addEventListener('click', async(e)=>
-                {
-                    const id = e.target.getAttribute('data-id');
-                    const response = await fetch(`/productos/${id}`,{
-                        method: 'DELETE'
-                    });
-
-                    const result = await response.json();
-                    alert(result.message);
-                    listarPizzas();
-                });
-
-            });
-
-
 }
 
-// -------------------------------- Cargar Prod
+// Escribir que es lo que hace.....
+document.querySelectorAll('.update').forEach(button => 
+    {
+        button.addEventListener('click',(e) => 
+        {
+            const id = e.target.getAttribute('data-id');                    
+            const nombreProducto = e.target.getAttribute('data-nombre');                    
+            const precioProducto = e.target.getAttribute('data-precio');                    
+            const stockProducto = e.target.getAttribute('data-stock');
+
+            document.getElementById('editID').value = id;
+            document.getElementById('editNombre').value = nombreProducto;
+            document.getElementById('editPrecio').value = precioProducto;
+            document.getElementById('editStock').value = stockProducto;
+
+            editarPizzasForm.classList.remove('hidden');
+        });
+    });
+
+//BORRAR un producto (hacia el back)
+document.querySelectorAll('.delete').forEach(button => 
+    {
+        button.addEventListener('click', async(e)=>
+        {
+            const id = e.target.getAttribute('data-id');
+
+            const response = await fetch(`/dashboard/crud`,{
+                method: 'DELETE',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(id)
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            listarPizzas();
+        });
+    });
+
+
+// -------------------------------- Inicio ______CARGAR (CREAR)____ Productos() -------
+
+//CREAR un producto (hacia el back)...
+var nombreProducto;
+async function cargarProductos(Producto){
+    nombreProducto = Producto;
+    console.log("Producto a cargar: ", nombreProducto);
+}
+const crearProdForm = document.getElementById('crearProdForm');
 
 crearProdForm.addEventListener('submit', async (e) =>
 {  
     e.preventDefault();
     const formData = new FormData(crearProdForm);
-    const data = 
-    {
+    console.log(formData);
+    prompt("");
+    const data = {
+        producto : nombreProducto,
         nombreProducto: formData.get('nombre'),
         precioProducto : formData.get('precio'),
         stockProducto: formData.get('stock')
     }
 
-    const response = await fetch ('/productos',
-    {
+    const response = await fetch ('/crud/', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
         },
         body: JSON.stringify(data)
     });
-
     const result = await response.json();
     alert("Producto cargado");
 
     crearProdForm.reset();
     crearProdForm.classList.add('hidden');
     listarProductos();
-
 });
 
+
+
+// -------------------------------- Fin Cargar Productos() -------
