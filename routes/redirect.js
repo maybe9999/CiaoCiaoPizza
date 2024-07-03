@@ -18,7 +18,7 @@ const routesPublic = {
     notFound : path.resolve(__dirname, '../public/not_found/index.html')
 };
 
-var adminLogeado = true; //Esto se deberia manejar con JWT
+var adminLogeado = false; //Esto se deberia manejar con JWT
 
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
