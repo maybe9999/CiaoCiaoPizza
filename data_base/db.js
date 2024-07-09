@@ -1,7 +1,8 @@
 const mySqlDB = require("mysql2"); //Se importa el modulo para conectarse a la Base de Datos
+require("dotenv").config(); //Sirve para usar variables de entorno...
 
 //Se hace la conexión a la Base de Datos... (se logea)
-const session = mySqlDB.createConnection({
+const connection = mySqlDB.createConnection({
     host : process.env.hostDataBase,
     user : process.env.userDataBase,
     password : process.env.passwordDataBase,
@@ -11,7 +12,7 @@ const session = mySqlDB.createConnection({
 
 
 //se llama al método connect y mediante una función anónima verificamos si la conexión se realizo correctamente
-session.connect((err) => {
+connection.connect((err) => {
     if (err) {
         console.log("ERROR!!!, No se pudo conectar a la Base de Datos.\n Error:", err);
     }else{
@@ -19,6 +20,7 @@ session.connect((err) => {
     }
 });
 
+module.exports = connection;
 
 /*
 use bsbg7biimj0ezhjbgpyv;
@@ -145,4 +147,4 @@ INSERT INTO Cliente (nombreCliente, direccion, telefono) VALUES
 
 
 
-module.exports = session;
+// module.exports = session;

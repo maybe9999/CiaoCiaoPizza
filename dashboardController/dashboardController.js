@@ -1,10 +1,103 @@
-const express = require('express');
-const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
+const db = require('../data_base/db');
 
-const router = express.Router();
+// ----- LOGIN ----- //
+function validaLogueoUsuario(user, pass) {
+    return new Promise((resolve, reject) => {
+        console.log("el user se esta logeando")
+        let sql = `SELECT * FROM Usuario WHERE username = '${user}' AND passwor = '${pass}'`;
+        db.query(sql, (err, result) => {
+            console.log("result")
+            if (err) {
+                console.log("11111111");
+                reject({ tipo: 'error', mensaje: 'Error en la consulta a la base de datos', error: err });
+            } else if (result.length > 0) {
+                resolve({ tipo: 'exito', datos: result });
+            } else {
+                console.log("2222222");
+                reject({ tipo: 'credencialesIncorrectas', error: err});
+            }
+        });
+    })
+}
 
 
-console.log("dashboard controller");
+// ----- OBTENER PRODUCTO ----- //
+const ObtenerTablaPizza = (req,res, valor) =>{
+    console.log("valores: ", valor);
+    const sql = `SELECT * FROM ${valor}`;
+    console.log("esta es la consulta", sql);
+    db.query(sql, (err,result)=>{
+        if(err) throw err;
+
+        res.json(result);
+    });
+}
+
+// ----- OBTENER PIZZA POR ID -----
+const ObtenerPizzaID = (req, res) =>{
+    const {id} = req.params;
+    const sql = 'SELECT * FROM Pizza WHERE id = ?';
+    db.query(sql,[id], (err,result) =>{
+        if(err) throw err;
+        res.json(result);
+    });
+};
+
+// ----- INSERTAR - CREAR PIZZA ----- //
+const crearProductoPizza = (req,res)=>{
+    const {nombrePizza, precioPizza, stock} = req.body;
+    const estado = 1; // Estado activo por defecto
+
+    const sql = 'INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES (?, ?, ?, ?)';
+    db.query(sql, [nombrePizza, precioPizza, stock, estado], (err, result) => {
+        if (err) {
+            console.error('Error al insertar datos en la tabla Pizza:', err);
+            res.status(500).send('Error al insertar datos');
+        } else {
+            res.send('Datos insertados correctamente');
+        }
+    })
+};
+
+// ----- EDITAR - ACTUALIIZAR PIZZA ----- //
+const actualizarPizza = (req, res)=>{
+    const {id} = req.params;
+    const {nombrePizza, precioPizza, stock, estado} = req.body;
+
+    const sql = 'UPDATE Pizza SET nombrePizza = ?, precioPizza = ?, stock = ?, estado = ?';
+    db.query(sql,[nombrePizza, precioPizza, stock, estado], (err,result)=>{
+        if(err) throw err;
+
+        res.json(
+            {
+                message : 'Pizza editada'
+            });
+    });
+};
+
+// ----- BORRAR - ELIMINAR PIZZA ----- //
+const BorrarPizza = (req, res)=>{
+    const {id} = req.params;
+    const sql = 'DELETE FROM Pizza WHERE id = ?';
+    db.query(sql,[id],(err,result)=>{
+        if(err) throw err;
+
+        res.json(
+            {
+                message : 'Pizza eliminada'
+            });
+    });
+};
+
+
+module.exports = {
+    validaLogueoUsuario,
+    ObtenerTablaPizza, ObtenerPizzaID, crearProductoPizza, actualizarPizza, BorrarPizza
+};
+
+
+
+
 //Obtener todos los productos
 // router.get("/", (req, res) => {
 //     const tabla = req.params.tabla;
@@ -18,18 +111,6 @@ console.log("dashboard controller");
 
 
 
-//OBTENER los productos test -alexis-
-// Se agregó ":tabla", y el const que le sigue para obtener los valores.
-router.get("/:tabla", (req, res) => {
-    console.log("Obteniendo todos los productos");
-    const tabla = req.params.tabla;
-
-    crud.obtenerTodosLosProductos(tabla).then(productosRecibidos => {
-        res.json(productosRecibidos);
-    }).catch(errorEnLaConsulta => {
-        res.json(errorEnLaConsulta);
-    });
-});
 
 
 //Crear un producto
@@ -47,18 +128,22 @@ router.get("/:tabla", (req, res) => {
 // });
 
 
-//CREAR producto v:2 testeando para dashboard -alexis-
-router.post("/", (req, res) => {
-    console.log("Creando un producto...")
-    const {producto, nombreProducto, precioProducto, stockProducto} = req.body;
-    crud.crearProducto(producto, {nombreProducto, precioProducto, stockProducto}).then(resultado => {
-        res.json({ success: true, message: 'Producto creado exitosamente', producto: resultado });
-    }).catch(error => {
-        res.json({ success: false, message: error });
-    });
-});
 
+// // Ruta para insertar datos en la tabla OtroMenu
+// router.post('/menu', (req, res) => {
+//     const { menuName, menuPrice, menuStock } = req.body;
+//     const estado = 1; // Estado activo por defecto
 
+//     const sql = 'INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES (?, ?, ?, ?)';
+//     db.query(sql, [menuName, menuPrice, menuStock, estado], (err, result) => {
+//         if (err) {
+//             console.error('Error al insertar datos en la tabla OtroMenu:', err);
+//             res.status(500).send('Error al insertar datos');
+//         } else {
+//             res.send('Datos insertados correctamente');
+//         }
+//     });
+// });
 
 
 //Eliminar un producto
@@ -75,18 +160,7 @@ router.post("/", (req, res) => {
 // })
 
 
-// ELIMINAR producto testeo dash -alexis-
-router.delete("/:tabla/:id", (req, res) => {
-    console.log("eliminando productos");
-    const tabla = req.params.tabla;
-    const id = req.params.id;
 
-    crud.eliminarProducto(tabla, id).then(resultado => {
-        res.json({ success: true, message: 'Producto eliminado exitosamente' });
-    }).catch(error => {
-        res.json({ success: false, message: error });
-    });
-});
 
 
 
@@ -106,19 +180,7 @@ router.delete("/:tabla/:id", (req, res) => {
 
 // })
 
-// ACTUALIZAR un producto - test dashboard -alexis-
-router.put("/:tabla/:id", (req, res) => {
-    console.log("actualizar productos");
-    const tabla = req.params.tabla;
-    const id = req.params.id;
-    const productoActualizar = req.body;
-
-    crud.actualizarProducto(tabla, id, productoActualizar).then(resultado => {
-        res.json({ success: true, message: 'Producto actualizado exitosamente', producto: resultado });
-    }).catch(error => {
-        res.json({ success: false, message: error });
-    });
-});
 
 
-module.exports = router;
+
+// module.exports = router;
