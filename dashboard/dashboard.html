@@ -117,7 +117,7 @@
                 <button id="mostrarCrearProdMenuFormBtn" class="menu-button">Cargar Menú</button>
 
                 <!-- Contenedor de campos para Menú -->
-                <form id="crearMenuForm" class="menu-content" onsubmit="cargarProducto(event, 'menu')">
+                <form id="crearMenuForm" class="hidden" onsubmit="cargarProducto(event, 'menu')">
                     <div class="input-group-inline">
                         <div class="input-group">
                             <label for="menu-name">Nombre</label>
@@ -161,7 +161,7 @@
                 <button id="mostrarCrearProdBebidaBtn" class="menu-button">Cargar Bebidas</button>
 
                 <!-- Contenedor de campos para Bebidas -->
-                <form id="crearBebidaForm" class="menu-content" onsubmit="cargarProducto(event, 'bebidas')">
+                <form id="crearBebidaForm" class="hidden" onsubmit="cargarProducto(event, 'bebidas')">
                     <div class="input-group-inline">
                         <div class="input-group">
                         <label for="bebida-name">Nombre</label>
@@ -213,18 +213,18 @@
                         Bebidas</button>
                 </div>
 
+
                 <!-- Contenedor de listado completo -->
-
                 <div class="menu-content" id="listado">
-                    <ul id="listaPizza"> </ul>
-                </div>
+                    <ul id="listaPizza" class="mostrarProductosGeneral hidden">
+                    </ul>
 
-                <div class="menu-content" id="listado">
-                    <ul id="listaMenu"> </ul>
-                </div>
+                    <ul id="listaMenu" class="mostrarProductosGeneral hidden"> 
+                    </ul>
 
-                <div class="menu-content" id="listado">
-                    <ul id="listaBebida"> </ul>
+                    <ul id="listaBebida" class="mostrarProductosGeneral hidden"> 
+                    </ul>
+
                 </div>
             </div>
         </main>

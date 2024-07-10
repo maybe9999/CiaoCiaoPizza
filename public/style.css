@@ -1545,7 +1545,7 @@ footer{
 .containerDash {
     width: 100%;
     padding: 20px;
-    margin-top: 10%;
+    margin-top: 7vw;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
 }
@@ -1611,7 +1611,8 @@ button.carga-buttonBeb:hover {
     margin-top: 20px;
     width: 100%;
     justify-content: space-evenly;
-    display: none;
+    display: flex;
+
 }
 
 .input-group {
@@ -1671,11 +1672,25 @@ button.menu-button-list {
 
 /*--------------- nuevas propiedades del dash -----------*/
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.mostrarProductosGeneral{
+    flex-direction: column;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+}
+
+.mostrarProductosGeneral li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px;
 }
 
 /* Estilos específicos para los ul y li dentro de #listaPizza */
-#listaPizza ul {
+#listaPizza{
     list-style-type: square;
     padding-left: 20px;
 }
@@ -1705,7 +1720,9 @@ button.menu-button-list {
 }
 
 /* Estilos específicos para los ul y li dentro de #listaMenu */
-#listaMenu ul {
+#listaMenu{
+    display: flex;
+    width: 100%;
     list-style-type: circle;
     padding-left: 20px;
 }
@@ -1735,7 +1752,9 @@ button.menu-button-list {
 }
 
 /* Estilos específicos para los ul y li dentro de #listaBebida */
-#listaBebida ul {
+#listaBebida{
+    display: flex;
+    width: 100%;
     list-style-type: disc;
     padding-left: 20px;
 }

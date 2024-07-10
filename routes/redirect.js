@@ -20,7 +20,7 @@ var adminLogeado = true; //Esto se debería manejar con JWT
 router.get('/Pizza', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Pizza'));
 router.get('/OtroMenu', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'OtroMenu'));
 router.get('/Bebida', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Bebida'));
-router.get('/', dashboardController.ObtenerTablaPizza);
+//router.get('/', dashboardController.ObtenerTablaPizza);
 router.get('/:id', dashboardController.ObtenerPizzaID);
 router.post('/', dashboardController.crearProductoPizza);
 router.put('/:id', dashboardController.actualizarPizza);

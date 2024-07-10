@@ -34,31 +34,31 @@ create table Usuario(
 
 CREATE TABLE Pizza (    
 	id int AUTO_INCREMENT PRIMARY KEY,
-    nombrePizza varchar(100) NOT NULL,
-    precioPizza decimal(10,2) NOT NULL,
+    nombre varchar(100) NOT NULL,
+    precio decimal(10,2) NOT NULL,
     stock int,
     estado int
 );
 
 CREATE TABLE OtroMenu (
 	id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    nombreMenu varchar(100) NOT NULL,
-    precioMenu decimal(10,2) NOT NULL,
+    nombre varchar(100) NOT NULL,
+    precio decimal(10,2) NOT NULL,
     stock int,
     estado int
 );
 
 CREATE TABLE Bebida (
     id int AUTO_INCREMENT PRIMARY KEY,
-    nombreBebida varchar(100),
-    precioBebida decimal(10,2),
+    nombre varchar(100),
+    precio decimal(10,2),
     stock int,
     estado int
 );
 
 CREATE TABLE Cliente (
 	clienteID int AUTO_INCREMENT PRIMARY KEY,
-    nombreCliente varchar(100),
+    nombre varchar(100),
     direccion varchar(100),
     telefono varchar(100)
 );
@@ -85,7 +85,7 @@ CREATE TABLE DetallePedido (
 );
 
 
-INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES
+INSERT INTO Pizza (nombre, precio, stock, estado) VALUES
 ('Stella', 6000.00, 2, 1),
 ('Palmitos', 4500.00, 4, 1),
 ('Rucula', 5000.00, 0, 0),
@@ -104,7 +104,7 @@ INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES
 ('Donatella', 5300.00, 1, 1);
 
 
-INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES
+INSERT INTO OtroMenu (nombre, precio, stock, estado) VALUES
 ('PAPAS CON CHEDDAR', 3000.00, 10, 1),
 ('PAPAS CIAO CIAO', 2500.00, 10, 1),
 ('PAPAS C/SALSA PICANTE', 2000.00, 10, 1),
@@ -114,7 +114,7 @@ INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES
 ('TIRAMISÚ', 3200.00, 10, 1);
 
 
-INSERT INTO Bebida (nombreBebida, precioBebida, stock, estado) VALUES
+INSERT INTO Bebida (nombre, precio, stock, estado) VALUES
 ('Agua MineralBotella 500 mL', 1500.00, 20, 1),
 ('Jugo de Naranja Natural Botella 500 mL', 1800.00, 10, 1),
 ('Mojito Clásico Vaso', 2800.00, 12, 1),
@@ -135,7 +135,7 @@ INSERT INTO Bebida (nombreBebida, precioBebida, stock, estado) VALUES
 ('Vino Tinto Malbec Botella 750 mL', 55000.00, 6, 1),
 ('Vino Tinto Cabernet Sauvignon Botella 750 mL', 6000.00, 5, 1);
 
-INSERT INTO Cliente (nombreCliente, direccion, telefono) VALUES
+INSERT INTO Cliente (nombre, direccion, telefono) VALUES
 ('Juan Pérez', 'Calle 123, Ciudad Principal', '+1234567890'),
 ('María Rodríguez', 'Av. Libertador 456, Pueblo Nuevo', '+0987654321'),
 ('Carlos García', 'Plaza Mayor 789, Villa Alta', '+1122334455'),

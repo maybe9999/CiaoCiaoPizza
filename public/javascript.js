@@ -198,15 +198,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded',()=>{
     console.log("esta seccion acaba de cargar");
+    //BOTON mostrar seccion crear
     const mostrarCrearProdPizzaFormBtn = document.getElementById('mostrarCrearProdPizzaFormBtn');
+    const mostrarCrearProdMenuFormBtn = document.getElementById('mostrarCrearProdMenuFormBtn');
+    const mostrarCrearProdBebidaBtn = document.getElementById('mostrarCrearProdBebidaBtn');
+
+    //BOTONES crear
     const crearPizzaForm = document.getElementById('crearPizzaForm'); 
+    const crearMenuForm = document.getElementById('crearMenuForm');
+    const crearBebidaForm = document.getElementById('crearBebidaForm');
+
+    //BOTONES editar
     const editarPizzaForm = document.getElementById('editarPizzaForm');
 
+    //BOTONES listar
     const listarProdPizzaBtn = document.getElementById('listarProdPizza');
     const listarProdMenuBtn = document.getElementById('listarProdMenu');
-    const listarProdBebidaBtn = document.getElementById('listarProdMenu');
+    const listarProdBebidaBtn = document.getElementById('listarProdBebida');
 
-    const listaPizza = document.getElementById('listapizza');
+    //Almacen de valores :)
+    let listaPizza = document.getElementById('listaPizza');
+    let listaMenu = document.getElementById('listaMenu');
+    let listaBebida = document.getElementById('listaBebida');
 
     init(); // Llamar a la función init después de asegurarte de que el DOM esté cargado completamente
 
@@ -217,11 +230,15 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     }
 
-    console.log("valores de algo", mostrarCrearProdPizzaFormBtn, crearPizzaForm);
-
+    //Escucha y muestra secciones
     mostrarCrearProdPizzaFormBtn.addEventListener('click',()=> {
-        console.log("quitar la clase hidden...");
         crearPizzaForm.classList.toggle('hidden');
+    });
+    mostrarCrearProdMenuFormBtn.addEventListener('click',()=> {
+        crearMenuForm.classList.toggle('hidden');
+    });
+    mostrarCrearProdBebidaBtn.addEventListener('click',()=> {
+        crearBebidaForm.classList.toggle('hidden');
     });
 
     crearPizzaForm.addEventListener('submit', async (e) =>
@@ -287,34 +304,79 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
 
-    // ---LISTAR - MOSTRAR - OBTENER PRODUCTOS
-    listarProdPizzaBtn.addEventListener('click', listarProdPizzas("Pizza")); // Pizza - OtroMenu - Bebida: nombre de tablas
-    listarProdMenuBtn.addEventListener('click', listarProdPizzas("OtroMenu"));
-    listarProdBebidaBtn.addEventListener('click', listarProdPizzas("Bebida"))
+    // ---HACER VISIBLE PRODUCTOS---
+    listarProdPizzaBtn.addEventListener('click', () =>{
+        listarProdPizzas("Pizza");
+        listaPizza.classList.toggle('hidden');
 
+        //Si listaMenu no contiene hidden agregalo
+        if (!listaMenu.classList.value.includes("hidden")){
+            listaMenu.classList.toggle('hidden');
+        }
+        if (!listaBebida.classList.value.includes("hidden")){
+            listaBebida.classList.toggle('hidden');
+        }
+    }); 
+    listarProdMenuBtn.addEventListener('click', () =>{
+        console.log("mostrando menu");
+        listarProdPizzas("OtroMenu")
+        listaMenu.classList.toggle('hidden');
+        if (!listaPizza.classList.value.includes("hidden")){
+            listaPizza.classList.toggle('hidden');
+        }
+        if (!listaBebida.classList.value.includes("hidden")){
+            listaBebida.classList.toggle('hidden');
+        }
+    });
+    listarProdBebidaBtn.addEventListener('click', () => {
+        console.log("mostrando bebida");
+        listarProdPizzas("Bebida");
+        listaBebida.classList.toggle('hidden');
+        if (!listaPizza.classList.value.includes("hidden")){
+            listaPizza.classList.toggle('hidden');
+        }
+        if (!listaMenu.classList.value.includes("hidden")){
+            listaMenu.classList.toggle('hidden');
+        }
+    });
 
+    // --- OBTENER PRODUCTOS - LISTAR PRODUCTOS - EDITAR PRODUCTO - ELIMINAR PRODUCTO
     async function listarProdPizzas(productoRecibido){
-        console.log("listando productos");
+        //Obteniendo producto
+        console.log("listando productos",`/api/dashboard/${productoRecibido}` );
         const response = await fetch(`/api/dashboard/${productoRecibido}`);
     
         const producto = await response.json();
+        
+        console.log(producto)
 
-        console.log("respuesta", producto);
-        listaPizza.innerHTML = '';
+        let objetoContenedorProductos;
+
+        if(productoRecibido == "Pizza"){
+            objetoContenedorProductos = listaPizza;
+        }else if(productoRecibido == "OtroMenu"){
+            objetoContenedorProductos = listaMenu;
+        }else if(productoRecibido == "Bebida"){
+            objetoContenedorProductos = listaBebida;
+        }
+
+        //Listando producto
+        objetoContenedorProductos.innerHTML = '';
 
         producto.forEach(producto => {
             const li = document.createElement('li');
             li.innerHTML = `
                 <span> ID: ${producto.id}, Nombre: ${producto.nombre}, Precio: ${producto.precio}, Stock: ${producto.stock} </span>
                 <div class="actions">
-                    <button class="update" data-idPizza="${producto.id}" data-nombrePizza="${producto.nombre}" data-precioPizza="${producto.precio}" data-stockPizza="${producto.precio}"> Actualizar </button>
+                    <button class="update" data-idPizza="${producto.id}" data-nombrePizza="${producto.nombre}" data-precioPizza="${producto.precio}" data-stockPizza="${producto.precio}"> Editar </button>
                     
                     <button class="delete" data-idPizza="${producto.id}"> Eliminar </button>
                 </div>
             `;
-            listaPizza.appendChild(li);
+            objetoContenedorProductos.appendChild(li);
         });
 
+        //Editando producto
         document.querySelectorAll('.update').forEach(button => {
             button.addEventListener('click',(e) => {
                 const idPizza = e.target.getAttribute('data-idPizza');                    
@@ -331,6 +393,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             });
         });
 
+        //Eliminando producto
         document.querySelectorAll('.delete').forEach(button => {
             button.addEventListener('click', async(e)=>{
                 const id = e.target.getAttribute('data-idPizza');

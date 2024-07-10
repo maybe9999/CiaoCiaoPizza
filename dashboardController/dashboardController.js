@@ -23,9 +23,9 @@ function validaLogueoUsuario(user, pass) {
 
 // ----- OBTENER PRODUCTO ----- //
 const ObtenerTablaPizza = (req,res, valor) =>{
-    console.log("valores: ", valor);
+
     const sql = `SELECT * FROM ${valor}`;
-    console.log("esta es la consulta", sql);
+
     db.query(sql, (err,result)=>{
         if(err) throw err;
 
@@ -48,7 +48,7 @@ const crearProductoPizza = (req,res)=>{
     const {nombrePizza, precioPizza, stock} = req.body;
     const estado = 1; // Estado activo por defecto
 
-    const sql = 'INSERT INTO Pizza (nombrePizza, precioPizza, stock, estado) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO Pizza (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
     db.query(sql, [nombrePizza, precioPizza, stock, estado], (err, result) => {
         if (err) {
             console.error('Error al insertar datos en la tabla Pizza:', err);
@@ -64,7 +64,7 @@ const actualizarPizza = (req, res)=>{
     const {id} = req.params;
     const {nombrePizza, precioPizza, stock, estado} = req.body;
 
-    const sql = 'UPDATE Pizza SET nombrePizza = ?, precioPizza = ?, stock = ?, estado = ?';
+    const sql = 'UPDATE Pizza SET nombre = ?, precio = ?, stock = ?, estado = ?';
     db.query(sql,[nombrePizza, precioPizza, stock, estado], (err,result)=>{
         if(err) throw err;
 

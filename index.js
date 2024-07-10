@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //Sirve archivos estát
 
 
 
-// Rutas para el dashboard y productos <--- el problema que se ve todo en json
+// Rutas para hacer consultas a la bd
 app.use('/api/dashboard', redirectRoutes.router);
 
 
