@@ -1545,7 +1545,7 @@ footer{
 .containerDash {
     width: 100%;
     padding: 20px;
-    margin-top: 10%;
+    margin-top: 7vw;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
 }
@@ -1611,7 +1611,8 @@ button.carga-buttonBeb:hover {
     margin-top: 20px;
     width: 100%;
     justify-content: space-evenly;
-    display: none;
+    display: flex;
+
 }
 
 .input-group {
@@ -1669,3 +1670,115 @@ button.menu-button-list {
     transition: background-color 0.3s ease;
 }
 
+/*--------------- nuevas propiedades del dash -----------*/
+.hidden {
+    display: none !important;
+}
+
+.mostrarProductosGeneral{
+    flex-direction: column;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+}
+
+.mostrarProductosGeneral li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+/* Estilos específicos para los ul y li dentro de #listaPizza */
+#listaPizza{
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+#listaPizza li {
+    background: #e0f7fa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#listaPizza li button {
+    background-color: #ff5722;
+}
+
+#listaPizza li button:hover {
+    background-color: #e64a19;
+}
+
+#listaPizza li .delete {
+    background-color: #f44336;
+}
+
+#listaPizza li .delete:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilos específicos para los ul y li dentro de #listaMenu */
+#listaMenu{
+    display: flex;
+    width: 100%;
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+#listaMenu li {
+    background: #ffeb3b;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#listaMenu li button {
+    background-color: #8bc34a;
+}
+
+#listaMenu li button:hover {
+    background-color: #7cb342;
+}
+
+#listaMenu li .delete {
+    background-color: #ff9800;
+}
+
+#listaMenu li .delete:hover {
+    background-color: #fb8c00;
+}
+
+/* Estilos específicos para los ul y li dentro de #listaBebida */
+#listaBebida{
+    display: flex;
+    width: 100%;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#listaBebida li {
+    background: #cddc39;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#listaBebida li button {
+    background-color: #3f51b5;
+}
+
+#listaBebida li button:hover {
+    background-color: #3949ab;
+}
+
+#listaBebida li .delete {
+    background-color: #2196f3;
+}
+
+#listaBebida li .delete:hover {
+    background-color: #1e88e5;
+}

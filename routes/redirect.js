@@ -1,36 +1,54 @@
+const express = require('express');
 const path = require('path');
-const crud = require("../user_controller/Crud"); //Para hacer consultas a la bd
+const dashboardController = require("../dashboardController/dashboardController"); //Para hacer consultas a la bd
 
-// Rutas para el dashboard y productos
-//app.use('/dashboard', dashboardController);
-const dashboardController = require("../dashboardController/dashboardController")
+const router = express.Router(); // Crea un nuevo router de Express
 
-//const router = express.Router();
-
-
-// Resuelve la ruta absoluta hacia los archivos index de las diferentes secciones
-const routesPublic = {
+const routesPublic = {// Resuelve la ruta absoluta hacia los archivos
     "" : path.resolve(__dirname, '../public/index.html'), //home
+    dashboard : path.resolve(__dirname, '../dashboard/dashboard.html'),
     nosotros : path.resolve(__dirname, '../public/nosotros/nosotros.html'),
     productos : path.resolve(__dirname, '../public/productos/productos.html'),
     nuestraCarta : path.resolve(__dirname, '../public/carta/carta.html'),
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
     notFound : path.resolve(__dirname, '../public/not_found/index.html')
 };
+var adminLogeado = true; //Esto se debería manejar con JWT
 
-var adminLogeado = false; //Esto se deberia manejar con JWT
+
+//Rutas
+router.get('/Pizza', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Pizza'));
+router.get('/OtroMenu', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'OtroMenu'));
+router.get('/Bebida', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Bebida'));
+//router.get('/', dashboardController.ObtenerTablaPizza);
+router.get('/:id', dashboardController.ObtenerPizzaID);
+router.post('/', dashboardController.crearProductoPizza);
+router.put('/:id', dashboardController.actualizarPizza);
+router.delete('/:id', dashboardController.BorrarPizza);
 
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
 function mostrarSeccion(req, res) {
-    let endPointActual = req.path.replace(/(\/)/gm,""); //se obtiene solo la ruta sin /
+    let endPointActual = req.path.replace(/(\/)/gm,""); 
 
     console.log(`1 impresión en ${endPointActual}`);
+    console.log(endPointActual === "dashboard")
 
-    adminLogeado = false;
-    console.log("por 2",adminLogeado);
-    // Envía el archivo index.html como respuesta
-    res.sendFile(routesPublic[endPointActual] || routesPublic["notFound"]); //Modificado para el Login
+    if (endPointActual === 'dashboard'){
+        console.log("por 1",adminLogeado);
+        if(adminLogeado){
+            res.sendFile(path.resolve(__dirname, '../dashboard/dashboard.html'));
+        }else{
+            console.error("Debe estar logeado para acceder!!")
+            res.redirect('/');
+        }
+    } else{
+        adminLogeado = false;
+        console.log("por 2",adminLogeado);
+        // Envía el archivo index.html como respuesta
+        res.sendFile(routesPublic[endPointActual] || routesPublic[""]); //Modificado para el Login
+    }
+    
 }
 
 function dashboardRoutes(req,res){
@@ -51,11 +69,10 @@ function dashboardRoutes(req,res){
 function validaLogueoUsuario(req, res){
     let { username, password } = req.body;
 
-    console.log("daatos de user",username, password);
+    console.log("datos de user",username, password);
 
-    if (adminLogeado) console.log("El usuario ya estaba logeado.");
-
-    let validacion = adminLogeado ? new Promise(resolve => resolve({ tipo: 'exito' })) : crud.validaLogueoUsuario(username, password);
+    if (adminLogeado) console.log("El usuario ya estaba logeado.")
+    let validacion = adminLogeado ? new Promise(resolve => resolve({ tipo: 'exito' })) : dashboardController.validaLogueoUsuario(username, password);
 
     validacion.then(resultado => { //Si se ejecuta el resolve entonces .then captara la respuesta...
         console.log(".then atrapaddo")
@@ -82,6 +99,7 @@ function validaLogueoUsuario(req, res){
 
 
 module.exports = {
+    router,
     mostrarSeccion,
     validaLogueoUsuario,
     dashboardRoutes

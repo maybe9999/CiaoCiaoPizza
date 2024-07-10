@@ -1,57 +1,41 @@
-require("dotenv").config(); //Sirve para usar variables de entorno... No es necesario almacenarlo
 const express = require('express');  // Importamos el modulo express
-const path = require('path'); //Para obtener rutas de archivos
 const morgan = require('morgan'); //Info por consola sobre las peticiones entrantes
-const dashboardController = require('./dashboardController/dashboardController'); // creado para obtener los http 
-const redirect = require('./routes/redirect'); //Contiene ubicación de los index y devuelve archivos
+const path = require('path'); //Para obtener rutas de archivos
+const redirectRoutes = require('./routes/redirect'); //Contiene ubicación de los index y devuelve archivos
+
 
 const app = express();
 
 
 
 //CONFIGURACIÓN Y MIDDLEWARE
-app.set("port", 5001)//Se setae o guarda en una "variable", denominada por conveniencia port, el puerto...
-
-//Este modulo con el valor "dev" se encarga de mostrar por consola: Petición(Get, post, etc), ruta solicitada (/nosotros), Codigo de respuesta(200, 404, etc), y tiempo que tomo la peticion...
-app.use(morgan('dev')); 
-
+app.set("port", 5001)//Se configura el puerto como port=5001
+app.use(morgan('dev')); //Muestra las peticiones por consola
 app.use(express.json());
-
-// Middleware para manejar URL-encoded
-app.use(express.urlencoded({ extended: false })); 
-
-//Si ninguna de las rutas coincide usara esta carpeta y por defecto devolverá el archivo index que encuentre
-app.use(express.static(path.join(__dirname, 'public'))); //Configuramos para servir archivos estáticos desde esta carpeta...
-
-
-app.use('/dashboard/crud', dashboardController);
+app.use(express.urlencoded({ extended: false })); // Middleware para manejar URL-encoded
+app.use(express.static(path.join(__dirname, 'public'))); //Sirve archivos estáticos
 
 
 
-//Routes (GET)
-app.get('/', redirect.mostrarSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
-app.get('/nosotros', redirect.mostrarSeccion);
-app.get('/productos', redirect.mostrarSeccion);
-app.get('/nuestraCarta', redirect.mostrarSeccion);
-app.get('/contacto', redirect.mostrarSeccion);
-app.get('/dashboard', redirect.dashboardRoutes);
-app.get('/crud', dashboardController);
-app.get('/*', (req, res) => {  //Captura todas las consultas no especificadas
-    console.log("Atrapado en general, consulta echa: ",req.path)
-    res.sendFile(path.resolve(__dirname, './public/not_found/index.html'))
-});
+// Rutas para hacer consultas a la bd
+app.use('/api/dashboard', redirectRoutes.router);
+
 
 
 // Ruta para manejar el login (POST)
-app.post('/login', redirect.validaLogueoUsuario); //Ruta para manejar el login
+app.post('/login', redirectRoutes.validaLogueoUsuario);//Ruta para manejar el login
 
-
-//Update
-
-
-//(Delete)
-
-
+// Ruta para manejar el GET
+app.get('/', redirectRoutes.mostrarSeccion);// Esta linea no se ejecuta xq express.static la sirve automáticamente(no se puede contabilizar trafico asi como esta ahora desde dentro del sitio)
+app.get('/nosotros', redirectRoutes.mostrarSeccion);
+app.get('/productos', redirectRoutes.mostrarSeccion);
+app.get('/nuestraCarta', redirectRoutes.mostrarSeccion);
+app.get('/contacto', redirectRoutes.mostrarSeccion);
+app.get('/dashboard', redirectRoutes.mostrarSeccion)
+app.get('/*', (req, res) => {  //Captura todas las consultas no especificadas
+    console.log("Atrapado en general")
+    res.sendFile(path.resolve(__dirname, './public/not_found/index.html'))
+});
 
 
 

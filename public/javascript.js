@@ -193,135 +193,221 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+//----------------------------------INICIO DASHBOARD-------------------------------------//
 
 
+document.addEventListener('DOMContentLoaded',()=>{
+    console.log("esta seccion acaba de cargar");
+    //BOTON mostrar seccion crear
+    const mostrarCrearProdPizzaFormBtn = document.getElementById('mostrarCrearProdPizzaFormBtn');
+    const mostrarCrearProdMenuFormBtn = document.getElementById('mostrarCrearProdMenuFormBtn');
+    const mostrarCrearProdBebidaBtn = document.getElementById('mostrarCrearProdBebidaBtn');
 
-// Botones Dashboard, Muestra / Oculta secciones
-function toggleCampos(id) {
-    const seccionSeleccionada = document.getElementById(id);
-    if (seccionSeleccionada.style.display === 'block') {
-        seccionSeleccionada.style.display = 'none';
-    } else {
-        seccionSeleccionada.style.display = 'block';
+    //BOTONES crear
+    const crearPizzaForm = document.getElementById('crearPizzaForm'); 
+    const crearMenuForm = document.getElementById('crearMenuForm');
+    const crearBebidaForm = document.getElementById('crearBebidaForm');
+
+    //BOTONES editar
+    const editarPizzaForm = document.getElementById('editarPizzaForm');
+
+    //BOTONES listar
+    const listarProdPizzaBtn = document.getElementById('listarProdPizza');
+    const listarProdMenuBtn = document.getElementById('listarProdMenu');
+    const listarProdBebidaBtn = document.getElementById('listarProdBebida');
+
+    //Almacen de valores :)
+    let listaPizza = document.getElementById('listaPizza');
+    let listaMenu = document.getElementById('listaMenu');
+    let listaBebida = document.getElementById('listaBebida');
+
+    init(); // Llamar a la función init después de asegurarte de que el DOM esté cargado completamente
+
+    function init() {
+        const myForm = document.getElementById("myForm");
+        if (myForm) {
+            myForm.addEventListener("submit", validateForm);
+        }
     }
-}
 
-// ---------------------------- Listado (GET), obtener productos.
-
-function mostrarListadoCompleto(productoParaListar) {
-    const listadoCompleto = document.getElementById('listado');
-    listadoCompleto.style.display = listadoCompleto.style.display === 'block' ? 'none' : 'block';
-    listarPizzas(productoParaListar);
-}
-
-
-
-// ------------------------------- Listar
-//listarPizzasBtn.addEventListener('click', listarPizzas);
-
-//OBTENER y MOSTRAR un producto en la pagina (hacia el back)
-async function listarPizzas(productoParaListar)
-{
-    const response = await fetch('/dashboard/crud');
-    const producto = await response.json();
-    console.log("Listar producto: ",producto);
-    listaPizzas.innerHTML='';//limpio la lista de pizzas
-
-    producto.forEach(producto => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span> ID: ${producto.id}, Nombre: ${producto.nombreProducto}, Precio: ${producto.precioProducto}, Stock: ${producto.stockProducto} </span>
-            <div class="actions"> 
-                <button class="update" data-id="${producto.id}" data-nombre="${producto.nombreProducto}" data-precio="${producto.precioProducto}" data-stock="${producto.stockProducto}" > Actualizar  </button> 
-
-                <button class="delete" data-id="${producto.id}"> Eliminar </button>
-
-            </div>
-        `;
-
-        listaPizzas.appendChild(li);
+    //Escucha y muestra secciones
+    mostrarCrearProdPizzaFormBtn.addEventListener('click',()=> {
+        crearPizzaForm.classList.toggle('hidden');
     });
-}
+    mostrarCrearProdMenuFormBtn.addEventListener('click',()=> {
+        crearMenuForm.classList.toggle('hidden');
+    });
+    mostrarCrearProdBebidaBtn.addEventListener('click',()=> {
+        crearBebidaForm.classList.toggle('hidden');
+    });
 
-// Escribir que es lo que hace.....
-document.querySelectorAll('.update').forEach(button => 
-    {
-        button.addEventListener('click',(e) => 
+    crearPizzaForm.addEventListener('submit', async (e) =>
+    {  
+        e.preventDefault();
+        const formData = new FormData(crearPizzaForm);
+        const data = 
         {
-            const id = e.target.getAttribute('data-id');                    
-            const nombreProducto = e.target.getAttribute('data-nombre');                    
-            const precioProducto = e.target.getAttribute('data-precio');                    
-            const stockProducto = e.target.getAttribute('data-stock');
+            nombrePizza: formData.get('pizza-name'),
+            precioPizza : formData.get('pizza-price'),
+            stock: formData.get('pizza-stock')
+            // estado : formData.get('estado')
+        }
 
-            document.getElementById('editID').value = id;
-            document.getElementById('editNombre').value = nombreProducto;
-            document.getElementById('editPrecio').value = precioProducto;
-            document.getElementById('editStock').value = stockProducto;
-
-            editarPizzasForm.classList.remove('hidden');
+        const response = await fetch ('/api/dashboard',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
         });
+
+        const result = await response.json();
+        alert("Producto creado con Exito");
+
+        crearPizzaForm.reset();
+        crearPizzaForm.classList.add('hidden');
+        listarProdPizzas();
+
     });
 
-//BORRAR un producto (hacia el back)
-document.querySelectorAll('.delete').forEach(button => 
+    //editar Pizza
+    editarPizzaForm.addEventListener('submit', async(e) => 
     {
-        button.addEventListener('click', async(e)=>
+        e.preventDefault();
+        const formData = new FormData(editarPizzaForm);
+        const id = formData.get('editPizzaID');
+        const data = 
         {
-            const id = e.target.getAttribute('data-id');
+            nombrePizza: formData.get('editPizza-name'),
+            precioPizza : formData.get('editPizza-price'),
+            stock: formData.get('editPizza-stock')
+            // estado : formData.get('estado')
+        }
 
-            const response = await fetch(`/dashboard/crud`,{
-                method: 'DELETE',
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(id)
+        const response = await fetch(`/api/dashboard/${id}`,
+        {
+            method: 'PUT',
+            headers: 
+            {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        editarPizzaForm.reset();
+        editarPizzaForm.classList.add('hidden');
+        listarProdPizzas();
+
+    });
+
+
+    // ---HACER VISIBLE PRODUCTOS---
+    listarProdPizzaBtn.addEventListener('click', () =>{
+        listarProdPizzas("Pizza");
+        listaPizza.classList.toggle('hidden');
+
+        //Si listaMenu no contiene hidden agregalo
+        if (!listaMenu.classList.value.includes("hidden")){
+            listaMenu.classList.toggle('hidden');
+        }
+        if (!listaBebida.classList.value.includes("hidden")){
+            listaBebida.classList.toggle('hidden');
+        }
+    }); 
+    listarProdMenuBtn.addEventListener('click', () =>{
+        console.log("mostrando menu");
+        listarProdPizzas("OtroMenu")
+        listaMenu.classList.toggle('hidden');
+        if (!listaPizza.classList.value.includes("hidden")){
+            listaPizza.classList.toggle('hidden');
+        }
+        if (!listaBebida.classList.value.includes("hidden")){
+            listaBebida.classList.toggle('hidden');
+        }
+    });
+    listarProdBebidaBtn.addEventListener('click', () => {
+        console.log("mostrando bebida");
+        listarProdPizzas("Bebida");
+        listaBebida.classList.toggle('hidden');
+        if (!listaPizza.classList.value.includes("hidden")){
+            listaPizza.classList.toggle('hidden');
+        }
+        if (!listaMenu.classList.value.includes("hidden")){
+            listaMenu.classList.toggle('hidden');
+        }
+    });
+
+    // --- OBTENER PRODUCTOS - LISTAR PRODUCTOS - EDITAR PRODUCTO - ELIMINAR PRODUCTO
+    async function listarProdPizzas(productoRecibido){
+        //Obteniendo producto
+        console.log("listando productos",`/api/dashboard/${productoRecibido}` );
+        const response = await fetch(`/api/dashboard/${productoRecibido}`);
+    
+        const producto = await response.json();
+        
+        console.log(producto)
+
+        let objetoContenedorProductos;
+
+        if(productoRecibido == "Pizza"){
+            objetoContenedorProductos = listaPizza;
+        }else if(productoRecibido == "OtroMenu"){
+            objetoContenedorProductos = listaMenu;
+        }else if(productoRecibido == "Bebida"){
+            objetoContenedorProductos = listaBebida;
+        }
+
+        //Listando producto
+        objetoContenedorProductos.innerHTML = '';
+
+        producto.forEach(producto => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span> ID: ${producto.id}, Nombre: ${producto.nombre}, Precio: ${producto.precio}, Stock: ${producto.stock} </span>
+                <div class="actions">
+                    <button class="update" data-idPizza="${producto.id}" data-nombrePizza="${producto.nombre}" data-precioPizza="${producto.precio}" data-stockPizza="${producto.precio}"> Editar </button>
+                    
+                    <button class="delete" data-idPizza="${producto.id}"> Eliminar </button>
+                </div>
+            `;
+            objetoContenedorProductos.appendChild(li);
+        });
+
+        //Editando producto
+        document.querySelectorAll('.update').forEach(button => {
+            button.addEventListener('click',(e) => {
+                const idPizza = e.target.getAttribute('data-idPizza');                    
+                const nombrePizza = e.target.getAttribute('data-nombrePizza');                    
+                const precioPizza = e.target.getAttribute('data-precioPizza');                    
+                const stockPizza = e.target.getAttribute('data-stockPizza');
+
+                document.getElementById('editPizzaID').value = idPizza;
+                document.getElementById('editPizza-name').value = nombrePizza;
+                document.getElementById('editPizza-price').value = precioPizza;
+                document.getElementById('editPizza-stock').value = stockPizza;
+
+                editarPizzaForm.classList.remove('hidden');
             });
-
-            const result = await response.json();
-            alert(result.message);
-            listarPizzas();
         });
-    });
 
+        //Eliminando producto
+        document.querySelectorAll('.delete').forEach(button => {
+            button.addEventListener('click', async(e)=>{
+                const id = e.target.getAttribute('data-idPizza');
+                const response = await fetch(`/api/dashboard/${id}`,{
+                    method: 'DELETE'
+                });
 
-// -------------------------------- Inicio ______CARGAR (CREAR)____ Productos() -------
-
-//CREAR un producto (hacia el back)...
-var nombreProducto;
-async function cargarProductos(Producto){
-    nombreProducto = Producto;
-    console.log("Producto a cargar: ", nombreProducto);
-}
-const crearProdForm = document.getElementById('crearProdForm');
-
-crearProdForm.addEventListener('submit', async (e) =>
-{  
-    e.preventDefault();
-    const formData = new FormData(crearProdForm);
-    console.log(formData);
-    prompt("");
-    const data = {
-        producto : nombreProducto,
-        nombreProducto: formData.get('nombre'),
-        precioProducto : formData.get('precio'),
-        stockProducto: formData.get('stock')
-    }
-
-    const response = await fetch ('/crud/', {
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const result = await response.json();
-    alert("Producto cargado");
-
-    crearProdForm.reset();
-    crearProdForm.classList.add('hidden');
-    listarProductos();
+                const result = await response.json();
+                alert(result.message);
+                listarProdPizzas();
+            });
+        });
+    };
 });
-
-
-
 // -------------------------------- Fin Cargar Productos() -------
+
+//----------------------------------FIN DASHBOARD------------------------------------//
