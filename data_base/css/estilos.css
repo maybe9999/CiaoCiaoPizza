@@ -5,14 +5,23 @@
 /*---- 25/06/24 ------ botón inicio*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap');
 :root{
-    --bg-color: rgb(0, 0, 0);
     --user-color:#f00; /* Cambia esto al color que prefieras */
     --container-shadow:2.3px 2.3px 1.9px rgba(0, 0, 0, 0.035),5.4px 5.4px 4.3px ;
 }
+.social-icon-list{
+    height: 100px;
+    width: 500px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+    align-items: center;
+    column-gap: 20px;
+    padding: 0 20px;
+    background-color: var(--container-bg-color);
+}
 
-
-/* Estilos para el botón de inicio de sesión */
-.icon-group {
+.icon-group{
     height: 30px;
     width: 40px;
     display: inline-flex;
@@ -21,135 +30,53 @@
     border-radius: 10px;
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease; /* Reducción del tiempo de transición */
+    transition: all 1s ease;
 }
-
-.icon-group:hover {
-    width: 155px; /* Ajuste del ancho al hacer hover */
+.icon-group:hover{
+    width: 155px;
     justify-content: space-around;
-    background-color: var(--user-color); /* Color de fondo al hacer hover */
+}
+.icon-group:nth-child(1) {
+    border: 2px solid var(--user-color); /* Cambiado a user color */
 }
 
-.icon-group i,
-.icon-group .icon-text {
-    z-index: 2;
-    font-size: 16px; /* Reducción del tamaño de fuente */
+.icon-group .icon-text{
+    width: 0;
+    overflow: hidden;
     color: white;
 }
 
-.icon-group .icon-text {
-    width: 0;
-    overflow: hidden;
-    white-space: nowrap; /* Ajuste para texto sin saltos */
+.icon-group:hover .icon-text{
+    width: fit-content;
+    transition: width 1s ease;
 }
 
-.icon-group:hover .icon-text {
-    width: auto; /* Ajuste para mostrar el texto completo */
-    transition: width 0.3s ease; /* Reducción del tiempo de transición */
+.icon-group i,
+.icon-group .icon-text{
+    z-index: 2;
+    font-size: 16px; /* Reducir tamaño de fuente */
+    color: white;
 }
 
-.icon-group .icon-bg {
+.icon-group .icon-bg{
     position: absolute;
     height: 110%;
     width: 110%;
     border-radius: 10px;
     clip-path: circle(50% at -100% 50%);
     z-index: 1;
-    background-color: var(--user-color); /* Color de fondo inicial */
-    transition: clip-path 0.3s ease, background-color 0.3s ease; /* Transiciones */
 }
 
-.icon-group:hover .icon-bg {
-    clip-path: circle(160% at 10% 60%); /* Clip-path al hacer hover */
+.icon-group:hover .icon-bg{
+    clip-path: circle(160% at 10% 60%);
+    transition: all 1s ease;
 }
 
-
-
-
-/*----- LOGIN -------------------*/
-/* Estilos específicos para el modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.icon-group:nth-child(1) .icon-bg{
+    background-color: var(--user-color); /* Cambiado a user color */
 }
-
-.modal-content {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    text-align: center;
-    position: relative;
-}
-
-.modal-content h2 {
-    margin: 0 0 1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.modal-content label {
-    display: block;
-    margin: 0.5rem 0;
-    color: #555;
-    font-weight: 500;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.modal-content button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.modal-content button:hover {
-    background-color: #0056b3;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    color: #aaa;
-    cursor: pointer;
-}
-
-.close:hover, .close:focus {
-    color: #000;
-}
-
-/*----- FIN LOGIN ---------------*/
 
 /*---- 25/06/24 ------ botón inicio*/
-
-
-
 
 /* ------------------------------------ General ---------------------------------------------*/
 
@@ -186,14 +113,6 @@ body.contacto{
 /*body.productos para su fondo de pantalla*/
 body.productos .main_prod .img_y_text{
     background-image: url('./img/portada_productos_11zon.webp');
-}
-
-body.dashboard{
-    background-image: url('./img/img_index_11.webp');
-    display: flex;
-    align-items: center;
-    align-content: center;
-    min-height: 100vh;
 }
 /* ------------------------------------ Fin General ---------------------------------------------*/
 
@@ -646,56 +565,6 @@ h2{
 /*Fin estilo de cartas "contenido"*/
 /* ----------------------------------------------------------- Fin Style CARTAS -----------------------------------------------------------*/
 
-/* ----------------------------------------------------------- Inicio seccion NOT_FOUND -----------------------------------------------------------*/
-
-
-main.not_found {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 100vh;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-}
-
-.not_found_conteiner{
-    background-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 90px rgba(255, 255, 255, 0.6);  /* Configuracion del box shadow para que la transicion entre el alpha en el borde (de background-color) se mezcle perfectamente con la imagen del fondo de pantalla */
-    vertical-align: middle;
-    height: 30vw;
-    width: 50vw;
-    align-self: center;
-    justify-self: center;
-}
-.not_found_conteiner h1{
-    color: rgb(255, 0, 0);
-    font-size: clamp(40px, 13vw, 70px);
-    justify-self: center;
-    align-self: center;
-}
-
-@media (min-width: 768px) {
-    main.not_found {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-@media (min-width: 1024px) {
-    main.not_found {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-/* ----------------------------------------------------------- Fin seccion NOT_FOUND -----------------------------------------------------------*/
 
 /* ------------------------------------------------------------------- INICIO FOOTER (COMPARTIDO) ---------------------------------------------------------*/
 footer{
@@ -796,8 +665,6 @@ footer{
     .menu-horizontal ul{
         display: flex;
         list-style: none;
-        align-items: center;
-        justify-content: center;
         padding: 0;
     }
     .menu-horizontal li{
@@ -916,8 +783,6 @@ footer{
         display: flex;
         list-style: none;
         padding: 0;
-        align-items: center;
-        justify-content: center;
     }
     .menu-horizontal li{
         margin-right: 20px;
@@ -943,15 +808,16 @@ footer{
     /* FIN RESPONSIVE HEADER */
 
 /* Boton de inicio */
-.social-icon-list{
-    height: 250px;
-    width: 350px;
-    grid-template-columns: repeat(2,1fr);
-    }
-.icon-group:hover{
-    width: 100px;   
-    }
+    .social-icon-list{
+        height: 250px;
+        width: 350px;
+        grid-template-columns: repeat(2,1fr);
+        }
+    .icon-group:hover{
+        width: 100px;   
+        }
 /* Fin boton de inicio*/
+
 
     /* INICIO RESPONSIVE INDEX*/
     .main_index{
@@ -1048,6 +914,8 @@ footer{
     
     .formulario-contacto{
     width: 300px;
+   
+    
 }
     
     #myForm{
@@ -1127,17 +995,6 @@ footer{
         display: none;
     }
     /*FIN RESPONSIVE HEADER*/
-
-/* Boton de inicio */
-.social-icon-list{
-    height: 250px;
-    width: 350px;
-    grid-template-columns: repeat(2,1fr);
-    }
-.icon-group:hover{
-    width: 100px;   
-    }
-/* Fin boton de inicio*/
 
     /*INICIO RESPONSIVE NOSOTROS*/
     body.nosotros{
@@ -1371,18 +1228,16 @@ footer{
         display: none;
     }
     /* FIN RESPONSIVE HEADER*/
-
 /* Boton de inicio */
-.social-icon-list{
-    height: 250px;
-    width: 350px;
-    grid-template-columns: repeat(2,1fr);
-    }
-.icon-group:hover{
-    width: 100px;   
-    }
+    .social-icon-list{
+        height: 250px;
+        width: 350px;
+        grid-template-columns: repeat(2,1fr);
+        }
+    .icon-group:hover{
+        width: 100px;   
+        }
 /* Fin boton de inicio*/
-
     /*INICIO RESPONSIVE NOSOTROS*/
     body.nosotros{
         height: 100%;
@@ -1539,323 +1394,71 @@ footer{
 /* ----------------------------------------- FIN RESPONSIVE SMARTPHONE CHICO ----------------------------------------- */
 
 
-  
-/*----------------------- Dashboard ---------------------------*/
 
-.containerDash {
-    width: 100%;
-    padding: 20px;
-    margin-top: 7vw;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+
+
+/* VARIABLES*/
+:root{
+    --blanco:#E0E0E0;
+    --azul-opacidad:hwb(357 9% 5%);
+    --bg-menu:hsla(0, 94%, 51%, 0.925);
+    --bg-body:#C7E1FF;
 }
 
-.dashboard {
-    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
-    margin: 0 auto;
+/*MENÚ GENERAL*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Quicksand", sans-serif;
+    color:var(--blanco);
+    
+}
+.conteiner{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-items: end;
+    background:rgba(161, 5, 5, 0.925);
+    width: 200px;
+    height: 500%;
+    
+    left: 0;
+    top:0;
+    
 }
-
-/* Botones de menú */
-button.menu-button {
-    width: 100%; /* Ancho completo */
-    margin-bottom: 20px;
-    background-color: #131414;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+.menu{
+    background:rgba(161, 5, 5, 0.925);
+    width: 200px;
+    height: 600px;
+    left: 0;
+    top:0;
 }
-
-
-button.carga-buttonPizz, 
-button.carga-buttonMen, 
-button.carga-buttonBeb {
-    width: 200px; /* Ancho fijo para centrarlo y separarlo de los otros botones */
-    margin: 0 auto 20px; /* Centrar el botón horizontalmente y añadir espacio inferior */
-    background-color: #004d40; /* Verde oscuro */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-/* Cambio de color al hacer hover */
-button.carga-buttonPizz:hover, 
-button.carga-buttonMen:hover, 
-button.carga-buttonBeb:hover {
-    background-color: #17ae9d; /* Verde claro al hacer hover */
-}
-
-/* Cambio de color adicional al hacer hover */
-button.menu-button:hover,
-button.carga-buttonMen:hover,
-button.carga-buttonBeb:hover {
-    background-color: rgba(250, 23, 23, 0.7); /* Rojo semi-transparente al hacer hover */
+.dashboar{
+    max-width: 150px;
+    height: 100vh;
+    
+    padding:20px;
+    transition: max-width 0.3s ease;
 }
 
 
 
-/* Contenido del menú */
-
-.menu-content {
-    margin-top: 20px;
-    width: 100%;
-    justify-content: space-evenly;
-    display: flex;
-
+.menu-button {
+    display: block; /* Mostrar los botones en bloques verticales */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    background-color: #4682B4; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
 }
-
-.input-group {
-    margin-bottom: 15px;
-    width: auto; /* Ajustamos el ancho según el contenido */
-}
-.input-group.detalles {
-    margin-left: 20%;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: clamp(17px, 2vw, 19px);
-}
-
-.input-group input {
-    width: 200px; /* Mantenemos el ancho de 200px como solicitaste */
-    padding: 8px; /* Ajustamos el padding según necesites */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.input-group-inline {
-    display: flex;
-    flex-wrap: inherit;
-    justify-content: center;
-}
-
-.input-group-inline .input-group {
-    margin-right: 20px; /* Espacio entre los input groups */
-    justify-content: space-evenly;
-}
-
-.listadosbtn {
-    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row; /* Alinea los elementos en una fila */
-    align-items: center;
-    justify-content: center;
-    gap: 5px; /* Espacio entre los botones */
-}
-
-button.menu-button-list {
-    width: 450px; /* Ancho automático para ajustar el contenido */
-    background-color: #131414;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-/*--------------- nuevas propiedades del dash -----------*/
-.hidden {
-    display: none !important;
-}
-
-.mostrarProductosGeneral{
-    flex-direction: column;
-    text-decoration: none;
-    display: flex;
-    width: 100%;
-}
-
-.mostrarProductosGeneral li{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0px;
-}
-
-/* Estilos específicos para los ul y li dentro de #listaPizza */
-#listaPizza{
-    list-style-type: square;
-    padding-left: 20px;
-}
-
-#listaPizza li {
-    background: #e0f7fa;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#listaPizza li button {
-    background-color: #ff5722;
-}
-
-#listaPizza li button:hover {
-    background-color: #e64a19;
-}
-
-#listaPizza li .delete {
-    background-color: #f44336;
-}
-
-#listaPizza li .delete:hover {
-    background-color: #d32f2f;
-}
-
-/* Estilos específicos para los ul y li dentro de #listaMenu */
-#listaMenu{
-    display: flex;
-    width: 100%;
-    list-style-type: circle;
-    padding-left: 20px;
-}
-
-#listaMenu li {
-    background: #ffeb3b;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#listaMenu li button {
-    background-color: #8bc34a;
-}
-
-#listaMenu li button:hover {
-    background-color: #7cb342;
-}
-
-#listaMenu li .delete {
-    background-color: #ff9800;
-}
-
-#listaMenu li .delete:hover {
-    background-color: #fb8c00;
-}
-
-/* Estilos específicos para los ul y li dentro de #listaBebida */
-#listaBebida{
-    display: flex;
-    width: 100%;
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-#listaBebida li {
-    background: #cddc39;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#listaBebida li button {
-    background-color: #3f51b5;
-}
-
-#listaBebida li button:hover {
-    background-color: #3949ab;
-}
-
-#listaBebida li .delete {
-    background-color: #2196f3;
-}
-
-#listaBebida li .delete:hover {
-    background-color: #1e88e5;
+.menu-button:hover {
+    background-color: #4169E1;
 }
 
 
-
-/*------------------  INICIO DE RESPONSIVE ESCRITORIO      --------------*/
-.containerDash {
-    width: 100%;
-    padding: 5vw;
-    margin-top: 5vw;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-button.menu-button {
-    width: 100%;
-    margin-bottom: 20px;
-    background-color: #131414;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-/* Media Query para pantallas más pequeñas */
-@media screen and (max-width: 768px) {
-    .dashboard {
-        max-width: 90%; /* Ancho máximo ajustado para pantallas más pequeñas */
-    }
-
-    button.menu-button {
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-
-    button.carga-buttonPizz, 
-    button.carga-buttonMen, 
-    button.carga-buttonBeb {
-        width: 80%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-
-    .input-group label {
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-
-    .input-group input {
-        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-
-    .listadosbtn {
-        flex-direction: column; /* Cambio a disposición en columna para pantallas más pequeñas */
-        gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
-    }
-
-    button.menu-button-list {
-        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-
-    #listaPizza li, 
-    #listaMenu li, 
-    #listaBebida li {
-        padding: 10px; /* Ajuste del padding para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
-}
