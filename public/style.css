@@ -1639,8 +1639,8 @@ button.carga-buttonBeb:hover {
 
 .input-group-inline {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-wrap: inherit;
+    justify-content: center;
 }
 
 .input-group-inline .input-group {
