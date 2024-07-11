@@ -453,15 +453,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Función para enviar el formulario (Genérica)
-    async function enviarFormulario(formulario, endpoint, exitoMensaje) {
+    async function enviarFormulario(formulario, endpoint) {
         const formData = new FormData(formulario);
         const data = {
+            tabla: endpoint,
             nombre: formData.get('name'),
             precio: formData.get('price'),
             stock: formData.get('stock')
         };
 
-        const response = await fetch(`/api/dashboard/${endpoint}`, {
+        const response = await fetch(`/api/dashboard/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -470,28 +471,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const result = await response.json();
-        alert(exitoMensaje);
+        alert(result.message);
         formulario.reset();
         formulario.classList.add('hidden');
-        listarProd(endpoint);
-    }
+        console.log("Listando producto");
+    };
 
     // Enviar formulario de Pizza
     crearPizzaForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        enviarFormulario(crearPizzaForm, 'Pizza', "Pizza creada con éxito");
+        enviarFormulario(crearPizzaForm, 'Pizza');
     });
 
     // Enviar formulario de Menú
     crearMenuForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        enviarFormulario(crearMenuForm, 'OtroMenu', "Menú creado con éxito");
+        enviarFormulario(crearMenuForm, 'OtroMenu');
     });
 
     // Enviar formulario de Bebida
     crearBebidaForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        enviarFormulario(crearBebidaForm, 'Bebida', "Bebida creada con éxito");
+        enviarFormulario(crearBebidaForm, 'Bebida');
     });
 
     // Función para editar producto
@@ -537,17 +538,18 @@ document.addEventListener('DOMContentLoaded', () => {
         formulario.classList.remove('hidden');
     }
 
-   // Event listeners para botones de editar en las listas
-function setupEventosEditar() {
-    listaPizza.querySelectorAll('.update').forEach(button => {
-        button.addEventListener('click', () => {
-            const id = button.getAttribute('data-id');
-            const nombre = button.getAttribute('data-name');
-            const precio = button.getAttribute('data-price');
-            const stock = button.getAttribute('data-stock');
-            setupEditarFormulario(editarPizzaForm, { id, nombre, precio, stock });
+    // Event listeners para botones de editar en las listas
+    function setupEventosEditar() {
+        listaPizza.querySelectorAll('.update').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const nombre = button.getAttribute('data-name');
+                const precio = button.getAttribute('data-price');
+                const stock = button.getAttribute('data-stock');
+                setupEditarFormulario(editarPizzaForm, { id, nombre, precio, stock });
+            });
         });
-    });
+    };
 
     listaMenu.querySelectorAll('.update').forEach(button => {
         button.addEventListener('click', () => {
@@ -568,31 +570,35 @@ function setupEventosEditar() {
             setupEditarFormulario(editarBebidaForm, { id, nombre, precio, stock });
         });
     });
-}
+
     
     // Event listener para formularios de edición
-editarPizzaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarPizzaForm.querySelector('#editID').value;
-    editarProducto(editarPizzaForm, id, 'Pizza', 'Pizza editada con éxito');
-});
+    editarPizzaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarPizzaForm.querySelector('#editID').value;
+        editarProducto(editarPizzaForm, id, 'Pizza', 'Pizza editada con éxito');
+    });
 
-editarMenuForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarMenuForm.querySelector('#editID').value;
-    editarProducto(editarMenuForm, id, 'OtroMenu', 'Menú editado con éxito');
-});
+    editarMenuForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarMenuForm.querySelector('#editID').value;
+        editarProducto(editarMenuForm, id, 'OtroMenu', 'Menú editado con éxito');
+    });
 
-editarBebidaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarBebidaForm.querySelector('#editID').value;
-    editarProducto(editarBebidaForm, id, 'Bebida', 'Bebida editada con éxito');
-});
+    editarBebidaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarBebidaForm.querySelector('#editID').value;
+        editarProducto(editarBebidaForm, id, 'Bebida', 'Bebida editada con éxito');
+    });
 
     // Event listener para eliminar producto
-    async function eliminarProducto(endpoint, id) {
-        const response = await fetch(`/api/dashboard/${endpoint}/${id}`, {
-            method: 'DELETE'
+    async function eliminarProducto(id, endpoint) {
+        const response = await fetch(`/api/dashboard/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({tabla: endpoint, idProducto: id})
         });
 
         const result = await response.json();

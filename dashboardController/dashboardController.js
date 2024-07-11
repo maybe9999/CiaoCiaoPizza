@@ -88,50 +88,24 @@ const ObtenerBebidaID = (req, res) =>{
 
 
 // ----- INSERTAR - CREAR PIZZA ----- //
-const crearProductoPizza = (req,res)=>{
-    const {nombrePizza, precioPizza, stock} = req.body;
+const crearProducto = (req,res)=>{
+    const {tabla, nombre, precio, stock} = req.body;
+    console.log(req.body);
     const estado = 1; // Estado activo por defecto
 
-    const sql = 'INSERT INTO Pizza (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
-    db.query(sql, [nombrePizza, precioPizza, stock, estado], (err, result) => {
+    const sql = `INSERT INTO ${tabla} (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)`;
+    db.query(sql, [ nombre, precio, stock, estado], (err, result) => {
         if (err) {
             console.error('Error al insertar datos en la tabla Pizza:', err);
             res.status(500).send('Error al insertar datos');
         } else {
-            res.send('Datos insertados correctamente en Pizza');
+            console.log("todo correcto en dashboard controller");
+            res.json({message: 'Datos insertados correctamente en Pizza'});
         }
     })
 };
 
-const crearProductoMenu = (req,res)=>{
-    const {nombreMenu, precioMenu, stock} = req.body;
-    const estado = 1; // Estado activo por defecto
 
-    const sql = 'INSERT INTO OtroMenu (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
-    db.query(sql, [nombreMenu, precioMenu, stock, estado], (err, result) => {
-        if (err) {
-            console.error('Error al insertar datos en la tabla OtroMenu:', err);
-            res.status(500).send('Error al insertar datos');
-        } else {
-            res.send('Datos insertados correctamente en Menú');
-        }
-    })
-};
-
-const crearProductoBebida = (req,res)=>{
-    const {nombreBebida, precioBebida, stock} = req.body;
-    const estado = 1; // Estado activo por defecto
-
-    const sql = 'INSERT INTO Bebida (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
-    db.query(sql, [nombreBebida, precioBebida, stock, estado], (err, result) => {
-        if (err) {
-            console.error('Error al insertar datos en la tabla Bebida:', err);
-            res.status(500).send('Error al insertar datos');
-        } else {
-            res.send('Datos insertados correctamente en Bebida');
-        }
-    })
-};
 
 // ----- EDITAR - ACTUALIIZAR PIZZA ----- //
 const actualizarPizza = (req, res)=>{
@@ -180,142 +154,29 @@ const actualizarBebida = (req, res)=>{
 };
 
 
-// ----- BORRAR - ELIMINAR PIZZA ----- //
-const BorrarPizza = (req, res)=>{
-    const {id} = req.params;
-    const sql = 'DELETE FROM Pizza WHERE id = ?';
-    db.query(sql,[id],(err,result)=>{
+// ----- BORRAR - ELIMINAR PRODUCTO ----- //
+const BorrarProducto = (req, res)=>{
+    const {tabla, idProducto} = req.body;
+    const sql = `DELETE FROM ${tabla} WHERE id = ?`;
+    db.query(sql,[idProducto],(err,result)=>{
         if(err) throw err;
 
         res.json(
             {
-                message : 'Producto eliminada'
+                message : 'Producto eliminado'
             });
     });
 };
 
-const BorrarMenu = (req, res)=>{
-    const {id} = req.params;
-    const sql = 'DELETE FROM OtroMenu WHERE id = ?';
-    db.query(sql,[id],(err,result)=>{
-        if(err) throw err;
-
-        res.json(
-            {
-                message : 'Producto eliminada'
-            });
-    });
-};
-
-const BorrarBebida = (req, res)=>{
-    const {id} = req.params;
-    const sql = 'DELETE FROM Bebida WHERE id = ?';
-    db.query(sql,[id],(err,result)=>{
-        if(err) throw err;
-
-        res.json(
-            {
-                message : 'Producto eliminada'
-            });
-    });
-};
 
 module.exports = {
-    validaLogueoUsuario,
+    validaLogueoUsuario, crearProducto, BorrarProducto,
     //Pizza
-    ObtenerTablaPizza, ObtenerPizzaID, crearProductoPizza, actualizarPizza, BorrarPizza,
+    ObtenerTablaPizza, ObtenerPizzaID, actualizarPizza,
     //Menu
-    ObtenerTablaMenu, ObtenerMenuID, crearProductoMenu, actualizarMenu, BorrarMenu,
+    ObtenerTablaMenu, ObtenerMenuID, actualizarMenu,
     //Bebida
-    ObtenerTablaBebida, ObtenerBebidaID, crearProductoBebida, actualizarBebida, BorrarBebida
+    ObtenerTablaBebida, ObtenerBebidaID, actualizarBebida
 };
 
 
-
-
-//Obtener todos los productos
-// router.get("/", (req, res) => {
-//     const tabla = req.params.tabla;
-
-//     crud.obtenerTodosLosProductos(tabla).then(productosRecibidos => {
-//         res.json(productosRecibidos);
-//     }).catch(errorEnLaConsulta => {
-//         res.json(errorEnLaConsulta);
-//     });
-// });
-
-
-
-
-
-//Crear un producto
-// router.post("/:tabla", (req, res) => {
-//     let productoCrearTabla = req.body.tabla; //productoCrearProducto debería ser un objeto con (nombrePizza, precioPizza, stock) y sus respectivos valores
-//     let {productoCrearProducto} = req.body;
-
-//     crud.crearProducto(productoCrearTabla, productoCrearProducto).then(productosRecibidos => { // Si todo sale Bien
-//         res.json(productosRecibidos);
-//     }).catch(errorEnLaConsulta => { // Si todo sale Mal
-//         res.json(errorEnLaConsulta);
-//     }
-
-//     )
-// });
-
-
-
-// // Ruta para insertar datos en la tabla OtroMenu
-// router.post('/menu', (req, res) => {
-//     const { menuName, menuPrice, menuStock } = req.body;
-//     const estado = 1; // Estado activo por defecto
-
-//     const sql = 'INSERT INTO OtroMenu (nombreMenu, precioMenu, stock, estado) VALUES (?, ?, ?, ?)';
-//     db.query(sql, [menuName, menuPrice, menuStock, estado], (err, result) => {
-//         if (err) {
-//             console.error('Error al insertar datos en la tabla OtroMenu:', err);
-//             res.status(500).send('Error al insertar datos');
-//         } else {
-//             res.send('Datos insertados correctamente');
-//         }
-//     });
-// });
-
-
-//Eliminar un producto
-// router.delete("/:tabla/:id", (req, res)=>{
-//     let eliminarProductoTabla = req.params.tabla;
-//     let eliminarProductoId = req.params.id;
-
-//     crud.eliminarProducto(eliminarProductoTabla, eliminarProductoId).then(exito => {
-//         res.json({ success: true, message: 'Eliminado con exito' });
-//     }).catch(error => {
-//         //Ver esto dsps...
-//         res.json({ success: false, message: error });
-//     })
-// })
-
-
-
-
-
-
-
-//Editar un producto
-// router.put("/:tabla/:id/:producto", (req, res)=>{
-//     let editarProductoTabla = req.params.tabla;
-//     let editarProductoId = req.params.id;
-    
-//     let productoEdit = req.params.producto; //esto deberia ser un objeto el key del objeto debe ser igual que en la bd creo
-
-//     crud.editarProducto(editarProductoTabla, editarProductoId, productoEdit).then(exito =>{
-//         res.json({ success: true, message: 'Editado con exito' });
-//     }).catch(error => {
-//         res.json({ success: false, message: error });
-//     })
-
-// })
-
-
-
-
-// module.exports = router;

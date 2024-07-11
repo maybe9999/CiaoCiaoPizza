@@ -27,20 +27,18 @@ router.get('/:id', dashboardController.ObtenerMenuID);
 router.get('/:id', dashboardController.ObtenerBebidaID);
 
 
-//Rutas Crear
-router.post('/', dashboardController.crearProductoPizza);
-router.post('/', dashboardController.crearProductoMenu);
-router.post('/', dashboardController.crearProductoBebida);
+//Ruta Crear
+router.post('/', dashboardController.crearProducto);
+
 
 // Rutas actualizar
 router.put('/:id', dashboardController.actualizarPizza);
 router.put('/:id', dashboardController.actualizarMenu);
 router.put('/:id', dashboardController.actualizarBebida);
 
-// Rutas Borrar
-router.delete('/:id', dashboardController.BorrarPizza);
-router.delete('/:id', dashboardController.BorrarMenu);
-router.delete('/:id', dashboardController.BorrarBebida);
+// Ruta Borrar
+router.delete('/', dashboardController.BorrarProducto);
+
 
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
