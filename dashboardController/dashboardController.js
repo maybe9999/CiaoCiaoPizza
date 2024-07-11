@@ -88,32 +88,58 @@ const ObtenerBebidaID = (req, res) =>{
 
 
 // ----- INSERTAR - CREAR PIZZA ----- //
-const crearProducto = (req,res)=>{
-    const {tabla, nombre, precio, stock} = req.body;
-    console.log(req.body);
+const crearProductoPizza = (req,res)=>{
+    const {nombre, precio, stock} = req.body;
     const estado = 1; // Estado activo por defecto
 
-    const sql = `INSERT INTO ${tabla} (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)`;
-    db.query(sql, [ nombre, precio, stock, estado], (err, result) => {
+    const sql = 'INSERT INTO Pizza (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
+    db.query(sql, [nombre, precio, stock, estado], (err, result) => {
         if (err) {
             console.error('Error al insertar datos en la tabla Pizza:', err);
             res.status(500).send('Error al insertar datos');
         } else {
-            console.log("todo correcto en dashboard controller");
-            res.json({message: 'Datos insertados correctamente en Pizza'});
+            res.send('Datos insertados correctamente en Pizza');
         }
     })
 };
 
+const crearProductoMenu = (req,res)=>{
+    const {nombre, precio, stock} = req.body;
+    const estado = 1; // Estado activo por defecto
 
+    const sql = 'INSERT INTO OtroMenu (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
+    db.query(sql, [nombre, precio, stock, estado], (err, result) => {
+        if (err) {
+            console.error('Error al insertar datos en la tabla OtroMenu:', err);
+            res.status(500).send('Error al insertar datos');
+        } else {
+            res.send('Datos insertados correctamente en Menú');
+        }
+    })
+};
+
+const crearProductoBebida = (req,res)=>{
+    const {nombre, precio, stock} = req.body;
+    const estado = 1; // Estado activo por defecto
+
+    const sql = 'INSERT INTO Bebida (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)';
+    db.query(sql, [nombre, precio, stock, estado], (err, result) => {
+        if (err) {
+            console.error('Error al insertar datos en la tabla Bebida:', err);
+            res.status(500).send('Error al insertar datos');
+        } else {
+            res.send('Datos insertados correctamente en Bebida');
+        }
+    })
+};
 
 // ----- EDITAR - ACTUALIIZAR PIZZA ----- //
 const actualizarPizza = (req, res)=>{
     const {id} = req.params;
-    const {nombrePizza, precioPizza, stock, estado} = req.body;
+    const {nombre, precio, stock, estado} = req.body;
 
-    const sql = 'UPDATE Pizza SET nombre = ?, precio = ?, stock = ?, estado = ?';
-    db.query(sql,[nombrePizza, precioPizza, stock, estado], (err,result)=>{
+    const sql = 'UPDATE Pizza SET nombre = ?, precio = ?, stock = ?, estado = ? WHERE id = ?';
+    db.query(sql,[nombre, precio, stock, estado, id], (err,result)=>{
         if(err) throw err;
 
         res.json(
@@ -125,10 +151,10 @@ const actualizarPizza = (req, res)=>{
 
 const actualizarMenu = (req, res)=>{
     const {id} = req.params;
-    const {nombreMenu, precioMenu, stock, estado} = req.body;
+    const {nombre, precio, stock, estado} = req.body;
 
-    const sql = 'UPDATE OtroMenu SET nombre = ?, precio = ?, stock = ?, estado = ?';
-    db.query(sql,[nombreMenu, precioMenu, stock, estado], (err,result)=>{
+    const sql = 'UPDATE OtroMenu SET nombre = ?, precio = ?, stock = ?, estado = ? WHERE id = ?';
+    db.query(sql,[nombre, precio, stock, estado, id], (err,result)=>{
         if(err) throw err;
 
         res.json(
@@ -140,10 +166,10 @@ const actualizarMenu = (req, res)=>{
 
 const actualizarBebida = (req, res)=>{
     const {id} = req.params;
-    const {nombreBebida, precioBebida, stock, estado} = req.body;
+    const {nombre, precio, stock, estado} = req.body;
 
-    const sql = 'UPDATE Bebida SET nombre = ?, precio = ?, stock = ?, estado = ?';
-    db.query(sql,[nombreBebida, precioBebida, stock, estado], (err,result)=>{
+    const sql = 'UPDATE Bebida SET nombre = ?, precio = ?, stock = ?, estado = ? WHERE id = ?';
+    db.query(sql,[nombre, precio, stock, estado, id], (err,result)=>{
         if(err) throw err;
 
         res.json(
@@ -154,11 +180,11 @@ const actualizarBebida = (req, res)=>{
 };
 
 
-// ----- BORRAR - ELIMINAR PRODUCTO ----- //
-const BorrarProducto = (req, res)=>{
-    const {tabla, idProducto} = req.body;
-    const sql = `DELETE FROM ${tabla} WHERE id = ?`;
-    db.query(sql,[idProducto],(err,result)=>{
+// ----- BORRAR - ELIMINAR PIZZA ----- //
+const BorrarPizza = (req, res)=>{
+    const {id} = req.params;
+    const sql = 'DELETE FROM Pizza WHERE id = ?';
+    db.query(sql,[id],(err,result)=>{
         if(err) throw err;
 
         res.json(
@@ -168,15 +194,38 @@ const BorrarProducto = (req, res)=>{
     });
 };
 
+const BorrarMenu = (req, res)=>{
+    const {id} = req.params;
+    const sql = 'DELETE FROM OtroMenu WHERE id = ?';
+    db.query(sql,[id],(err,result)=>{
+        if(err) throw err;
 
-module.exports = {
-    validaLogueoUsuario, crearProducto, BorrarProducto,
-    //Pizza
-    ObtenerTablaPizza, ObtenerPizzaID, actualizarPizza,
-    //Menu
-    ObtenerTablaMenu, ObtenerMenuID, actualizarMenu,
-    //Bebida
-    ObtenerTablaBebida, ObtenerBebidaID, actualizarBebida
+        res.json(
+            {
+                message : 'Producto eliminado'
+            });
+    });
 };
 
+const BorrarBebida = (req, res)=>{
+    const {id} = req.params;
+    const sql = 'DELETE FROM Bebida WHERE id = ?';
+    db.query(sql,[id],(err,result)=>{
+        if(err) throw err;
 
+        res.json(
+            {
+                message : 'Producto eliminado'
+            });
+    });
+};
+
+module.exports = {
+    validaLogueoUsuario,
+    //Pizza
+    ObtenerTablaPizza, ObtenerPizzaID, crearProductoPizza, actualizarPizza, BorrarPizza,
+    //Menu
+    ObtenerTablaMenu, ObtenerMenuID, crearProductoMenu, actualizarMenu, BorrarMenu,
+    //Bebida
+    ObtenerTablaBebida, ObtenerBebidaID, crearProductoBebida, actualizarBebida, BorrarBebida
+};
