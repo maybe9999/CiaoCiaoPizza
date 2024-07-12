@@ -65,3 +65,11 @@ Despues de loguearte puedes crear productos, editar productos, obtener productos
 * El proyecto tiene un **metodo de autenticacion** donde se puede iniciar sesion dependiendo el nivel o rol del usuario.
 * El **BackEnd** esta **integrado** con el **FrontEnd**.
 
+## Contribuidores:
+* [Alexis Molinari](https://github.com/AlexisGMolinari98)
+* [Marcia Coceres](https://github.com/Marcia022)
+* [Lucas Muñoz](https://github.com/lucasm135)
+* [Matias Da Silva](https://github.com/maybe9999)
+
+## Licencia:
+* [Licencia ISC](https://www.isc.org/licenses/)
