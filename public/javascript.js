@@ -176,7 +176,9 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(result => {
-            if (result.success) {
+            result.json()
+            if (result.success || result.tipo === 'exito' || result.success === true) {
+                console.log("redirigiendo a dashboard");
                 window.location.href = '/dashboard';
             } else {
                 alert(result.message || 'Credenciales incorrectas');
@@ -192,7 +194,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Fin código Modal Login //
 
-
+/*
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = '/dashboard';
+            } else {
+                alert(result.message || 'Credenciales incorrectas');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+*/
 
 //----------------------------------INICIO DASHBOARD-------------------------------------//
 
