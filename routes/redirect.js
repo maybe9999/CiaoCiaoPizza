@@ -15,16 +15,31 @@ const routesPublic = {// Resuelve la ruta absoluta hacia los archivos
 };
 var adminLogeado = true; //Esto se debería manejar con JWT
 
-
-//Rutas
+//Rutas obtener
 router.get('/Pizza', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Pizza'));
-router.get('/OtroMenu', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'OtroMenu'));
-router.get('/Bebida', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Bebida'));
-//router.get('/', dashboardController.ObtenerTablaPizza);
+router.get('/OtroMenu', (req, res)=> dashboardController.ObtenerTablaMenu(req,res, 'OtroMenu'));
+router.get('/Bebida', (req, res)=> dashboardController.ObtenerTablaBebida(req,res, 'Bebida'));
+
+//Rutas Obtener por ID
 router.get('/:id', dashboardController.ObtenerPizzaID);
-router.post('/', dashboardController.crearProductoPizza);
-router.put('/:id', dashboardController.actualizarPizza);
-router.delete('/:id', dashboardController.BorrarPizza);
+router.get('/:id', dashboardController.ObtenerMenuID);
+router.get('/:id', dashboardController.ObtenerBebidaID);
+
+
+//Rutas Crear
+router.post('/pizza', dashboardController.crearProductoPizza);
+router.post('/otromenu', dashboardController.crearProductoMenu);
+router.post('/bebida', dashboardController.crearProductoBebida);
+
+// Rutas actualizar
+router.put('/Pizza/:id', dashboardController.actualizarPizza);
+router.put('/OtroMenu/:id', dashboardController.actualizarMenu);
+router.put('/Bebida/:id', dashboardController.actualizarBebida);
+
+// Rutas Borrar
+router.delete('/pizza/:id', dashboardController.BorrarPizza);
+router.delete('/otromenu/:id', dashboardController.BorrarMenu);
+router.delete('/bebida/:id', dashboardController.BorrarBebida);
 
 
 //Devuelve el archivo index.html de la sección correspondiente en base a la solicitud.
