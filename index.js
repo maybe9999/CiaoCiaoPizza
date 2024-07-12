@@ -7,7 +7,6 @@ const redirectRoutes = require('./routes/redirect'); //Contiene ubicación de lo
 const app = express();
 
 
-
 //CONFIGURACIÓN Y MIDDLEWARE
 app.set("port", 5001)//Se configura el puerto como port=5001
 app.use(morgan('dev')); //Muestra las peticiones por consola
@@ -19,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public'))); //Sirve archivos estát
 
 // Rutas para hacer consultas a la bd
 app.use('/api/dashboard', redirectRoutes.router);
-
 
 
 // Ruta para manejar el login (POST)
@@ -36,7 +34,6 @@ app.get('/*', (req, res) => {  //Captura todas las consultas no especificadas
     console.log("Atrapado en general")
     res.sendFile(path.resolve(__dirname, './public/not_found/index.html'))
 });
-
 
 
 //Se le indica mediante .listen() que use el puerto X para escuchar o recibir peticiones, get post etc...
