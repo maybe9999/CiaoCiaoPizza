@@ -14,7 +14,6 @@ const connection = mySqlDB.createConnection({
 //se llama al método connect y mediante una función anónima verificamos si la conexión se realizo correctamente
 connection.connect((err) => {
     if (err) {
-        // Si hay un error, se intenta reconectar en 2 segundos
         console.log("Error en la conexión a la base de datos:", err.code, err);
     } else {
         console.log("Conectado con éxito a la base de datos");
@@ -22,7 +21,6 @@ connection.connect((err) => {
 });
 
 connection.on('error', (err) => {
-    // Si hay un error, se intenta reconectar en 2 segundos
     console.log("Error en la conexión a la base de datos:", err.code, err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
         connection.connect();
