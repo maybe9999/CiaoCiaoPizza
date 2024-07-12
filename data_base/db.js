@@ -24,7 +24,16 @@ connection.on('error', (err) => {
     console.log("Error en la conexión a la base de datos:", err.code, err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
         connection.connect();
-    } else {
+    } else if (err.code === 'ER_USER_LIMIT_REACHED'){
+        connection.end(err => {
+            if (err) {
+                console.error('Error al cerrar todas las conexiones:', err);
+            } else {
+                console.log('Todas las conexiones fueron cerradas correctamente.');
+                connection.connect();
+            }
+        })
+    } else{
         setTimeout(connection.connect(), 60000);
     }
 });
