@@ -14,8 +14,8 @@ function handleDisconnect() {
     //se llama al método connect y mediante una función anónima verificamos si la conexión se realizo correctamente
     connection.connect((err) => {
         if (err) {
-            console.log("ERROR!!!, No se pudo conectar a la Base de Datos.\n Error:", err);
-            setTimeout(handleDisconnect, 2000);
+            console.log("ERROR!!!, No se pudo conectar a la Base de Datos.\n Error:", err,"--------/nCodigo de error:", err.code,"------/n");
+            setTimeout(handleDisconnect(), 2000);
         }else{
             console.log("Conectado con éxito a la base de datos");
         }
