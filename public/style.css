@@ -1544,17 +1544,16 @@ footer{
 
 .containerDash {
     width: 100%;
-    padding: 20px;
+    padding: 5px;
     margin-top: 7vw;
+    margin-bottom: 7vw;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
-    align-items: center;
 }
 
 .dashboard {
-    max-width: 1200%; /* Ancho máximo para la sección del dashboard */
-    margin: 0;
-    padding: 0;
+    max-width: 100%; /* Ancho máximo para la sección del dashboard */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1576,9 +1575,7 @@ button.menu-button {
 }
 
 
-button.carga-buttonPizz, 
-button.carga-buttonMen, 
-button.carga-buttonBeb {
+button.carga-buttonEnviar {
     width: 200px; /* Ancho fijo para centrarlo y separarlo de los otros botones */
     margin: 0 auto 20px; /* Centrar el botón horizontalmente y añadir espacio inferior */
     background-color: #004d40; /* Verde oscuro */
@@ -1591,14 +1588,27 @@ button.carga-buttonBeb {
     transition: background-color 0.3s ease;
 }
 
-/* Cambio de color al hacer hover */
-button.carga-buttonPizz:hover, 
-button.carga-buttonMen:hover, 
-button.carga-buttonBeb:hover {
-    background-color: #17ae9d; /* Verde claro al hacer hover */
+button.carga-buttonEditar {
+    width: 200px; /* Ancho fijo para centrarlo y separarlo de los otros botones */
+    margin: 0 auto 20px; /* Centrar el botón horizontalmente y añadir espacio inferior */
+    background-color: #068135; /* Verde oscuro */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-/* Cambio de color adicional al hacer hover */
+/* Cambio de color al hacer hover */
+button.carga-buttonEnviar:hover {
+    background-color: #17ae9d; /* Verde claro al hacer hover */
+}
+button.carga-buttonEditar:hover {
+    background-color: #07ab74; /* Verde claro al hacer hover */
+}
+/* Cambio de color en hover para los botones que despliegan formularios */
 button.menu-button:hover,
 button.carga-buttonMen:hover,
 button.carga-buttonBeb:hover {
@@ -1610,19 +1620,19 @@ button.carga-buttonBeb:hover {
 /* Contenido del menú */
 
 .menu-content {
-    margin-top: 20px;
+    margin-top: 0px;
     width: 100%;
     justify-content: space-evenly;
-    display: contents;
+    display: flex;
 
 }
 
 .input-group {
     margin-bottom: 15px;
-    width: auto; /* Ajustamos el ancho según el contenido */
+    width: 50vh;  /* Ajustamos el ancho según el contenido */
 }
 .input-group.detalles {
-    margin-left: 20%;
+    margin-left: 0%;
 }
 
 .input-group label {
@@ -1633,35 +1643,30 @@ button.carga-buttonBeb:hover {
 }
 
 .input-group input {
-    width: 200px; /* Mantenemos el ancho de 200px como solicitaste */
+    width: 100px; 
     padding: 8px; /* Ajustamos el padding según necesites */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.inputStyle{ /* Esto es para darle un ancho a los input (campos para rellenar)*/
+width: 50% !important;
+}
 
 .input-group-inline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: block ruby;
 }
 
 .input-group-inline .input-group {
-    margin-right: 20px; /* Espacio entre los input groups */
-    justify-content: space-evenly;
+    margin-right: 0%; /* Espacio entre los input groups */
 }
 
 .listadosbtn {
-    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row; /* Alinea los elementos en una fila */
-    align-items: center;
-    justify-content: center;
-    gap: 5px; /* Espacio entre los botones */
+    width: 100%; /* Ancho máximo para la sección del dashboard */
+    display: inline-flex;
 }
 
 button.menu-button-list {
-    width: 450px; /* Ancho automático para ajustar el contenido */
+    width: 100%; /* Ancho automático para ajustar el contenido */
     background-color: #131414;
     color: white;
     padding: 10px 20px;
@@ -1694,39 +1699,24 @@ button.menu-button-list {
 /* Estilos específicos para los ul y li dentro de #listaPizza */
 #listaPizza{
     list-style-type: square;
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 #listaPizza li {
-    background: #e0f7fa;
+    background: #93acf9;
     margin: 10px 0;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#listaPizza li button {
-    background-color: #ff5722;
-}
-
-#listaPizza li button:hover {
-    background-color: #e64a19;
-}
-
-#listaPizza li .delete {
-    background-color: #f44336;
-}
-
-#listaPizza li .delete:hover {
-    background-color: #d32f2f;
-}
 
 /* Estilos específicos para los ul y li dentro de #listaMenu */
 #listaMenu{
     display: flex;
     width: 100%;
     list-style-type: circle;
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 #listaMenu li {
@@ -1737,28 +1727,13 @@ button.menu-button-list {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#listaMenu li button {
-    background-color: #8bc34a;
-}
-
-#listaMenu li button:hover {
-    background-color: #7cb342;
-}
-
-#listaMenu li .delete {
-    background-color: #ff9800;
-}
-
-#listaMenu li .delete:hover {
-    background-color: #fb8c00;
-}
 
 /* Estilos específicos para los ul y li dentro de #listaBebida */
 #listaBebida{
     display: flex;
     width: 100%;
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 #listaBebida li {
@@ -1769,35 +1744,27 @@ button.menu-button-list {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#listaBebida li button {
-    background-color: #3f51b5;
+
+button.update{
+    background-color: rgb(13, 109, 156) !important;
+}
+button.update:hover{
+    background-color: rgb(31, 135, 188) !important;
+    color:#aaa
+}
+button.delete{
+    background-color: rgb(214, 26, 6) !important;
+}
+button.delete:hover{
+    background-color: rgb(255, 52, 52) !important;
+    color:#aaa
 }
 
-#listaBebida li button:hover {
-    background-color: #3949ab;
-}
-
-#listaBebida li .delete {
-    background-color: #2196f3;
-}
-
-#listaBebida li .delete:hover {
-    background-color: #1e88e5;
-}
-
-
-
+/*--------------------- RESPONSIVE MARCIA ----------------------*/
 /*------------------  INICIO DE RESPONSIVE ESCRITORIO  dasboard    --------------*/
-.containerDash {
-    width: 100%;
-    padding: 5vw;
-    margin-top: 5vw;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.2);
-}
 
 .dashboard {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -1807,7 +1774,6 @@ button.menu-button-list {
 
 button.menu-button {
     width: 100%;
-   /* margin-bottom: 20px;*/
     background-color: #131414;
     color: white;
     padding: 10px 20px;
@@ -1818,16 +1784,8 @@ button.menu-button {
     transition: background-color 0.3s ease;
 }
 
-.input-group-inline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
-.input-group-inline .input-group {
-    margin-right: 20px; /* Espacio entre los input groups */
-    justify-content: space-evenly;
-}
+
 
 
 /* Media Query para pantallas de 1050px a 768px */
@@ -1835,14 +1793,27 @@ button.menu-button {
     .dashboard {
         max-width: 90%; /* Ancho máximo ajustado para pantallas más pequeñas */
     }
-    .containerDash {
-        width: 100%;
-        padding: 20px;
-        margin-top: 7vw;
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+   
+   .inputStyle{
+       width: 100% !important;
+   }
+    
+    .input-group-inline{
+        display: flex; /* Usamos flexbox */
+        flex-direction: column; /* Elementos en columna */
+        align-items: center; /* Centramos horizontalmente */
+        justify-content: center; /* Centramos verticalmente */
     }
-
+    .input-group {
+        margin-bottom: 15px;
+        width: 100%; /* Ajustamos el ancho para que ocupe todo el espacio disponible */
+        display: flex;
+        flex-direction: column; /* Alineamos los elementos en columna */
+        align-items: center; /* Centramos horizontalmente */
+    }
+    .input-group.detalles {
+        margin-left: 0%;
+    }
     button.menu-button {
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
         margin: 20px;
@@ -1873,13 +1844,11 @@ button.menu-button {
     }
 
     .listadosbtn {
-        flex-direction:row; /* Cambio a disposición en columna para pantallas más pequeñas */
-        gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
+        gap: 2px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
     }
 
     button.menu-button-list {
-        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        font-size: 13px; /* Tamaño de fuente reducido para pantallas más pequeñas */
     }
 
     #listaPizza li, 
@@ -1892,30 +1861,36 @@ button.menu-button {
 
 /* Media Query para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
-    .containerDash {
-        width: 190%;
-        padding: 20px;
-        margin-top: 7vw;
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+    .mostrarProductosGeneral{
+        margin-left: 0px
     }
     
-    .dashboard {
-        max-width: 50%; /* Ancho máximo ajustado para pantallas más pequeñas */
+    .mostrarProductosGeneral li{
+        display: grid;
+        width: 95%;
     }
-
-    button.menu-button {
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-    }
+  
+    
 
     button.carga-buttonPizz, 
     button.carga-buttonMen, 
     button.carga-buttonBeb {
-        width: 80%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        width: 100%; /* Ancho ajustado para pantallas más pequeñas */
+        font-size: 13px; /* Tamaño de fuente reducido para pantallas más pequeñas */
     }
-    .input-group{
-        display: contents;
+   
+    .input-group-inline{
+        display: flex; /* Usamos flexbox */
+        flex-direction: column; /* Elementos en columna */
+        align-items: center; /* Centramos horizontalmente */
+        justify-content: center; /* Centramos verticalmente */
+    }
+    .input-group {
+        margin-bottom: 15px;
+        width: 100%; /* Ajustamos el ancho para que ocupe todo el espacio disponible */
+        display: flex;
+        flex-direction: column; /* Alineamos los elementos en columna */
+        align-items: center; /* Centramos horizontalmente */
     }
     .input-group label {
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
@@ -1928,26 +1903,17 @@ button.menu-button {
         padding: 5px;
     }
 
-    .input-group-inline {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .input-group-inline .input-group {
-        margin-right: 20px; /* Espacio entre los input groups */
-        justify-content: space-evenly;
-    }
+   .inputStyle{
+       width: 100% !important;
+   }
     
     .listadosbtn {
-        flex-direction:row; /* Cambio a disposición en columna para pantallas más pequeñas */
-        gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
+        gap: 2px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
     }
 
     button.menu-button-list {
-        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
-        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
-        padding: 10px 10px;
+        font-size: 13px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        
     }
 
     #listaPizza li, 
