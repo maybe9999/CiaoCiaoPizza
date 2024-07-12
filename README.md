@@ -1,0 +1,53 @@
+<h1>Ciao Ciao Pizza</h1>
+
+## Descripcion
+
+Este proyecto es una aplicacion web para la prueba privada de ciao ciao pizza. 
+Consiste en una pagina web que permite al usuario realizar logueo, crear productos, 
+obtener productos y realizar pedidos.
+
+## Tecnologias usadas
+
+### Lenguajes:
+* **Html**
+* **Javascript**
+* **Css**
+
+### Entorno de ejecucion:
+* **Node.js**
+
+### Bibliotecas y módulos:
+* **Express**: usado para crear el servidor web
+* **Morgan**: usado para mostrar las peticiones en consola
+* **Path**: usado para obtener rutas de los archivos
+* **Mysql2**: usado para conectar a la base de datos
+
+## Instalacion
+
+Para instalar el proyecto debes seguir los siguientes pasos:
+
+1. Descargar el proyecto desde github o clonelo mediante el siguiente comando:
+```
+git clone https://github.com/maybe9999/CiaoCiaoPizza.git
+```
+   
+2. Ir al directorio raiz del proyecto
+3. Ejecutar el comando `npm install` para instalar las dependencias
+
+## Correr el proyecto
+
+Para correr el proyecto debes seguir los siguientes pasos:
+
+1. Ir al directorio del proyecto
+2. Ejecutar el comando `node --watch index.js`
+
+## Uso
+
+Despues de correr el proyecto puedes acceder a la pagina web desde el navegador.
+
+Para iniciar sesion puedes usar los siguientes datos:
+
+* Usuario: admin
+* Contrasena: admin
+
+Despues de loguearte puedes crear productos, editar productos, obtener productos, realizar pedidos y de esta forma administrar el stock del negocio de forma eficiente.
