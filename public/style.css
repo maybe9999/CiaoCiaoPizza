@@ -1548,11 +1548,13 @@ footer{
     margin-top: 7vw;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+    align-items: center;
 }
 
 .dashboard {
-    max-width: 1200px; /* Ancho máximo para la sección del dashboard */
-    margin: 0 auto;
+    max-width: 1200%; /* Ancho máximo para la sección del dashboard */
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1639,7 +1641,7 @@ button.carga-buttonBeb:hover {
 
 .input-group-inline {
     display: flex;
-    flex-wrap: inherit;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -1785,7 +1787,7 @@ button.menu-button-list {
 
 
 
-/*------------------  INICIO DE RESPONSIVE ESCRITORIO      --------------*/
+/*------------------  INICIO DE RESPONSIVE ESCRITORIO  dasboard    --------------*/
 .containerDash {
     width: 100%;
     padding: 5vw;
@@ -1815,6 +1817,18 @@ button.menu-button {
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
+
+.input-group-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.input-group-inline .input-group {
+    margin-right: 20px; /* Espacio entre los input groups */
+    justify-content: space-evenly;
+}
+
 
 /* Media Query para pantallas de 1050px a 768px */
 @media screen and (min-width: 769px) and (max-width: 1050px) {
@@ -1900,7 +1914,9 @@ button.menu-button {
         width: 80%; /* Ancho ajustado para pantallas más pequeñas */
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
     }
-
+    .input-group{
+        display: contents;
+    }
     .input-group label {
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
     }
@@ -1908,8 +1924,21 @@ button.menu-button {
     .input-group input {
         width: 90%; /* Ancho ajustado para pantallas más pequeñas */
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        margin: 5px;
+        padding: 5px;
     }
 
+    .input-group-inline {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .input-group-inline .input-group {
+        margin-right: 20px; /* Espacio entre los input groups */
+        justify-content: space-evenly;
+    }
+    
     .listadosbtn {
         flex-direction:row; /* Cambio a disposición en columna para pantallas más pequeñas */
         gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
@@ -1918,6 +1947,7 @@ button.menu-button {
     button.menu-button-list {
         width: 90%; /* Ancho ajustado para pantallas más pequeñas */
         font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        padding: 10px 10px;
     }
 
     #listaPizza li, 
