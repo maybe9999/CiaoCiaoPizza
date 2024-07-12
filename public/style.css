@@ -1544,7 +1544,7 @@ footer{
 
 .containerDash {
     width: 100%;
-    padding: 5px;
+    padding: 4% 5px;
     margin-top: 7vw;
     margin-bottom: 7vw;
     backdrop-filter: blur(10px);
