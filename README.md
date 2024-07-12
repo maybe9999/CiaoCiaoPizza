@@ -2,9 +2,10 @@
 
 ## Descripcion
 
-Este proyecto es una aplicacion web para la prueba privada de ciao ciao pizza. 
-Consiste en una pagina web que permite al usuario realizar logueo, crear productos, 
-obtener productos y realizar pedidos.
+Este proyecto es una aplicacion web sobre CiaoCiaoPizza, una pizzeria ubicada en Entre Rios. 
+Consiste en una pagina web que permite al usuario conocer un poco mas sobre la pizzeria, ver los productos, contactar con el local.
+Cuenta con un Dashboard o panel administrativo que es exlusivo para que el administra la pizzeria acceda, mediante un metodo de autenticacion, y cree nuevos productos, 
+obtenega un listado de todos los productos existentes, modifique productos y elimine productos.
 
 ## Tecnologias usadas
 
