@@ -264,18 +264,21 @@ document.addEventListener('DOMContentLoaded', () => {
     crearPizzaForm.addEventListener('submit', (e) => {
         e.preventDefault();
         enviarFormulario(crearPizzaForm, 'Pizza', "Pizza creada con éxito");
+        listarProd("Pizza");
     });
 
     // Enviar formulario de Menú
     crearMenuForm.addEventListener('submit', (e) => {
         e.preventDefault();
         enviarFormulario(crearMenuForm, 'OtroMenu', "Menú creado con éxito");
+        listarProd("OtroMenu");
     });
 
     // Enviar formulario de Bebida
     crearBebidaForm.addEventListener('submit', (e) => {
         e.preventDefault();
         enviarFormulario(crearBebidaForm, 'Bebida', "Bebida creada con éxito");
+        listarProd("Bebida");
     });
 
     // Función para editar producto
@@ -317,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// Esto habilita la edición al presionar "Editar" -----------------------------
+    // Esto habilita la edición al presionar "Editar" -----------------------------
     function setupEditarFormulario(formulario, {id, nombre, precio, stock}) {
         formulario.querySelector('#editID').value = id;
         formulario.querySelector('#editName').value = nombre;
@@ -326,34 +329,34 @@ document.addEventListener('DOMContentLoaded', () => {
         formulario.classList.remove('hidden');
     }
      // Event listener para formularios de edición
-editarPizzaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarPizzaForm.querySelector('#editID').value;
-    editarProducto(editarPizzaForm, id, 'Pizza', 'Pizza editada con éxito');
-});
-
-editarMenuForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarMenuForm.querySelector('#editID').value;
-    editarProducto(editarMenuForm, id, 'OtroMenu', 'Menú editado con éxito');
-});
-
-editarBebidaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = editarBebidaForm.querySelector('#editID').value;
-    editarProducto(editarBebidaForm, id, 'Bebida', 'Bebida editada con éxito');
-});
-
-function setupEventosEditar() {
-    listaPizza.querySelectorAll('.update').forEach(button => {
-        button.addEventListener('click', () => {
-            const id = button.getAttribute('data-id');
-            const nombre = button.getAttribute('data-name');
-            const precio = button.getAttribute('data-price');
-            const stock = button.getAttribute('data-stock');
-            setupEditarFormulario(editarPizzaForm, { id, nombre, precio, stock });
-        });
+    editarPizzaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarPizzaForm.querySelector('#editID').value;
+        editarProducto(editarPizzaForm, id, 'Pizza', 'Pizza editada con éxito');
     });
+
+    editarMenuForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarMenuForm.querySelector('#editID').value;
+        editarProducto(editarMenuForm, id, 'OtroMenu', 'Menú editado con éxito');
+    });
+
+    editarBebidaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = editarBebidaForm.querySelector('#editID').value;
+        editarProducto(editarBebidaForm, id, 'Bebida', 'Bebida editada con éxito');
+    });
+
+    function setupEventosEditar() {
+        listaPizza.querySelectorAll('.update').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const nombre = button.getAttribute('data-name');
+                const precio = button.getAttribute('data-price');
+                const stock = button.getAttribute('data-stock');
+                setupEditarFormulario(editarPizzaForm, { id, nombre, precio, stock });
+            });
+        });
 
     listaMenu.querySelectorAll('.update').forEach(button => {
         button.addEventListener('click', () => {
