@@ -13,7 +13,7 @@ const routesPublic = {// Resuelve la ruta absoluta hacia los archivos
     contacto : path.resolve(__dirname, '../public/contacto/contacto.html'),
     notFound : path.resolve(__dirname, '../public/not_found/index.html')
 };
-var adminLogeado = true; //Esto se debería manejar con JWT
+var adminLogeado = false; //Maneja si se puede acceder sin logearse al /dashboard
 
 //Rutas obtener
 router.get('/Pizza', (req, res)=> dashboardController.ObtenerTablaPizza(req,res, 'Pizza'));

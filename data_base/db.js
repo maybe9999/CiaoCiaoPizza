@@ -22,6 +22,7 @@ connection.connect((err) => {
 
 connection.on('error', (err) => {
     console.log("Error en la conexión a la base de datos:", err.code, err);
+
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
         connection.connect();
     } else if (err.code === 'ER_USER_LIMIT_REACHED'){
@@ -33,8 +34,13 @@ connection.on('error', (err) => {
                 connection.connect();
             }
         })
-    } else{
+    } else if (err.code === 'PROTOCOL_CONNECTION_LOST'){
+        console.log('Conexion perdida, recuperando...');
+        setTimeout(connection.connect(), 1000);
+    } else {
+        console.log('Error, recuperando...\n El error es:,',err.code, "\ncodigo de error extendido:", err);;
         setTimeout(connection.connect(), 60000);
+        
     }
 });
 
