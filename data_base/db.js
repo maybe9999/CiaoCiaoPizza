@@ -23,7 +23,7 @@ function handleDisconnect() {
 };
 
 connection.on('error', (err) => {
-    console.log("Error en la conexion a la base de datos:", err.code, err);
+    console.log("Error capturado por .on, error en la conexion a la base de datos:", err.code, err);
     handleDisconnect();
 })
 
