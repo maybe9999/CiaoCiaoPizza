@@ -54,7 +54,7 @@ Para iniciar sesion puedes usar los siguientes datos:
 Despues de loguearte puedes crear productos, editar productos, obtener productos, realizar pedidos y de esta forma administrar el stock del negocio de forma eficiente.
 
 ## Puntos Generales:
-* El proyecto _cuenta con una Base de Datos_ desarrollada con MySql2 y esta cuenta con _mas de 4 tablas_.
+* El proyecto **cuenta con una Base de Datos** desarrollada con MySql2 y esta cuenta con **mas de 4 tablas**.
 * Entre las tablas hay **relaciones de 1 a muchos**.
 * Mediante una **Api** echa con **JavaScript** usando **Express** y ejecutandolo en **Node** se puede realizar:
    * **Alta** de nuevos productos mediante **POST**.
