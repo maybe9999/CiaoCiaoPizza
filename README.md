@@ -52,3 +52,16 @@ Para iniciar sesion puedes usar los siguientes datos:
 * Contrasena: admin
 
 Despues de loguearte puedes crear productos, editar productos, obtener productos, realizar pedidos y de esta forma administrar el stock del negocio de forma eficiente.
+
+## Puntos Generales:
+* El proyecto _cuenta con una Base de Datos_ desarrollada con MySql2 y esta cuenta con _mas de 4 tablas_.
+* Entre las tablas hay **relaciones de 1 a muchos**.
+* Mediante una **Api** echa con **JavaScript** usando **Express** y ejecutandolo en **Node** se puede realizar:
+   * **Alta** de nuevos productos mediante **POST**.
+   * **Modificaciones** de productos existentes mediante **PUT**.
+   * **Consultas** de productos registrados mediante **GET**.
+   * **Borrado** de productos con el metodo **DELETE**.
+* El proyecto esta subido a **"[ciao-ciao-pizza.vercel.app](https://ciao-ciao-pizza.vercel.app/)"** donde se puede navegar facilmente en el sitio.
+* El proyecto tiene un **metodo de autenticacion** donde se puede iniciar sesion dependiendo el nivel o rol del usuario.
+* El **BackEnd** esta **integrado** con el **FrontEnd**.
+
