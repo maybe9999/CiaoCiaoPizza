@@ -98,7 +98,7 @@ const crearProductoPizza = (req,res)=>{
             console.error('Error al insertar datos en la tabla Pizza:', err);
             res.status(500).send('Error al insertar datos');
         } else {
-            res.send('Datos insertados correctamente en Pizza');
+            res.json({message:'Datos insertados correctamente en Pizza'});
         }
     })
 };
@@ -113,7 +113,7 @@ const crearProductoMenu = (req,res)=>{
             console.error('Error al insertar datos en la tabla OtroMenu:', err);
             res.status(500).send('Error al insertar datos');
         } else {
-            res.send('Datos insertados correctamente en Menú');
+            res.json({message:'Datos insertados correctamente en Menu'});
         }
     })
 };
@@ -128,7 +128,7 @@ const crearProductoBebida = (req,res)=>{
             console.error('Error al insertar datos en la tabla Bebida:', err);
             res.status(500).send('Error al insertar datos');
         } else {
-            res.send('Datos insertados correctamente en Bebida');
+            res.json({message:'Datos insertados correctamente en Bebida'});
         }
     })
 };
