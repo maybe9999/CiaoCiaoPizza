@@ -7,21 +7,19 @@ const connection = mySqlDB.createConnection({
     user : process.env.userDataBase,
     password : process.env.passwordDataBase,
     database : process.env.nameDataBase,
-    port: process.env.portDataBase,
+    port: process.env.portDataBase ,
     });
 
-function handleDisconnect() {
-    //se llama al método connect y mediante una función anónima verificamos si la conexión se realizo correctamente
-    connection.connect((err) => {
-        if (err) {
-            // Si hay un error, se intenta reconectar en 2 segundos
-            console.log("Error en la conexión a la base de datos:", err.code, err);
-            setTimeout(handleDisconnect, 2000);
-        } else {
-            console.log("Conectado con éxito a la base de datos");
-        }
-    });
-};
+
+//se llama al método connect y mediante una función anónima verificamos si la conexión se realizo correctamente
+connection.connect((err) => {
+    if (err) {
+        // Si hay un error, se intenta reconectar en 2 segundos
+        console.log("Error en la conexión a la base de datos:", err.code, err);
+    } else {
+        console.log("Conectado con éxito a la base de datos");
+    }
+});
 
 connection.on('error', (err) => {
     // Si hay un error, se intenta reconectar en 2 segundos
@@ -29,11 +27,10 @@ connection.on('error', (err) => {
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
         connection.connect();
     } else {
-        setTimeout(handleDisconnect, 2000);
+        setTimeout(connection.connect(), 60000);
     }
 });
 
-handleDisconnect();
 
 module.exports = connection;
 
