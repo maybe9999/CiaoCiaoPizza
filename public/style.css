@@ -1611,7 +1611,7 @@ button.carga-buttonBeb:hover {
     margin-top: 20px;
     width: 100%;
     justify-content: space-evenly;
-    display: flex;
+    display: contents;
 
 }
 
@@ -1805,7 +1805,7 @@ button.menu-button-list {
 
 button.menu-button {
     width: 100%;
-    margin-bottom: 20px;
+   /* margin-bottom: 20px;*/
     background-color: #131414;
     color: white;
     padding: 10px 20px;
@@ -1816,10 +1816,78 @@ button.menu-button {
     transition: background-color 0.3s ease;
 }
 
-/* Media Query para pantallas más pequeñas */
-@media screen and (max-width: 768px) {
+/* Media Query para pantallas de 1050px a 768px */
+@media screen and (min-width: 769px) and (max-width: 1050px) {
     .dashboard {
         max-width: 90%; /* Ancho máximo ajustado para pantallas más pequeñas */
+    }
+    .containerDash {
+        width: 100%;
+        padding: 20px;
+        margin-top: 7vw;
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+    }
+
+    button.menu-button {
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+        margin: 20px;
+        padding: 20px 20px;
+        border-radius: 10px;
+    }
+
+    button.carga-buttonPizz, 
+    button.carga-buttonMen, 
+    button.carga-buttonBeb {
+        width: 80%; /* Ancho ajustado para pantallas más pequeñas */
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+    }
+    .menu-content {
+        margin-top: 20px;
+        width: 190%;
+        justify-content: space-evenly;
+        display: contents;
+    
+    }
+    .input-group label {
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+    }
+
+    .input-group input {
+        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+    }
+
+    .listadosbtn {
+        flex-direction:row; /* Cambio a disposición en columna para pantallas más pequeñas */
+        gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
+    }
+
+    button.menu-button-list {
+        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+    }
+
+    #listaPizza li, 
+    #listaMenu li, 
+    #listaBebida li {
+        padding: 10px; /* Ajuste del padding para pantallas más pequeñas */
+        font-size: 14px; /* Tamaño de fuente reducido para pantallas más pequeñas */
+    }
+}
+
+/* Media Query para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .containerDash {
+        width: 190%;
+        padding: 20px;
+        margin-top: 7vw;
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.2); /* Mejora el contraste*/
+    }
+    
+    .dashboard {
+        max-width: 50%; /* Ancho máximo ajustado para pantallas más pequeñas */
     }
 
     button.menu-button {
@@ -1843,7 +1911,7 @@ button.menu-button {
     }
 
     .listadosbtn {
-        flex-direction: column; /* Cambio a disposición en columna para pantallas más pequeñas */
+        flex-direction:row; /* Cambio a disposición en columna para pantallas más pequeñas */
         gap: 10px; /* Espacio entre elementos aumentado para pantallas más pequeñas */
     }
 
