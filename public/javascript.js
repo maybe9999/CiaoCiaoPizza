@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     btnMobile.onclick = function () {
+        document.querySelector(".menu-desplegable").classList.toggle("open");
         showModal = true; // Al hacer clic en el botón móvil, se muestra el modal
         toggleModal();
     };
