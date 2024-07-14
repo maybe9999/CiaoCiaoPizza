@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(result => {
-            result.json()
             if (result.success || result.tipo === 'exito' || result.success === true) {
                 console.log("redirigiendo a dashboard");
                 window.location.href = '/dashboard';
